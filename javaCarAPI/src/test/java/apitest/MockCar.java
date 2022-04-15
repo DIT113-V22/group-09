@@ -62,9 +62,9 @@ public class MockCar {
 
     private void initMQTTVariables() {
         ultrasonicFront = "/" + carName +"/ultrasound/front";
-        infrared = "/" + carName + "/infrared/#"; //front , left , right , back
-        odometerSpeed = "/" + carName + "/odometer/speed/#"; //left , right
-        odometerTotalDistance = "/" + carName + "/odometer/totalDistance/#"; // left , right
+        infrared = "/" + carName + "/infrared/";
+        odometerSpeed = "/" + carName + "/odometer/speed/";
+        odometerTotalDistance = "/" + carName + "/odometer/totalDistance/";
         gyroscope =  "/" + carName + "/gyroscope";
         heartbeat = "/" + carName + "/heartbeat";
     }

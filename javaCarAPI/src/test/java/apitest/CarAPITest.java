@@ -101,6 +101,26 @@ public class CarAPITest {
         if (!result.isSuccess()) throw result.getException();
     }
 
+    @Test
+    public void testOdometerTotalDistanceListeners() throws Exception{
+        for (Odometer o : Odometer.values()) {
+            double testValue = randomDouble();
+            testOdometerTotalDistanceListener(o,testValue);
+        }
+    }
+
+    private void testOdometerTotalDistanceListener(Odometer odometer, double testValue) throws Exception {
+        CountDownLatch latch = new CountDownLatch(1);
+        final TestResult result = new TestResult();
+        carAPI.addOdometerTotalDistanceListener(odometer, d ->{
+            checkAssertion(testValue,d,result);
+            latch.countDown();
+        });
+        mockCar.sendOdometerTotalDistanceData(odometer,testValue);
+        latch.await();
+        if (!result.isSuccess()) throw result.getException();
+    }
+
     private double randomDouble(){
         Random random =  new Random();
         return random.nextDouble();

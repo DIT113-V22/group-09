@@ -21,17 +21,21 @@ public class CarAPI {
     private static final int QOS = 1;
     private static final int IMAGE_WIDTH = 320;
     private static final int IMAGE_HEIGHT = 240;
+    private static final int DEFAULT_MQTT_PORT = 1883;
+    private static final int PING_REQUEST_INTERVAL = 150;
+    private static final int DISCONNECT_THRESHOLD = 1000;
+    private static final int MQTT_TIME_OUT = 10;
 
-    private String throttleControl;
-    private String steeringControl;
-    private String cameraFeed;
-    private String jsonCommand;
-    private String ultrasonicFront;
-    private String gyroscope;
-    private String infrared;
-    private String odometerSpeed;
-    private String odometerTotalDistance;
-    private String heartbeat;
+    private String throttleControlTopic;
+    private String steeringControlTopic;
+    private String cameraFeedTopic;
+    private String jsonCommandTopic;
+    private String ultrasonicFrontTopic;
+    private String gyroscopeTopic;
+    private String infraredTopic;
+    private String odometerSpeedTopic;
+    private String odometerTotalDistanceTopic;
+    private String heartbeatTopic;
 
     private final MqttClient client;
     private final String carName;
@@ -41,17 +45,17 @@ public class CarAPI {
 
     private final List<Consumer<Image>> videoFeedListeners = new ArrayList<>();
     private final List<Consumer<Double>> ultraSonicListeners = new ArrayList<>();
+    private final List<Consumer<Double>> gyroscopeListeners = new ArrayList<>();
     private final Map<Infrared,List<Consumer<Double>>> infraredListeners = new HashMap<>();
     private final Map<Odometer,List<Consumer<Double>>> odometerSpeedListeners = new HashMap<>();
     private final Map<Odometer,List<Consumer<Double>>> odometerTotalDistanceListeners = new HashMap<>();
-    private final List<Consumer<Double>> gyroscopeListeners = new ArrayList<>();
 
     public CarAPI(String host, String carName) throws MqttException{
         this(host, UUID.randomUUID().toString(),carName);
     }
 
     public CarAPI (String host,String clientId,String carName) throws MqttException{
-        this(host,1883,clientId,carName);
+        this(host,DEFAULT_MQTT_PORT,clientId,carName);
     }
 
     public CarAPI (String host,int port,String clientId,String carName) throws MqttException{
@@ -69,7 +73,7 @@ public class CarAPI {
         MqttConnectOptions options = new MqttConnectOptions();
         options.setAutomaticReconnect(true);
         options.setCleanSession(true);
-        options.setConnectionTimeout(10);
+        options.setConnectionTimeout(MQTT_TIME_OUT);
         if (user != null && password != null) {
             options.setUserName(user);
             options.setPassword(password);
@@ -86,8 +90,7 @@ public class CarAPI {
             while (client.isConnected()) {
                 try {
                     MqttMessage currentTime = new MqttMessage(Long.toString(System.currentTimeMillis()).getBytes(StandardCharsets.UTF_8));
-                    client.publish(heartbeat,currentTime);
-                    final int PING_REQUEST_INTERVAL = 150;
+                    client.publish(heartbeatTopic,currentTime);
                     Thread.sleep(PING_REQUEST_INTERVAL);
                 } catch (Exception ignore) {}
             }
@@ -97,59 +100,57 @@ public class CarAPI {
 
     private void subscribe() throws MqttException{
 
+        client.subscribe(ultrasonicFrontTopic,(topic,message) -> ultraSonicListeners.forEach(callback -> callback.accept(convertPayloadToDouble(message))));
 
-        client.subscribe(ultrasonicFront,(t,m) -> ultraSonicListeners.forEach(callback -> callback.accept(convertPayloadToDouble(m))));
+        client.subscribe(gyroscopeTopic, (topic,message) -> gyroscopeListeners.forEach(callback -> callback.accept(convertPayloadToDouble(message))));
 
-        client.subscribe(gyroscope, (t,m) -> gyroscopeListeners.forEach(callback -> callback.accept(convertPayloadToDouble(m))));
+        client.subscribe(heartbeatTopic, (topic,message) -> ping = (System.currentTimeMillis() - Long.parseLong(new String(message.getPayload()))));
 
-        client.subscribe(heartbeat, (t,m) -> ping = (System.currentTimeMillis() - Long.parseLong(new String(m.getPayload()))));
-
-        client.subscribe(cameraFeed, (t, m) -> {
-            if (videoFeedListeners.size() == 0) return; //doesn't convert the image if there is no listeners asking for it
-            Image image = convertImage(m.getPayload());
+        client.subscribe(cameraFeedTopic, (topic, message) -> {
+            if (videoFeedListeners.size() == 0) return; //avoids converting the image if there is no listeners asking for it
+            Image image = convertImage(message.getPayload());
             videoFeedListeners.forEach(callback -> callback.accept(image));
         });
 
-        client.subscribe(infrared, (t,m) -> {
+        client.subscribe(infraredTopic, (topic,message) -> {
             Infrared infrared = null;
-            if (t.endsWith("front")) infrared = Infrared.FRONT;
-            else if (t.endsWith("back")) infrared = Infrared.BACK;
-            else if (t.endsWith("right")) infrared = Infrared.RIGHT;
-            else if (t.endsWith("left")) infrared = Infrared.LEFT;
+            if (topic.endsWith("front")) infrared = Infrared.FRONT;
+            else if (topic.endsWith("back")) infrared = Infrared.BACK;
+            else if (topic.endsWith("right")) infrared = Infrared.RIGHT;
+            else if (topic.endsWith("left")) infrared = Infrared.LEFT;
 
             if (infrared == null) return;
 
-            infraredListeners.computeIfAbsent(infrared, i -> new ArrayList<>()).forEach(callback -> callback.accept(convertPayloadToDouble(m)));
+            infraredListeners.computeIfAbsent(infrared, i -> new ArrayList<>()).forEach(callback -> callback.accept(convertPayloadToDouble(message)));
         });
 
-        startOdometerListener(odometerSpeed, odometerSpeedListeners);
-        startOdometerListener(odometerTotalDistance, odometerTotalDistanceListeners);
+        startOdometerListener(odometerSpeedTopic, odometerSpeedListeners);
+        startOdometerListener(odometerTotalDistanceTopic, odometerTotalDistanceListeners);
 
     }
 
     private void startOdometerListener(String odometerTopic, Map<Odometer, List<Consumer<Double>>> odometerListener) throws MqttException {
-        client.subscribe(odometerTopic, (t, m) -> {
+        client.subscribe(odometerTopic, (topic, message) -> {
             Odometer odometer = null;
-            if (t.endsWith("right")) odometer = Odometer.RIGHT;
-            else if (t.endsWith("left")) odometer = Odometer.LEFT;
+            if (topic.endsWith("right")) odometer = Odometer.RIGHT;
+            else if (topic.endsWith("left")) odometer = Odometer.LEFT;
             if (odometer == null) return;
 
-            odometerListener.computeIfAbsent(odometer , o -> new ArrayList<>()).forEach(callback -> callback.accept(convertPayloadToDouble(m)));
-
+            odometerListener.computeIfAbsent(odometer , o -> new ArrayList<>()).forEach(callback -> callback.accept(convertPayloadToDouble(message)));
         });
     }
 
     private void initMQTTVariables() {
-        throttleControl = "/" + carName + "/control/throttle";
-        steeringControl = "/" + carName + "/control/steering";
-        cameraFeed = "/" + carName + "/camera";
-        jsonCommand = "/" + carName + "/jcmd";
-        ultrasonicFront = "/" + carName +"/ultrasound/front";
-        infrared = "/" + carName + "/infrared/#"; //front , left , right , back
-        odometerSpeed = "/" + carName + "/odometer/speed/#"; //left , right
-        odometerTotalDistance = "/" + carName + "/odometer/totalDistance/#"; // left , right
-        gyroscope =  "/" + carName + "/gyroscope";
-        heartbeat = "/" + carName + "/heartbeat";
+        throttleControlTopic = "/" + carName + "/control/throttle";
+        steeringControlTopic = "/" + carName + "/control/steering";
+        cameraFeedTopic = "/" + carName + "/camera";
+        jsonCommandTopic = "/" + carName + "/jcmd";
+        ultrasonicFrontTopic = "/" + carName +"/ultrasound/front";
+        infraredTopic = "/" + carName + "/infrared/#"; //front , left , right , back
+        odometerSpeedTopic = "/" + carName + "/odometer/speed/#"; //left , right
+        odometerTotalDistanceTopic = "/" + carName + "/odometer/totalDistance/#"; // left , right
+        gyroscopeTopic =  "/" + carName + "/gyroscope";
+        heartbeatTopic = "/" + carName + "/heartbeat";
     }
 
     private Image convertImage(byte [] payload){
@@ -180,8 +181,8 @@ public class CarAPI {
             System.out.println(notConnected); 
             return;
         }
-        client.publish(throttleControl, Integer.toString(throttleSpeed).getBytes(StandardCharsets.UTF_8), QOS ,false);
-        client.publish(steeringControl, Integer.toString(steeringAngle).getBytes(StandardCharsets.UTF_8), QOS ,false);
+        client.publish(throttleControlTopic, Integer.toString(throttleSpeed).getBytes(StandardCharsets.UTF_8), QOS ,false);
+        client.publish(steeringControlTopic, Integer.toString(steeringAngle).getBytes(StandardCharsets.UTF_8), QOS ,false);
 
     }
 
@@ -210,7 +211,7 @@ public class CarAPI {
     }
 
     public boolean isCarConnected(){
-        return getPing() < 1000;
+        return getPing() < DISCONNECT_THRESHOLD;
     }
 
     public int getPing(){
@@ -218,7 +219,7 @@ public class CarAPI {
     }
 
     public void sendJsonCommand(String json) throws MqttException{
-        client.publish(jsonCommand,new MqttMessage(json.getBytes(StandardCharsets.UTF_8)));
+        client.publish(jsonCommandTopic,new MqttMessage(json.getBytes(StandardCharsets.UTF_8)));
     }
 
     public String getClientId(){
@@ -232,6 +233,10 @@ public class CarAPI {
 
     public void addGyroscopeListener(Consumer<Double> callback){
         gyroscopeListeners.add(callback);
+    }
+
+    public void addVideoFeedListener(Consumer<Image> callback){
+        this.videoFeedListeners.add(callback);
     }
 
     public void addInfraredListener(Infrared infrared, Consumer<Double> callback){
@@ -249,13 +254,8 @@ public class CarAPI {
         listeners.add(callback);
     }
 
-    public void addVideoFeedListener(Consumer<Image> callback){
-        this.videoFeedListeners.add(callback);
-    }
-
-    private Double convertPayloadToDouble(MqttMessage m){
-        return Double.valueOf(new String(m.getPayload()));
-
+    private Double convertPayloadToDouble(MqttMessage message){
+        return Double.valueOf(new String(message.getPayload()));
     }
 
 }

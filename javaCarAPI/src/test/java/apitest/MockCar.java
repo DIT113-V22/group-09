@@ -16,12 +16,12 @@ public class MockCar {
     private final MqttClient client;
     private final String carName;
 
-    private String ultrasonicFront;
-    private String gyroscope;
-    private String infrared;
-    private String odometerSpeed;
-    private String odometerTotalDistance;
-    private String heartbeat;
+    private String ultrasonicFrontTopic;
+    private String gyroscopeTopic;
+    private String infraredTopic;
+    private String odometerSpeedTopic;
+    private String odometerTotalDistanceTopic;
+    private String heartbeatTopic;
 
     public MockCar(String server,int port,String carName) throws MqttException {
 
@@ -33,40 +33,39 @@ public class MockCar {
         MqttConnectOptions options = new MqttConnectOptions();
         options.setAutomaticReconnect(true);
         options.setCleanSession(true);
-        options.setConnectionTimeout(10);
         client.connect(options);
     }
 
     public void sendGyroscopeData(double value) throws MqttException{
-        client.publish(gyroscope,convertDouble(value));
+        client.publish(gyroscopeTopic,convertDouble(value));
     }
 
     public void sendUltraSonicData(double value) throws MqttException {
-        client.publish(ultrasonicFront,convertDouble(value));
+        client.publish(ultrasonicFrontTopic,convertDouble(value));
     }
 
     public void sendOdometerSpeedData(Odometer odometer, double value) throws MqttException {
-        client.publish(odometerSpeed+odometer.toString(),convertDouble(value));
+        client.publish(odometerSpeedTopic+odometer.toString(),convertDouble(value));
     }
     public void sendOdometerTotalDistanceData(Odometer odometer, double value) throws MqttException{
-        client.publish(odometerTotalDistance+odometer.toString(),convertDouble(value));
+        client.publish(odometerTotalDistanceTopic+odometer.toString(),convertDouble(value));
     }
 
     public void sendInfraredData(Infrared infrared, double value) throws MqttException{
-        client.publish(this.infrared+infrared.toString(),convertDouble(value));
+        client.publish(this.infraredTopic+infrared.toString(),convertDouble(value));
     }
 
     public void sendHeartBeat(long value) throws MqttException{
-        client.publish(heartbeat,new MqttMessage(Long.toString(value).getBytes(StandardCharsets.UTF_8)));
+        client.publish(heartbeatTopic,new MqttMessage(Long.toString(value).getBytes(StandardCharsets.UTF_8)));
     }
 
     private void initMQTTVariables() {
-        ultrasonicFront = "/" + carName +"/ultrasound/front";
-        infrared = "/" + carName + "/infrared/";
-        odometerSpeed = "/" + carName + "/odometer/speed/";
-        odometerTotalDistance = "/" + carName + "/odometer/totalDistance/";
-        gyroscope =  "/" + carName + "/gyroscope";
-        heartbeat = "/" + carName + "/heartbeat";
+        ultrasonicFrontTopic = "/" + carName +"/ultrasound/front";
+        infraredTopic = "/" + carName + "/infrared/";
+        odometerSpeedTopic = "/" + carName + "/odometer/speed/";
+        odometerTotalDistanceTopic = "/" + carName + "/odometer/totalDistance/";
+        gyroscopeTopic =  "/" + carName + "/gyroscope";
+        heartbeatTopic = "/" + carName + "/heartbeat";
     }
 
     private MqttMessage convertDouble(double value){

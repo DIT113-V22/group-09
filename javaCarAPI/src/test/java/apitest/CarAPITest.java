@@ -36,8 +36,8 @@ public class CarAPITest {
         CountDownLatch latch = new CountDownLatch(1);
         final double testValue = randomDouble();
         final TestResult result = new TestResult();
-        carAPI.addGyroscopeListener(d -> {
-            checkAssertion(testValue,d,result);
+        carAPI.addGyroscopeListener(degrees -> {
+            checkAssertion(testValue,degrees,result);
             latch.countDown();
         });
         mockCar.sendGyroscopeData(testValue);
@@ -50,8 +50,8 @@ public class CarAPITest {
         CountDownLatch latch = new CountDownLatch(1);
         final double testValue = randomDouble();
         final TestResult result = new TestResult();
-        carAPI.addUltraSonicListener(d -> {
-            checkAssertion(testValue,d,result);
+        carAPI.addUltraSonicListener(distance -> {
+            checkAssertion(testValue,distance,result);
             latch.countDown();
         });
         mockCar.sendUltraSonicData(testValue);
@@ -72,8 +72,8 @@ public class CarAPITest {
 
         CountDownLatch latch = new CountDownLatch(1);
         final TestResult result = new TestResult();
-        carAPI.addInfraredListener(infrared, d ->{
-            checkAssertion(testValue,d,result);
+        carAPI.addInfraredListener(infrared, distance ->{
+            checkAssertion(testValue,distance,result);
             latch.countDown();
         });
         mockCar.sendInfraredData(infrared,testValue);
@@ -92,8 +92,8 @@ public class CarAPITest {
     private void testOdometerSpeedListener(Odometer odometer, double testValue) throws Exception {
         CountDownLatch latch = new CountDownLatch(1);
         final TestResult result = new TestResult();
-        carAPI.addOdometerSpeedListener(odometer, d ->{
-            checkAssertion(testValue,d,result);
+        carAPI.addOdometerSpeedListener(odometer, speed ->{
+            checkAssertion(testValue,speed,result);
             latch.countDown();
         });
         mockCar.sendOdometerSpeedData(odometer,testValue);
@@ -112,8 +112,8 @@ public class CarAPITest {
     private void testOdometerTotalDistanceListener(Odometer odometer, double testValue) throws Exception {
         CountDownLatch latch = new CountDownLatch(1);
         final TestResult result = new TestResult();
-        carAPI.addOdometerTotalDistanceListener(odometer, d ->{
-            checkAssertion(testValue,d,result);
+        carAPI.addOdometerTotalDistanceListener(odometer, totalDistance ->{
+            checkAssertion(testValue,totalDistance,result);
             latch.countDown();
         });
         mockCar.sendOdometerTotalDistanceData(odometer,testValue);

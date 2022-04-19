@@ -9,11 +9,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
+import java.util.UUID;
+
 
 public class App extends Application {
 
     private static CarAPI carAPI;
     private static KeyboardHandler keyboardHandler;
+
+    private final static String HOST = "127.0.0.1";
+    private final static String CAR_NAME = "smartcar";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -41,7 +46,7 @@ public class App extends Application {
     }
 
     private static void initClient() throws MqttException{
-        carAPI = new CarAPI("127.0.0.1","2cf6307a-5bd4-4af1-b90f-db66b849078f","smartcar");
+        carAPI = new CarAPI(HOST, UUID.randomUUID().toString(),CAR_NAME);
         keyboardHandler  = new KeyboardHandler();
     }
 

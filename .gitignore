@@ -69,3 +69,5 @@ google-services.json
 # Android Profiling
 *.hprof
 /javaCarAPI/target/
+/out/
+/gui/target/

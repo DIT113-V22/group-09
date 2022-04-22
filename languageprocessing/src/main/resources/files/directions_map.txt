@@ -1,0 +1,7 @@
+left:LEFT
+right:RIGHT
+forward:FORWARD
+forwards:FORWARD
+straight:FORWARD
+back:BACK
+backwards:BACK

@@ -1,0 +1,2 @@
+Go 10 meters forward.
+After that turn left.

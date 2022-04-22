@@ -2,7 +2,7 @@ package grammar;
 
 public class LanguageEnums {
     //IntelliJ might show the enums as not being used, this is due to the fact that the maps/lists that use them are loaded from separate files.
-    public enum actionTypes {
+    public enum ActionTypes {
         GO,
         TURN,
         STOP,
@@ -12,7 +12,7 @@ public class LanguageEnums {
         NOT_APPLICABLE
     }
 
-    public enum unitTypes {
+    public enum UnitTypes {
         MILLIMETER,
         CENTIMETER,
         DECIMETER,
@@ -32,7 +32,7 @@ public class LanguageEnums {
         NOT_APPLICABLE
     }
 
-    public enum directionTypes {
+    public enum DirectionTypes {
         LEFT,
         RIGHT,
         FORWARD,

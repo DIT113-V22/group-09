@@ -41,16 +41,16 @@ public class FileLoader {
         return builder.toString();
     }
 
-    public static HashMap<String, actionTypes> loadActionMap(){
+    public static HashMap<String, ActionTypes> loadActionMap(){
         ArrayList<String> keyValPairs = loadTxtFile(ACTIONS_MAP_PATH);
-        HashMap<String, actionTypes> actionMap = new HashMap<>();
+        HashMap<String, ActionTypes> actionMap = new HashMap<>();
         String[] keyAndVal;
 
         for (String keyValPair : keyValPairs){
             keyAndVal =keyValPair.replace(" ","").split(":");
 
             try {
-                actionMap.put(keyAndVal[0],actionTypes.valueOf(keyAndVal[1]));
+                actionMap.put(keyAndVal[0], ActionTypes.valueOf(keyAndVal[1]));
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
@@ -59,15 +59,15 @@ public class FileLoader {
         return actionMap;
     }
 
-    public static HashMap<String, directionTypes> loadDirectionMap(){
+    public static HashMap<String, DirectionTypes> loadDirectionMap(){
         ArrayList<String> keyValPairs = loadTxtFile(DIRECTIONS_MAP_PATH);
-        HashMap<String, directionTypes> directionMap = new HashMap<>();
+        HashMap<String, DirectionTypes> directionMap = new HashMap<>();
         String[] keyAndVal;
 
         for (String keyValPair : keyValPairs){
             keyAndVal =keyValPair.replace(" ","").split(":");
             try {
-                directionMap.put(keyAndVal[0],directionTypes.valueOf(keyAndVal[1]));
+                directionMap.put(keyAndVal[0], DirectionTypes.valueOf(keyAndVal[1]));
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
@@ -76,15 +76,15 @@ public class FileLoader {
         return directionMap;
     }
 
-    public static HashMap<String, unitTypes> loadUnitMap(){
+    public static HashMap<String, UnitTypes> loadUnitMap(){
         ArrayList<String> keyValPairs = loadTxtFile(UNITS_MAP_PATH);
-        HashMap<String, unitTypes> unitsMap = new HashMap<>();
+        HashMap<String, UnitTypes> unitsMap = new HashMap<>();
         String[] keyAndVal;
 
         for (String keyValPair : keyValPairs){
             keyAndVal =keyValPair.replace(" ","").split(":");
             try {
-                unitsMap.put(keyAndVal[0],unitTypes.valueOf(keyAndVal[1]));
+                unitsMap.put(keyAndVal[0], UnitTypes.valueOf(keyAndVal[1]));
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
@@ -93,15 +93,15 @@ public class FileLoader {
         return unitsMap;
     }
 
-    public static HashMap<actionTypes,Integer> loadAmountFromActMap(){
+    public static HashMap<ActionTypes,Integer> loadAmountFromActMap(){
         ArrayList<String> keyValPairs = loadTxtFile(AMOUNT_FROM_ACT_MAP_PATH);
-        HashMap<actionTypes,Integer> amountFromActMap = new HashMap<>();
+        HashMap<ActionTypes,Integer> amountFromActMap = new HashMap<>();
         String[] keyAndVal;
 
         for (String keyValPair : keyValPairs){
             keyAndVal =keyValPair.replace(" ","").split(":");
             try {
-                amountFromActMap.put(actionTypes.valueOf(keyAndVal[0]),Integer.valueOf(keyAndVal[1]));
+                amountFromActMap.put(ActionTypes.valueOf(keyAndVal[0]),Integer.valueOf(keyAndVal[1]));
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
@@ -110,15 +110,15 @@ public class FileLoader {
         return amountFromActMap;
     }
 
-    public static HashMap<actionTypes,directionTypes> loadDirFromActMap(){
+    public static HashMap<ActionTypes, DirectionTypes> loadDirFromActMap(){
         ArrayList<String> keyValPairs = loadTxtFile(DIR_FROM_ACT_MAP_PATH);
-        HashMap<actionTypes,directionTypes> dirFromActMap = new HashMap<>();
+        HashMap<ActionTypes, DirectionTypes> dirFromActMap = new HashMap<>();
         String[] keyAndVal;
 
         for (String keyValPair : keyValPairs){
             keyAndVal =keyValPair.replace(" ","").split(":");
             try {
-                dirFromActMap.put(actionTypes.valueOf(keyAndVal[0]),directionTypes.valueOf(keyAndVal[1]));
+                dirFromActMap.put(ActionTypes.valueOf(keyAndVal[0]), DirectionTypes.valueOf(keyAndVal[1]));
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
@@ -127,15 +127,15 @@ public class FileLoader {
         return dirFromActMap;
     }
 
-    public static HashMap<directionTypes,actionTypes> loadActFromDirMap(){
+    public static HashMap<DirectionTypes, ActionTypes> loadActFromDirMap(){
         ArrayList<String> keyValPairs = loadTxtFile(ACT_FROM_DIR_MAP_PATH);
-        HashMap<directionTypes,actionTypes> actFromDirMap = new HashMap<>();
+        HashMap<DirectionTypes, ActionTypes> actFromDirMap = new HashMap<>();
         String[] keyAndVal;
 
         for (String keyValPair : keyValPairs){
             keyAndVal =keyValPair.replace(" ","").split(":");
             try {
-                actFromDirMap.put(directionTypes.valueOf(keyAndVal[0]),actionTypes.valueOf(keyAndVal[1]));
+                actFromDirMap.put(DirectionTypes.valueOf(keyAndVal[0]), ActionTypes.valueOf(keyAndVal[1]));
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
@@ -144,15 +144,15 @@ public class FileLoader {
         return actFromDirMap;
     }
 
-    public static HashMap<actionTypes,unitTypes> loadUnitFromActMap(){
+    public static HashMap<ActionTypes, UnitTypes> loadUnitFromActMap(){
         ArrayList<String> keyValPairs = loadTxtFile(UNIT_FROM_ACT_MAP_PATH);
-        HashMap<actionTypes,unitTypes> dirFromActMap = new HashMap<>();
+        HashMap<ActionTypes, UnitTypes> dirFromActMap = new HashMap<>();
         String[] keyAndVal;
 
         for (String keyValPair : keyValPairs){
             keyAndVal =keyValPair.replace(" ","").split(":");
             try {
-                dirFromActMap.put(actionTypes.valueOf(keyAndVal[0]),unitTypes.valueOf(keyAndVal[1]));
+                dirFromActMap.put(ActionTypes.valueOf(keyAndVal[0]), UnitTypes.valueOf(keyAndVal[1]));
             }
             catch (Exception e){
                 System.out.println(e.getMessage());

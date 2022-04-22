@@ -4,12 +4,12 @@ import static grammar.LanguageEnums.*;
 
 public class Command {
 
-    private actionTypes action;
-    private directionTypes direction;
+    private ActionTypes action;
+    private DirectionTypes direction;
     private Integer amount;
-    private unitTypes unit;
+    private UnitTypes unit;
 
-    public Command(actionTypes action, directionTypes direction, Integer amount, unitTypes unit){
+    public Command(ActionTypes action, DirectionTypes direction, Integer amount, UnitTypes unit){
         this.action = action;
         this.direction = direction;
         this.amount = amount;
@@ -38,13 +38,13 @@ public class Command {
 
     public boolean isEmpty(){
         //Consider if the inferring should be done inside the command or outside when building.
-        if (action == actionTypes.NULL && direction == directionTypes.NULL){
+        if (action == ActionTypes.NULL && direction == DirectionTypes.NULL){
             return true;
         }
         return false;
     }
 
-    public void setDirection(directionTypes direction) {
+    public void setDirection(DirectionTypes direction) {
         this.direction = direction;
     }
 
@@ -52,13 +52,13 @@ public class Command {
         this.amount = amount;
     }
 
-    public void setAction(actionTypes action) {
-        if (this.action == actionTypes.NULL){
+    public void setAction(ActionTypes action) {
+        if (this.action == ActionTypes.NULL){
             this.action = action;
         }
     }
 
-    public void setUnit(unitTypes unit) {
+    public void setUnit(UnitTypes unit) {
         this.unit = unit;
     }
 
@@ -72,11 +72,11 @@ public class Command {
         return amount;
     }
 
-    public actionTypes getAction() {
+    public ActionTypes getAction() {
         return action;
     }
 
-    public directionTypes getDirection() {
+    public DirectionTypes getDirection() {
         return direction;
     }
 
@@ -84,16 +84,16 @@ public class Command {
         return amount;
     }
 
-    public unitTypes getUnit() {
+    public UnitTypes getUnit() {
         return unit;
     }
 
     public boolean hasAction(){
-        return action != actionTypes.NULL;
+        return action != ActionTypes.NULL;
     }
 
     public boolean hasDirection(){
-        return direction != directionTypes.NULL;
+        return direction != DirectionTypes.NULL;
     }
 
     public boolean hasAmount(){
@@ -101,7 +101,7 @@ public class Command {
     }
 
     public boolean hasUnit(){
-        return unit != unitTypes.NULL;
+        return unit != UnitTypes.NULL;
     }
 
 }

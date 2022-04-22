@@ -9,30 +9,30 @@ import file_processing.FileLoader;
 import grammar.LanguageEnums.*;
 
 public class OmittanceInferer {
-    private  final HashMap<directionTypes,actionTypes> actFromDirMap;
-    private  final HashMap<actionTypes,directionTypes> dirFromActMap;
-    private  final HashMap<actionTypes,unitTypes> unitFromActMap;
-    private final HashMap<actionTypes,Integer> amountFromActMap;
+    private  final HashMap<DirectionTypes, ActionTypes> actFromDirMap;
+    private  final HashMap<ActionTypes, DirectionTypes> dirFromActMap;
+    private  final HashMap<ActionTypes, UnitTypes> unitFromActMap;
+    private final HashMap<ActionTypes,Integer> amountFromActMap;
 
-    public  actionTypes inferActFromDir(directionTypes directionVal){
-        if (directionVal == directionTypes.NULL){
+    public ActionTypes inferActFromDir(DirectionTypes directionVal){
+        if (directionVal == DirectionTypes.NULL){
             throw new UnclearInputException("The provided input is either too vague, grammatically incorrect or not supported.");
         }
 
-        actionTypes inferred_action = actFromDirMap.get(directionVal);
+        ActionTypes inferred_action = actFromDirMap.get(directionVal);
 
         if (inferred_action == null){
             throw new UnclearInputException("The provided input is either too vague, grammatically incorrect or not supported.");
         }
         return inferred_action;
     }
-    public directionTypes inferDirFromAct(actionTypes actionVal){
+    public DirectionTypes inferDirFromAct(ActionTypes actionVal){
 
-        if (actionVal == actionTypes.NULL){
+        if (actionVal == ActionTypes.NULL){
             throw new UnclearInputException("The provided input is either too vague, grammatically incorrect or not supported.");
         }
 
-        directionTypes inferred_direction = dirFromActMap.get(actionVal);
+        DirectionTypes inferred_direction = dirFromActMap.get(actionVal);
 
         if (inferred_direction == null){
             throw new UnclearInputException("The provided input is either too vague, grammatically incorrect or not supported.");
@@ -40,13 +40,13 @@ public class OmittanceInferer {
         return inferred_direction;
     }
 
-    public  unitTypes inferUnitFromAct(actionTypes actionVal){
+    public UnitTypes inferUnitFromAct(ActionTypes actionVal){
 
-        if (actionVal == actionTypes.NULL){
+        if (actionVal == ActionTypes.NULL){
             throw new UnclearInputException("The provided input is either too vague, grammatically incorrect or not supported.");
         }
 
-        unitTypes inferred_unit = unitFromActMap.get(actionVal);
+        UnitTypes inferred_unit = unitFromActMap.get(actionVal);
 
         if (inferred_unit == null){
             throw new UnclearInputException("The provided input is either too vague, grammatically incorrect or not supported.");
@@ -54,9 +54,9 @@ public class OmittanceInferer {
         return inferred_unit;
     }
 
-    public int inferAmountFromAct(actionTypes actionVal){
+    public int inferAmountFromAct(ActionTypes actionVal){
 
-        if (actionVal == actionTypes.NULL){
+        if (actionVal == ActionTypes.NULL){
             throw new UnclearInputException("The provided input is either too vague, grammatically incorrect or not supported.");
         }
 
@@ -80,17 +80,17 @@ public class OmittanceInferer {
     public void inferOmitted(CommandList cmList){
         for (Command command : cmList.getList()){
             if (!command.hasAction()){
-                actionTypes inferredAction = inferActFromDir(command.getDirection());
+                ActionTypes inferredAction = inferActFromDir(command.getDirection());
                 command.setAction(inferredAction);
             }
 
             if (!command.hasDirection()){
-                directionTypes inferredDirection = inferDirFromAct(command.getAction());
+                DirectionTypes inferredDirection = inferDirFromAct(command.getAction());
                 command.setDirection(inferredDirection);
             }
 
             if (!command.hasUnit()){
-                unitTypes inferredUnit = inferUnitFromAct(command.getAction());
+                UnitTypes inferredUnit = inferUnitFromAct(command.getAction());
                 command.setUnit(inferredUnit);
             }
 

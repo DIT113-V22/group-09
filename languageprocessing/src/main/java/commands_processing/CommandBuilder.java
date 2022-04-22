@@ -7,15 +7,15 @@ import grammar.PhrasalVerbChecker;
 
 public class CommandBuilder {
     private final LanguageMaps lMap;
-    CommandList cmList;
+    private final CommandList cmList;
     private PhrasalVerb phrasalVerb;
     private boolean afterUsed,andUsed;
-    PhrasalVerbChecker pvChecker; 
+    private final PhrasalVerbChecker pvChecker;
 
-    private actionTypes currentAction;
-    private unitTypes currentUnit;
+    private ActionTypes currentAction;
+    private UnitTypes currentUnit;
     private Integer currentAmount;
-    private directionTypes currentDirection;
+    private DirectionTypes currentDirection;
 
     public CommandBuilder() {
         lMap = new LanguageMaps();
@@ -43,7 +43,7 @@ public class CommandBuilder {
             //If that is the case then the unit and amount are describing the previous command.
             if (afterUsed){
                 if (handleAmountType(text[i]) || handleUnitType(text[i])){
-                    if (currentAmount != null && currentUnit != unitTypes.NULL){
+                    if (currentAmount != null && currentUnit != UnitTypes.NULL){
                         afterUsed = false;
                         Command previousCm = cmList.getLast();
                         if (previousCm != null){
@@ -107,9 +107,9 @@ public class CommandBuilder {
 
     //Handles different parts of the sentence, returns true if the assignment occurred.
     private boolean handleActionType(String word){
-        if (currentAction == actionTypes.NULL){
-            actionTypes action = lMap.getAction(word);
-            if(action != actionTypes.NULL){
+        if (currentAction == ActionTypes.NULL){
+            ActionTypes action = lMap.getAction(word);
+            if(action != ActionTypes.NULL){
                 currentAction = action;
                 return true;
             }
@@ -118,10 +118,10 @@ public class CommandBuilder {
     }
 
     private boolean handleUnitType(String word){
-        if (currentUnit == unitTypes.NULL){
-            unitTypes unit = lMap.getUnit(word);
+        if (currentUnit == UnitTypes.NULL){
+            UnitTypes unit = lMap.getUnit(word);
 
-            if (unit != unitTypes.NULL) {
+            if (unit != UnitTypes.NULL) {
                 currentUnit = unit;
                 return true;
             }
@@ -143,10 +143,10 @@ public class CommandBuilder {
     }
 
     private boolean handleDirectionType(String word){
-        if (currentDirection == directionTypes.NULL){
-            directionTypes direction = lMap.getDirection(word);
+        if (currentDirection == DirectionTypes.NULL){
+            DirectionTypes direction = lMap.getDirection(word);
 
-            if (direction != directionTypes.NULL) {
+            if (direction != DirectionTypes.NULL) {
                 currentDirection = direction;
             }
         }
@@ -154,9 +154,9 @@ public class CommandBuilder {
     }
 
     private void nullCurrent(){
-        currentAction = actionTypes.NULL;
-        currentUnit = unitTypes.NULL;
+        currentAction = ActionTypes.NULL;
+        currentUnit = UnitTypes.NULL;
         currentAmount = null;
-        currentDirection = directionTypes.NULL;
+        currentDirection = DirectionTypes.NULL;
     }
 }

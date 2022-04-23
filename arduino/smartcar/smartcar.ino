@@ -143,14 +143,7 @@ void loop() {
     if (mqtt.connected()) {
         mqtt.loop();
         const auto currentTime = millis();
-#ifdef __SMCE__
-        static auto previousFrame = 0UL;
-    if (currentTime - previousFrame >= 65) {
-      previousFrame = currentTime;
-      Camera.readFrame(frameBuffer.data());
-      mqtt.publish(CAMERA_FEED_TOPIC, frameBuffer.data(), frameBuffer.size(),false, 0);
-    }
-#endif
+
         static auto previousTransmission = 0UL;
         if (currentTime - previousTransmission >= oneSecond) {
             previousTransmission = currentTime;
@@ -171,6 +164,15 @@ void loop() {
             mqtt.publish(ODOMETER_TOTAL_DISTANCE_RIGHT_TOPIC,String(rightOdometer.getDistance()));
 
         }
+
+#ifdef __SMCE__
+        static auto previousFrame = 0UL;
+        if (currentTime - previousFrame >= 65) {
+            previousFrame = currentTime;
+            Camera.readFrame(frameBuffer.data());
+            mqtt.publish("/smartcar/camera", frameBuffer.data(), frameBuffer.size(),false, 0);
+        }
+#endif
     }
 #ifdef __SMCE__
     // Avoid over-using the CPU if we are running in the emulator

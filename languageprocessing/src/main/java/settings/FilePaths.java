@@ -1,8 +1,7 @@
 package settings;
 
 public class FilePaths {
-    //The .replace operations are to resolve conflicts when the path is created via maven tests and/or on linux.
-    public static final String FILES_PATH = System.getProperty("user.dir").replace("/","\\").replace("\\languageprocessing\\src\\test","\\languageprocessing").replace("\\languageprocessing\\languageprocessing","\\languageprocessing")+"\\src\\main\\resources\\files\\";
+    public static final String FILES_PATH = createPathString();
     public static final String ACTIONS_MAP_PATH = FILES_PATH+"actions_map.txt";
     public static final String DIRECTIONS_MAP_PATH = FILES_PATH+"directions_map.txt";
     public static final String UNITS_MAP_PATH = FILES_PATH+"units_map.txt";
@@ -14,4 +13,12 @@ public class FilePaths {
     public static final String AMOUNT_FROM_ACT_MAP_PATH = FILES_PATH+"inferAmountFromAct_map.txt";
     public static final String UNIT_FROM_ACT_MAP_PATH = FILES_PATH+"inferUnitFromAct_map.txt";
     public static final String TEST_TEXT_PATH = FILES_PATH+"txtTest.txt";
+    public static final String UNIT_CONVERSION_MAP_PATH = FILES_PATH+"unitConversions.txt";
+
+    private static String createPathString(){
+        String path = System.getProperty("user.dir").split("languageprocessing")[0];
+        path = path.replace("\\","/")+"/languageprocessing/src/main/resources/files/";
+
+        return path;
+    }
 }

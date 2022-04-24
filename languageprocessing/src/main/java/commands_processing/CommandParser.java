@@ -12,8 +12,8 @@ public class CommandParser {
     private static final int setsOfWheels = 2;
 
     //TODO:Make it adjustable in settings.
-    private static final String defaultTurnSpeed = "10";
-    private static final String defaultMoveSpeed = "20";
+    private static final String defaultTurnSpeed = "40";
+    private static final String defaultMoveSpeed = "50";
     private static final String defaultStopSpeed = "0";
 
     private final HashMap<LanguageEnums.UnitTypes,Double> conversionsMap;
@@ -43,7 +43,7 @@ public class CommandParser {
         Command inBetweenCommand;
         String inBetweenCSVEntry;
 
-        StringBuilder builder = new StringBuilder("lWheels,rWheels,amount,unit;");
+        StringBuilder builder = new StringBuilder();
         for (Command command : list.getList()) {
 
             unitCat = command.getUnit().getUnitCategory();
@@ -109,6 +109,6 @@ public class CommandParser {
            builder.append(amount+","+unitCat+";");
         }
         //TODO: Determine if the last ';' symbol should be there.
-        return builder.substring(0,builder.length());
+        return builder.substring(0,builder.length()-1);
     }
 }

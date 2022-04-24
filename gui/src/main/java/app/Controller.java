@@ -3,6 +3,10 @@ package app;
 import api.CarAPI;
 import api.sensor.Infrared;
 import api.sensor.Odometer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import commands_processing.InputProcessor;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -84,6 +88,7 @@ public class Controller {
         runLater(() -> autonomousTab.setOnSelectionChanged(event -> {
             if (autonomousTab.isSelected())checkSelectedTab();
         }));
+        runLater(this::checkSelectedTab);
     }
 
     private void checkSelectedTab(){
@@ -105,6 +110,7 @@ public class Controller {
     private void initialiseListeners(){
 
         carAPI.addVideoFeedListener(image -> runLater(() -> videoFeed.setImage(image)));
+        carAPI.addVideoFeedListener(image -> runLater(() ->videoFeed2.setImage(image)));
 
         carAPI.addUltraSonicListener(distance -> runLater(() -> ultraSonic.setText(doubleToString(distance))));
 
@@ -121,6 +127,22 @@ public class Controller {
         carAPI.addOdometerTotalDistanceListener(Odometer.LEFT, totalDistance -> runLater(() -> leftOdometerTotalDistance.setText(doubleToString(totalDistance))));
         carAPI.addOdometerTotalDistanceListener(Odometer.RIGHT, totalDistance -> runLater(() -> rightOdometerTotalDistance.setText(doubleToString(totalDistance))));
 
+        startPingUpdateThread();
+    }
+
+    private void startPingUpdateThread(){
+        Thread updater = new Thread(() ->{
+            while (true) {
+                int ping = carAPI.getPing();
+                runLater(() -> pingVal.setText(Integer.toString(ping)));
+                try {
+                    Thread.sleep(1111);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        updater.start();
     }
 
     public void forward() {
@@ -173,9 +195,23 @@ public class Controller {
         String phrase = commandBox.getText();
         System.out.println(phrase);
         InputProcessor inputProcessor = new InputProcessor();
-
         try {
             String csv = inputProcessor.processInput(phrase);
+            String json = inputProcessor.getLatestCommands();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            JsonElement je = JsonParser.parseString(json);
+            String prettyJsonString = gson.toJson(je);
+            commandInfo.appendText(phrase + " \n->\n " + prettyJsonString+ " \n->\n ");
+            StringBuilder csvDisplay = new StringBuilder();
+            if (csv.contains(";")){
+                String [] split = csv.split(";");
+                for (String s : split) {
+                    csvDisplay.append(s).append("\n");
+                }
+            }
+            else csvDisplay.append(csv);
+            commandInfo.appendText(csvDisplay.toString());
+            commandInfo.appendText("\n-------------\n\n");
             System.out.println(inputProcessor.getLatestCommands());
             System.out.println("CSV:"+csv);
             carAPI.sendCSVCommand(csv);

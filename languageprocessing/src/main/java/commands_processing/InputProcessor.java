@@ -20,7 +20,7 @@ public class InputProcessor {
     }
 
     public String getLatestCommands(){
-        return cmList.toString();
+        return cmList.toJSON();
     }
 
 }

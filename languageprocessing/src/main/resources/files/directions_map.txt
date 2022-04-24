@@ -5,3 +5,4 @@ forwards:FORWARD
 straight:FORWARD
 back:BACK
 backwards:BACK
+backward:BACK

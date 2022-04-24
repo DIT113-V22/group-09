@@ -1,8 +1,7 @@
 name: Unit tests of Language translation
 
-on:
-  push:
-    branches: [ master ]
+on: [push]
+ 
 
 jobs:
   build:

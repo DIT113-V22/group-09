@@ -247,8 +247,6 @@ void emergencyDetection(){
     auto distance = front.getDistance();
     int stopThreshold = 50;
     rightOdometer.update();
-    Serial.println(rightOdometer.getSpeed());
-    Serial.println(rightOdometer.getDirection());
 
     if(rightOdometer.getDirection() > 0 && rightOdometer.getSpeed() > 0 && distance > 0 && distance < stopThreshold){
         stopCommands();

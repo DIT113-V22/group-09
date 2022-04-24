@@ -1,5 +1,5 @@
 #include <vector>
-
+#include <deque>
 #include <MQTT.h>
 #include <WiFi.h>
 #ifdef __SMCE__
@@ -35,13 +35,12 @@ DirectionalOdometer rightOdometer{ arduinoRuntime,
                                    []() { rightOdometer.update(); },
                                    PULSES_PER_METER };
 
-
-
-
 GP2Y0A21 frontIR(arduinoRuntime, 0);
 GP2Y0A21 leftIR(arduinoRuntime, 1);
 GP2Y0A21 rightIR(arduinoRuntime, 2);
 GP2Y0A21 backIR(arduinoRuntime, 3);
+
+SmartCar smartCar(arduinoRuntime,control,gyro,leftOdometer,rightOdometer);
 
 const auto oneSecond = 1000UL;
 #ifdef __SMCE__
@@ -53,10 +52,11 @@ const auto triggerPin = 33;
 const auto echoPin = 32;
 const auto mqttBrokerUrl = "192.168.0.40";
 #endif
-const auto maxDistance = 400;
-SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 
 std::vector<char> frameBuffer;
+
+const auto maxDistance = 400;
+SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 
 String CAR_NAME = "/smartcar";
 
@@ -83,12 +83,131 @@ const String GYROSCOPE_TOPIC = CAR_NAME + "/gyroscope";
 
 bool manualControl = true;
 
+ struct VehicleState {
+    unsigned long lOdometerDistance;
+    unsigned long rOdometerDistance;
+    unsigned long time;
+    int heading;
+    long distance;
+} ;
+
+struct Command{
+    int lWheel;
+    int rWheel;
+    int amount;
+    String type;
+    bool isExecuted;
+    VehicleState initialState;
+};
+
+std::deque<Command> commandsDqe;
+Command currentCommand;
+
+std::vector<String> split(String str,const String& split){
+
+    std::vector<String> result;
+
+    int startIndex = 0;
+    int index = str.indexOf(split);
+    if (index == -1) return result;
+
+    while(index != -1){
+
+        String substr = str.substring(startIndex,index);
+        result.push_back(substr);
+        startIndex = index +1;
+        index = str.indexOf(split,startIndex);
+
+        if(index == -1){
+            String lastSubStr = str.substring(startIndex);
+            result.push_back(lastSubStr);
+        }
+    }
+    return result;
+}
+
+void parseCSV(String message){
+    std::vector<String> stringCommands;
+    if(message.indexOf(";") == -1){ //single command
+        stringCommands.push_back(message);
+    }
+    else { //command batch
+        stringCommands = split(message,";");
+    }
+
+    for(String strCmd : stringCommands){ //this always assume we send with the right formatting. give it something random and it'll explode :)
+        std::vector<String> parsedCmd = split(strCmd,",");
+        Command command;
+        command.lWheel = parsedCmd.at(0).toInt();
+        command.rWheel = parsedCmd.at(1).toInt();
+        command.amount = parsedCmd.at(2).toInt();
+        command.type = parsedCmd.at(3);
+        command.isExecuted = false;
+        commandsDqe.push_back(command);
+    }
+}
+
+void stopCommands(){
+    car.setSpeed(0);
+    while(!commandsDqe.empty())commandsDqe.pop_front();
+    currentCommand.isExecuted = true;
+}
+
+void handleMqttMessage(String topic, String message) {
+
+    if (topic == HEARTBEAT_TOPIC){
+        mqtt.publish(HEARTBEAT_RESPONSE_TOPIC,message);
+    }
+    else if (topic == THROTTLE_CONTROL_TOPIC) {
+        if (manualControl){
+            car.setSpeed(message.toInt());
+        }
+    }
+    else if (topic == STEERING_CONTROL_TOPIC) {
+        if (manualControl){
+            car.setAngle(message.toInt());
+        }
+    }
+    else if(topic == CONTROL_MODE_TOPIC){
+        if (message == "manual") {
+            manualControl = true;
+            stopCommands();
+        }
+        else if (message == "auto"){
+            manualControl = false;
+            car.setSpeed(0);
+        }
+    }
+    else if (topic == CSV_COMMAND_TOPIC) {
+        parseCSV(message); //this always assume we're giving an input with right formatting. atm no one knows what happens if the format is messed up
+        manualControl = false;
+    }
+    else {
+        Serial.println(topic + " " + message);
+    }
+}
+
+
+struct VehicleState getCurrentState(){
+    VehicleState state;
+    state.rOdometerDistance = rightOdometer.getDistance();
+    state.lOdometerDistance = leftOdometer.getDistance();
+    gyro.update();
+    state.heading = gyro.getHeading();
+    state.distance = smartCar.getDistance();
+    state.time = millis();
+    return state;
+}
+
+
 void setup() {
     Serial.begin(9600);
 #ifdef __SMCE__
     Camera.begin(QVGA, RGB888, 15);
   frameBuffer.resize(Camera.width() * Camera.height() * Camera.bytesPerPixel());
 #endif
+
+    currentCommand.isExecuted = true; //remove this line and everything will go to hell.
 
     WiFi.begin(ssid, pass);
     mqtt.begin(mqttBrokerUrl, 1883, net);
@@ -104,7 +223,6 @@ void setup() {
 
     Serial.println(wifiStatus);
 
-
     Serial.println("Connecting to MQTT broker");
     while (!mqtt.connect("arduino", "public", "public")) {
         Serial.print(".");
@@ -116,27 +234,70 @@ void setup() {
     mqtt.subscribe(CONTROL_MODE_TOPIC,1);
     mqtt.subscribe(HEARTBEAT_TOPIC,0);
     mqtt.onMessage([](String topic, String message) {
-        if (topic == HEARTBEAT_TOPIC){
-            mqtt.publish(HEARTBEAT_RESPONSE_TOPIC,message);
-        }
-        else if (topic == THROTTLE_CONTROL_TOPIC) {
-            if (manualControl){
-                car.setSpeed(message.toInt());
+        handleMqttMessage(topic, message);
+    });
+}
+
+unsigned long pauseTime = 0;
+void _pause(){
+    pauseTime = millis() + 500; //half a second pause
+}
+
+void emergencyDetection(){
+    auto distance = front.getDistance();
+    int stopThreshold = 50;
+    rightOdometer.update();
+
+    if(rightOdometer.getDirection() > 0 && rightOdometer.getSpeed() > 0 && distance > 0 && distance < stopThreshold){
+        stopCommands();
+    }
+}
+
+void executeCurrentCommand(){
+    String taskType = currentCommand.type;
+    int amount = currentCommand.amount;
+    VehicleState initState = currentCommand.initialState;
+    if (taskType == "DISTANCE"){
+        long currentDistance = smartCar.getDistance();
+        if (amount>0){
+            int offset = 10;
+            if (abs(currentDistance-initState.distance)>=amount-offset){
+                currentCommand.isExecuted = true;
+                smartCar.setSpeed(0);
             }
-        }
-        else if (topic == STEERING_CONTROL_TOPIC) {
-            if (manualControl){
-                car.setAngle(message.toInt());
+            else {
+                smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);
             }
-        }
-        else if(topic == CONTROL_MODE_TOPIC){
-            if (message == "manual") manualControl = true;
-            else if (message == "auto") manualControl = false;
         }
         else {
-            Serial.println(topic + " " + message);
+            currentCommand.isExecuted = true;
+            _pause();
         }
-    });
+    }
+    else if (taskType == "TIME"){
+        int currentTime = millis();
+        if (currentTime>initState.time+amount*1000){
+            currentCommand.isExecuted = true;
+            smartCar.setSpeed(0);
+            _pause();
+        }
+        else {
+            smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);
+        }
+    }
+    else if (taskType == "ANGULAR"){ //todo improve
+        gyro.update();
+        int currentHeading = gyro.getHeading();
+        int targetDegree = amount % 360;
+        if (abs(initState.heading - currentHeading) >= targetDegree){
+            currentCommand.isExecuted = true;
+            smartCar.setSpeed(0);
+            _pause();
+        }
+        else {
+            smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);
+        }
+    }
 }
 
 void loop() {
@@ -162,7 +323,6 @@ void loop() {
 
             mqtt.publish(ODOMETER_TOTAL_DISTANCE_LEFT_TOPIC,String(leftOdometer.getDistance()));
             mqtt.publish(ODOMETER_TOTAL_DISTANCE_RIGHT_TOPIC,String(rightOdometer.getDistance()));
-
         }
 
 #ifdef __SMCE__
@@ -170,9 +330,25 @@ void loop() {
         if (currentTime - previousFrame >= 65) {
             previousFrame = currentTime;
             Camera.readFrame(frameBuffer.data());
-            mqtt.publish("/smartcar/camera", frameBuffer.data(), frameBuffer.size(),false, 0);
+            mqtt.publish("/smartcar/camera", frameBuffer.data(), frameBuffer.size(),false, 0); //todo smartcar name should be fixed
         }
 #endif
+
+        emergencyDetection();
+
+        if(!manualControl) {
+            if(currentCommand.isExecuted && !commandsDqe.empty()) {
+                currentCommand = commandsDqe.front();
+                commandsDqe.pop_front();
+                currentCommand.initialState = getCurrentState();
+            }
+
+            if(!currentCommand.isExecuted && millis() > pauseTime){
+                executeCurrentCommand();
+            }
+        }
+
+
     }
 #ifdef __SMCE__
     // Avoid over-using the CPU if we are running in the emulator

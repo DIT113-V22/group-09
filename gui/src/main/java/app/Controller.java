@@ -1,18 +1,30 @@
 package app;
 
 import api.CarAPI;
-import api.sensor.*;
 import api.sensor.Infrared;
+import api.sensor.Odometer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import commands_processing.InputProcessor;
+import exceptions.UnclearInputException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class Controller {
 
     private final CarAPI carAPI = App.getCarAPI();
+
+    @FXML
+    private TabPane tabPane;
+
+    //manual tab stuff
+    @FXML
+    private Tab manualTab;
 
     @FXML
     private ImageView videoFeed;
@@ -44,15 +56,66 @@ public class Controller {
 
     @FXML
     private Label gyroscope;
+    //end
+
+
+    //autonomous tab stuff
+    @FXML
+    private Tab autonomousTab;
+
+    @FXML
+    private ImageView videoFeed2;
+
+    @FXML
+    private Label pingVal;
+
+    @FXML
+    private TextArea commandInfo;
+    @FXML
+    private TextArea commandBox;
+
+    @FXML
+    private Button sendBtn;
+    @FXML
+    private Button clearBtn;
+    //end
 
     public Controller(){
         initialiseListeners();
-        Platform.runLater(() -> App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected()));
+        runLater(() -> App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected()));
+        runLater(() -> manualTab.setOnSelectionChanged(event -> {
+            if (manualTab.isSelected())checkSelectedTab();
+            App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected());
+        }));
+        runLater(() -> autonomousTab.setOnSelectionChanged(event -> {
+
+            if (autonomousTab.isSelected())checkSelectedTab();
+            App.getKeyboardHandler().setEnabled(false);
+        }));
+        runLater(this::checkSelectedTab);
+    }
+
+    private void checkSelectedTab(){
+        runLater(() -> {
+            try {
+                Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+                if (manualTab.equals(selectedTab)) {
+                    carAPI.setManualMode(true);
+                } else if (autonomousTab.equals(selectedTab)) {
+
+                    carAPI.setManualMode(false);
+                }
+            }
+            catch (MqttException e){
+                e.printStackTrace();
+            }
+        });
     }
 
     private void initialiseListeners(){
 
         carAPI.addVideoFeedListener(image -> runLater(() -> videoFeed.setImage(image)));
+        carAPI.addVideoFeedListener(image -> runLater(() ->videoFeed2.setImage(image)));
 
         carAPI.addUltraSonicListener(distance -> runLater(() -> ultraSonic.setText(doubleToString(distance))));
 
@@ -69,6 +132,22 @@ public class Controller {
         carAPI.addOdometerTotalDistanceListener(Odometer.LEFT, totalDistance -> runLater(() -> leftOdometerTotalDistance.setText(doubleToString(totalDistance))));
         carAPI.addOdometerTotalDistanceListener(Odometer.RIGHT, totalDistance -> runLater(() -> rightOdometerTotalDistance.setText(doubleToString(totalDistance))));
 
+        startPingUpdateThread();
+    }
+
+    private void startPingUpdateThread(){
+        Thread updater = new Thread(() ->{
+            while (true) {
+                int ping = carAPI.getPing();
+                runLater(() -> pingVal.setText(Integer.toString(ping)));
+                try {
+                    Thread.sleep(1111);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        updater.start();
     }
 
     public void forward() {
@@ -115,6 +194,44 @@ public class Controller {
         catch (MqttException ex){
             ex.printStackTrace();
         }
+    }
+
+    public void sendCommand(){
+        String phrase = commandBox.getText();
+        System.out.println(phrase);
+        InputProcessor inputProcessor = new InputProcessor();
+        try {
+            String csv = inputProcessor.processInput(phrase);
+            String json = inputProcessor.getLatestCommands();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            JsonElement je = JsonParser.parseString(json);
+            String prettyJsonString = gson.toJson(je);
+            commandInfo.appendText(phrase + " \n->\n " + prettyJsonString+ " \n->\n ");
+            StringBuilder csvDisplay = new StringBuilder();
+            if (csv.contains(";")){
+                String [] split = csv.split(";");
+                for (String s : split) {
+                    csvDisplay.append(s).append("\n");
+                }
+            }
+            else csvDisplay.append(csv);
+            commandInfo.appendText(csvDisplay.toString());
+            commandInfo.appendText("\n-------------\n\n");
+            System.out.println(inputProcessor.getLatestCommands());
+            System.out.println("CSV:"+csv);
+            carAPI.sendCSVCommand(csv);
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+        catch (UnclearInputException e){
+            commandInfo.appendText(phrase + " \n->\n " + "INVALID COMMAND");
+            commandInfo.appendText("\n-------------\n\n");
+        }
+    }
+
+    public void clearCommandBox(){
+        commandBox.setText("");
+        commandInfo.setText("");
     }
 
     public void checkBoxToggle(){

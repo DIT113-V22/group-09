@@ -34,7 +34,7 @@ public class App extends Application {
             Platform.exit();
             System.exit(0);
         });
-        primaryStage.setTitle("Control Panel");
+        primaryStage.setTitle("PROTOTYPE Control Panel");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 

@@ -172,4 +172,22 @@ public class FileLoader {
         }
         return phrasalVerbs;
     }
+
+    public static HashMap<UnitTypes,Double> loadConversionMap(){
+        ArrayList<String> keyValPairs = loadTxtFile(UNIT_CONVERSION_MAP_PATH);
+        HashMap<UnitTypes,Double> conversionMap = new HashMap<>();
+        String[] keyAndVal;
+
+        for (String keyValPair : keyValPairs){
+            keyAndVal =keyValPair.replace(" ","").split(":");
+            try {
+                conversionMap.put(UnitTypes.valueOf(keyAndVal[0]),Double.valueOf(keyAndVal[1]));
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return conversionMap;
+    }
+
 }

@@ -147,7 +147,11 @@ void parseCSV(String message){
     }
 }
 
-
+void stopCommands(){
+    car.setSpeed(0);
+    while(!commandsDqe.empty())commandsDqe.pop_front();
+    currentCommand.isExecuted = true;
+}
 
 void handleMqttMessage(String topic, String message) {
 
@@ -166,14 +170,10 @@ void handleMqttMessage(String topic, String message) {
     }
     else if(topic == CONTROL_MODE_TOPIC){
         if (message == "manual") {
-            Serial.println("manual");
-            while(!commandsDqe.empty())commandsDqe.pop_front();
-            currentCommand.isExecuted = true;
             manualControl = true;
-            car.setSpeed(0);
+            stopCommands();
         }
         else if (message == "auto"){
-            Serial.println("auto");
             manualControl = false;
             car.setSpeed(0);
         }
@@ -241,6 +241,18 @@ void setup() {
 unsigned long pauseTime = 0;
 void _pause(){
     pauseTime = millis() + 500; //half a second pause
+}
+
+void emergencyDetection(){
+    auto distance = front.getDistance();
+    int stopThreshold = 50;
+    rightOdometer.update();
+    Serial.println(rightOdometer.getSpeed());
+    Serial.println(rightOdometer.getDirection());
+
+    if(rightOdometer.getDirection() > 0 && rightOdometer.getSpeed() > 0 && distance > 0 && distance < stopThreshold){
+        stopCommands();
+    }
 }
 
 void executeCurrentCommand(){
@@ -323,6 +335,8 @@ void loop() {
             mqtt.publish("/smartcar/camera", frameBuffer.data(), frameBuffer.size(),false, 0); //todo smartcar name should be fixed
         }
 #endif
+
+        emergencyDetection();
 
         if(!manualControl) {
             if(currentCommand.isExecuted && !commandsDqe.empty()) {

@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import commands_processing.InputProcessor;
+import exceptions.UnclearInputException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -221,6 +222,10 @@ public class Controller {
             carAPI.sendCSVCommand(csv);
         } catch (MqttException e) {
             e.printStackTrace();
+        }
+        catch (UnclearInputException e){
+            commandInfo.appendText(phrase + " \n->\n " + "INVALID COMMAND");
+            commandInfo.appendText("\n-------------\n\n");
         }
     }
 

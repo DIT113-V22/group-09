@@ -243,7 +243,7 @@ void setup() {
 }
 
 unsigned long pauseTime = 0;
-void pause(){
+void _pause(){
     pauseTime = millis() + 500; //half a second pause
 }
 
@@ -265,7 +265,7 @@ void executeCurrentCommand(){
         }
         else {
             currentCommand.isExecuted = true;
-            pause();
+            _pause();
         }
     }
     else if (taskType == "TIME"){
@@ -273,7 +273,7 @@ void executeCurrentCommand(){
         if (currentTime>initState.time+amount*1000){
             currentCommand.isExecuted = true;
             smartCar.setSpeed(0);
-            pause();
+            _pause();
         }
         else {
             smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);
@@ -286,7 +286,7 @@ void executeCurrentCommand(){
         if (abs(initState.heading - currentHeading) >= targetDegree){
             currentCommand.isExecuted = true;
             smartCar.setSpeed(0);
-            pause();
+            _pause();
         }
         else {
             smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);

@@ -8,6 +8,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
+
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
@@ -36,6 +37,9 @@ public class CarAPI {
     private String odometerSpeedTopic;
     private String odometerTotalDistanceTopic;
     private String heartbeatTopic;
+    private String heartbeatResponseTopic;
+    private String csvCommandTopic;
+    private String controlModeTopic;
 
     private final MqttClient client;
     private final String carName;
@@ -104,8 +108,7 @@ public class CarAPI {
 
         client.subscribe(gyroscopeTopic, (topic,message) -> gyroscopeListeners.forEach(callback -> callback.accept(convertPayloadToDouble(message))));
 
-        client.subscribe(heartbeatTopic, (topic,message) -> ping = (System.currentTimeMillis() - Long.parseLong(new String(message.getPayload()))));
-
+        client.subscribe(heartbeatResponseTopic, (topic,message) -> ping = (System.currentTimeMillis() - Long.parseLong(new String(message.getPayload()))));
         client.subscribe(cameraFeedTopic, (topic, message) -> {
             if (videoFeedListeners.size() == 0) return; //avoids converting the image if there is no listeners asking for it
             Image image = convertImage(message.getPayload());
@@ -151,6 +154,9 @@ public class CarAPI {
         odometerTotalDistanceTopic = "/" + carName + "/odometer/totalDistance/#"; // left , right
         gyroscopeTopic =  "/" + carName + "/gyroscope";
         heartbeatTopic = "/" + carName + "/heartbeat";
+        heartbeatResponseTopic = "/"+carName+"/heartbeat/response";
+        csvCommandTopic = "/"+carName+"/csvcmd";
+        controlModeTopic = "/"+carName+"/controlMode";
     }
 
     private Image convertImage(byte [] payload){
@@ -226,7 +232,6 @@ public class CarAPI {
         return clientId;
     }
 
-
     public void addUltraSonicListener(Consumer<Double> callback){
         ultraSonicListeners.add(callback);
     }
@@ -256,6 +261,15 @@ public class CarAPI {
 
     private Double convertPayloadToDouble(MqttMessage message){
         return Double.valueOf(new String(message.getPayload()));
+    }
+
+    public void sendCSVCommand(String csv) throws MqttException{
+        client.publish(csvCommandTopic,new MqttMessage(csv.getBytes(StandardCharsets.UTF_8)));
+    }
+
+    public void setManualMode(boolean b) throws MqttException{
+        String value = b ? "manual":"auto";
+        client.publish(controlModeTopic,new MqttMessage(value.getBytes(StandardCharsets.UTF_8)));
     }
 
 }

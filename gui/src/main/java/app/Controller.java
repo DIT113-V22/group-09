@@ -87,6 +87,7 @@ public class Controller {
             App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected());
         }));
         runLater(() -> autonomousTab.setOnSelectionChanged(event -> {
+
             if (autonomousTab.isSelected())checkSelectedTab();
             App.getKeyboardHandler().setEnabled(false);
         }));

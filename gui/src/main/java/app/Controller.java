@@ -5,14 +5,20 @@ import api.sensor.*;
 import api.sensor.Infrared;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class Controller {
 
     private final CarAPI carAPI = App.getCarAPI();
+
+    @FXML
+    private TabPane tabPane;
+
+    //manual tab stuff
+    @FXML
+    private Tab manualTab;
 
     @FXML
     private ImageView videoFeed;
@@ -44,10 +50,55 @@ public class Controller {
 
     @FXML
     private Label gyroscope;
+    //end
+
+
+    //autonomous tab stuff
+    @FXML
+    private Tab autonomousTab;
+
+    @FXML
+    private ImageView videoFeed2;
+
+    @FXML
+    private Label pingVal;
+
+    @FXML
+    private TextArea commandInfo;
+    @FXML
+    private TextArea commandBox;
+
+    @FXML
+    private Button sendBtn;
+    @FXML
+    private Button clearBtn;
+    //end
 
     public Controller(){
         initialiseListeners();
-        Platform.runLater(() -> App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected()));
+        runLater(() -> App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected()));
+        runLater(() -> manualTab.setOnSelectionChanged(event -> {
+            if (manualTab.isSelected())checkSelectedTab();
+        }));
+        runLater(() -> autonomousTab.setOnSelectionChanged(event -> {
+            if (autonomousTab.isSelected())checkSelectedTab();
+        }));
+    }
+
+    private void checkSelectedTab(){
+        runLater(() -> {
+            try {
+                Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+                if (manualTab.equals(selectedTab)) {
+                    carAPI.setManualMode(true);
+                } else if (autonomousTab.equals(selectedTab)) {
+                    carAPI.setManualMode(false);
+                }
+            }
+            catch (MqttException e){
+                e.printStackTrace();
+            }
+        });
     }
 
     private void initialiseListeners(){
@@ -115,6 +166,23 @@ public class Controller {
         catch (MqttException ex){
             ex.printStackTrace();
         }
+    }
+
+    public void sendCommand(){
+        String phrase = commandBox.getText();
+        System.out.println(phrase);
+        //TODO DO YOUR MAGIC HERE!
+
+
+        try {
+            carAPI.sendCSVCommand("MAGIC CSV!");
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clearCommandBox(){
+        commandBox.setText("");
     }
 
     public void checkBoxToggle(){

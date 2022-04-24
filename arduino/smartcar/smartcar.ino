@@ -165,8 +165,18 @@ void handleMqttMessage(String topic, String message) {
         }
     }
     else if(topic == CONTROL_MODE_TOPIC){
-        if (message == "manual") manualControl = true;
-        else if (message == "auto") manualControl = false;
+        if (message == "manual") {
+            Serial.println("manual");
+            while(!commandsDqe.empty())commandsDqe.pop_front();
+            currentCommand.isExecuted = true;
+            manualControl = true;
+            car.setSpeed(0);
+        }
+        else if (message == "auto"){
+            Serial.println("auto");
+            manualControl = false;
+            car.setSpeed(0);
+        }
     }
     else if (topic == CSV_COMMAND_TOPIC) {
         parseCSV(message); //this always assume we're giving an input with right formatting. atm no one knows what happens if the format is messed up
@@ -177,19 +187,6 @@ void handleMqttMessage(String topic, String message) {
     }
 }
 
-
-
-void test(){
-
-    Serial.println("test");
-    String csv1 = "40,-40,90,ANGULAR;50,50,4,TIME;-40,40,90,ANGULAR;40,40,100,DISTANCE";
-    //String csv1 = "40,-40,180,ANGULAR";
-    //String csv1 = "50,50,7,TIME";
-    //String csv1 = "40,40,100,DISTANCE";
-    parseCSV(csv1);
-    manualControl = false;
-    delay(1111);
-}
 
 struct VehicleState getCurrentState(){
     VehicleState state;
@@ -205,7 +202,6 @@ struct VehicleState getCurrentState(){
 
 void setup() {
     Serial.begin(9600);
-    test(); //todo remove
 #ifdef __SMCE__
     Camera.begin(QVGA, RGB888, 15);
   frameBuffer.resize(Camera.width() * Camera.height() * Camera.bytesPerPixel());
@@ -279,7 +275,7 @@ void executeCurrentCommand(){
             smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);
         }
     }
-    else if (taskType == "ANGULAR"){
+    else if (taskType == "ANGULAR"){ //todo improve
         gyro.update();
         int currentHeading = gyro.getHeading();
         int targetDegree = amount % 360;

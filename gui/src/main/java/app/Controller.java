@@ -1,8 +1,9 @@
 package app;
 
 import api.CarAPI;
-import api.sensor.*;
 import api.sensor.Infrared;
+import api.sensor.Odometer;
+import commands_processing.InputProcessor;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -171,11 +172,13 @@ public class Controller {
     public void sendCommand(){
         String phrase = commandBox.getText();
         System.out.println(phrase);
-        //TODO DO YOUR MAGIC HERE!
-
+        InputProcessor inputProcessor = new InputProcessor();
 
         try {
-            carAPI.sendCSVCommand("MAGIC CSV!");
+            String csv = inputProcessor.processInput(phrase);
+            System.out.println(inputProcessor.getLatestCommands());
+            System.out.println("CSV:"+csv);
+            carAPI.sendCSVCommand(csv);
         } catch (MqttException e) {
             e.printStackTrace();
         }

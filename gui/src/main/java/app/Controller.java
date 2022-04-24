@@ -84,9 +84,12 @@ public class Controller {
         runLater(() -> App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected()));
         runLater(() -> manualTab.setOnSelectionChanged(event -> {
             if (manualTab.isSelected())checkSelectedTab();
+            App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected());
         }));
         runLater(() -> autonomousTab.setOnSelectionChanged(event -> {
+
             if (autonomousTab.isSelected())checkSelectedTab();
+            App.getKeyboardHandler().setEnabled(false);
         }));
         runLater(this::checkSelectedTab);
     }
@@ -98,6 +101,7 @@ public class Controller {
                 if (manualTab.equals(selectedTab)) {
                     carAPI.setManualMode(true);
                 } else if (autonomousTab.equals(selectedTab)) {
+
                     carAPI.setManualMode(false);
                 }
             }
@@ -222,6 +226,7 @@ public class Controller {
 
     public void clearCommandBox(){
         commandBox.setText("");
+        commandInfo.setText("");
     }
 
     public void checkBoxToggle(){

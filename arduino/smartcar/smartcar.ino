@@ -80,8 +80,11 @@ const String ODOMETER_TOTAL_DISTANCE_LEFT_TOPIC = ODOMETER_TOTAL_DISTANCE_TOPIC_
 const String CAMERA_FEED_TOPIC = CAR_NAME + "/camera";
 const String CONTROL_MODE_TOPIC = CAR_NAME + "/controlMode";
 const String GYROSCOPE_TOPIC = CAR_NAME + "/gyroscope";
+const String COMMAND_STATE_TOPIC = CAR_NAME + "/commandState";
+const String EMERGENCY_DETECTION_TOPIC = CAR_NAME + "/emergencyDetection";
 
 bool manualControl = true;
+bool emergencyCheck = false;
 
  struct VehicleState {
     unsigned long lOdometerDistance;
@@ -98,6 +101,7 @@ struct Command{
     String type;
     bool isExecuted;
     VehicleState initialState;
+    String textCommand;
 };
 
 std::deque<Command> commandsDqe;
@@ -143,6 +147,7 @@ void parseCSV(String message){
         command.amount = parsedCmd.at(2).toInt();
         command.type = parsedCmd.at(3);
         command.isExecuted = false;
+        command.textCommand = strCmd;
         commandsDqe.push_back(command);
     }
 }
@@ -181,6 +186,10 @@ void handleMqttMessage(String topic, String message) {
     else if (topic == CSV_COMMAND_TOPIC) {
         parseCSV(message); //this always assume we're giving an input with right formatting. atm no one knows what happens if the format is messed up
         manualControl = false;
+    }
+    else if(topic == EMERGENCY_DETECTION_TOPIC){
+        if(message == "true")emergencyCheck= true;
+        else if(message == "false")emergencyCheck = false;
     }
     else {
         Serial.println(topic + " " + message);
@@ -253,6 +262,38 @@ void emergencyDetection(){
     }
 }
 
+String stateToString(struct VehicleState state){
+    //startRWheel,startLWheel,startDistance,startHeading,startTime;endRWheel,endLWheel,endDistance,endHeading,endTime;%command%
+
+    /*struct VehicleState {
+    unsigned long lOdometerDistance;
+    unsigned long rOdometerDistance;
+    unsigned long time;
+    int heading;
+    long distance;
+} ;*/
+
+    String stateString =
+            String(state.rOdometerDistance) +
+            "," + String(state.lOdometerDistance) +
+            "," + String(state.distance) +
+            "," + String(state.heading) +
+            "," + String(state.time);
+
+    return stateString;
+}
+
+void commandExecuted() {
+    smartCar.setSpeed(0);
+    currentCommand.isExecuted = true;
+    VehicleState startState = currentCommand.initialState;
+    VehicleState endState = getCurrentState();
+    String textCommand = currentCommand.textCommand;
+    String commandState = stateToString(startState) + ";" +stateToString(endState) + ";" + textCommand;
+    mqtt.publish(COMMAND_STATE_TOPIC,commandState);
+    _pause();
+}
+
 void executeCurrentCommand(){
     String taskType = currentCommand.type;
     int amount = currentCommand.amount;
@@ -262,24 +303,20 @@ void executeCurrentCommand(){
         if (amount>0){
             int offset = 10;
             if (abs(currentDistance-initState.distance)>=amount-offset){
-                currentCommand.isExecuted = true;
-                smartCar.setSpeed(0);
+                commandExecuted();
             }
             else {
                 smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);
             }
         }
         else {
-            currentCommand.isExecuted = true;
-            _pause();
+            commandExecuted();
         }
     }
     else if (taskType == "TIME"){
         int currentTime = millis();
         if (currentTime>initState.time+amount*1000){
-            currentCommand.isExecuted = true;
-            smartCar.setSpeed(0);
-            _pause();
+            commandExecuted();
         }
         else {
             smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);
@@ -290,9 +327,7 @@ void executeCurrentCommand(){
         int currentHeading = gyro.getHeading();
         int targetDegree = amount % 360;
         if (abs(initState.heading - currentHeading) >= targetDegree){
-            currentCommand.isExecuted = true;
-            smartCar.setSpeed(0);
-            _pause();
+            commandExecuted();
         }
         else {
             smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);
@@ -334,7 +369,9 @@ void loop() {
         }
 #endif
 
-        emergencyDetection();
+        if(emergencyCheck){
+            emergencyDetection();
+        }
 
         if(!manualControl) {
             if(currentCommand.isExecuted && !commandsDqe.empty()) {

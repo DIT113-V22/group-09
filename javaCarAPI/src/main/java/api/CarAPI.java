@@ -2,6 +2,8 @@ package api;
 
 import api.sensor.Infrared;
 import api.sensor.Odometer;
+import api.state.CommandState;
+import api.state.VehicleState;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
@@ -12,6 +14,7 @@ import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class CarAPI {
 
@@ -40,16 +43,20 @@ public class CarAPI {
     private String heartbeatResponseTopic;
     private String csvCommandTopic;
     private String controlModeTopic;
+    private String commandStateTopic;
+    private String emergencyDetectionTopic;
 
     private final MqttClient client;
     private final String carName;
     private final String clientId;
 
     private long ping = 0;
+    private long lastHeartBeat = -1;
 
     private final List<Consumer<Image>> videoFeedListeners = new ArrayList<>();
     private final List<Consumer<Double>> ultraSonicListeners = new ArrayList<>();
     private final List<Consumer<Double>> gyroscopeListeners = new ArrayList<>();
+    private final List<Consumer<CommandState>> commandStateListeners = new ArrayList<>();
     private final Map<Infrared,List<Consumer<Double>>> infraredListeners = new HashMap<>();
     private final Map<Odometer,List<Consumer<Double>>> odometerSpeedListeners = new HashMap<>();
     private final Map<Odometer,List<Consumer<Double>>> odometerTotalDistanceListeners = new HashMap<>();
@@ -108,7 +115,16 @@ public class CarAPI {
 
         client.subscribe(gyroscopeTopic, (topic,message) -> gyroscopeListeners.forEach(callback -> callback.accept(convertPayloadToDouble(message))));
 
-        client.subscribe(heartbeatResponseTopic, (topic,message) -> ping = (System.currentTimeMillis() - Long.parseLong(new String(message.getPayload()))));
+        client.subscribe(commandStateTopic, (topic,message) ->{
+            final CommandState commandState = convertCommandState(message);
+            if (commandState != null)
+                commandStateListeners.forEach(callback -> callback.accept(commandState));
+        });
+
+        client.subscribe(heartbeatResponseTopic, (topic,message) -> {
+            lastHeartBeat = Long.parseLong(new String(message.getPayload()));
+            ping = System.currentTimeMillis() - lastHeartBeat;
+        });
         client.subscribe(cameraFeedTopic, (topic, message) -> {
             if (videoFeedListeners.size() == 0) return; //avoids converting the image if there is no listeners asking for it
             Image image = convertImage(message.getPayload());
@@ -143,6 +159,45 @@ public class CarAPI {
         });
     }
 
+    private CommandState convertCommandState(MqttMessage message){
+
+        //startRWheel,startLWheel,startDistance,startHeading,startTime;endRWheel,endLWheel,endDistance,endHeading,endTime;%command%
+        String msg = new String(message.getPayload());
+        String [] split = msg.split(";");
+        if (split.length != 3) {
+            System.err.println("Invalid command state: "+msg);
+            return null;
+        }
+        VehicleState startState = convertVehicleState(split[0]);
+        VehicleState endState = convertVehicleState(split[1]);
+
+        if (startState == null || endState == null){
+            System.err.println("Invalid command state: "+msg);
+            return null;
+        }
+
+        String command = split[2];
+
+        return new CommandState(command,startState,endState);
+    }
+    private VehicleState convertVehicleState(String state){
+        String [] split = state.split(",");
+        if (split.length != 5){
+            System.err.println("Invalid vehicle state: "+state);
+            return null;
+        }
+
+        Function<String,Integer> convert = Integer::parseInt;
+
+        int rightOdometerDistance = convert.apply(split[0]);
+        int leftOdometerDistance = convert.apply(split[1]);
+        int distance = convert.apply(split[2]);
+        int heading = convert.apply(split[3]);
+        long time = Long.parseLong(split[4]);
+
+        return new VehicleState(rightOdometerDistance,leftOdometerDistance,heading,distance,time);
+    }
+
     private void initMQTTVariables() {
         throttleControlTopic = "/" + carName + "/control/throttle";
         steeringControlTopic = "/" + carName + "/control/steering";
@@ -157,6 +212,8 @@ public class CarAPI {
         heartbeatResponseTopic = "/"+carName+"/heartbeat/response";
         csvCommandTopic = "/"+carName+"/csvcmd";
         controlModeTopic = "/"+carName+"/controlMode";
+        commandStateTopic = "/"+carName+"/commandState";
+        emergencyDetectionTopic = "/"+carName+"/emergencyDetection";
     }
 
     private Image convertImage(byte [] payload){
@@ -217,11 +274,14 @@ public class CarAPI {
     }
 
     public boolean isCarConnected(){
-        return getPing() < DISCONNECT_THRESHOLD;
+        return getPing() < DISCONNECT_THRESHOLD && isConnected();
     }
 
     public int getPing(){
-        return (int)ping;
+        if (lastHeartBeat == -1) return -1;
+        if (System.currentTimeMillis() - lastHeartBeat > PING_REQUEST_INTERVAL) ping = System.currentTimeMillis() - lastHeartBeat;
+        if (ping < 0) System.err.println("Multiple client are connected to the car. Unexpected Behaviour may occur.");
+        return (int) ping;
     }
 
     public void sendJsonCommand(String json) throws MqttException{
@@ -242,6 +302,10 @@ public class CarAPI {
 
     public void addVideoFeedListener(Consumer<Image> callback){
         this.videoFeedListeners.add(callback);
+    }
+
+    public void addCommandStateListener(Consumer<CommandState> callback){
+        this.commandStateListeners.add(callback);
     }
 
     public void addInfraredListener(Infrared infrared, Consumer<Double> callback){
@@ -270,6 +334,9 @@ public class CarAPI {
     public void setManualMode(boolean b) throws MqttException{
         String value = b ? "manual":"auto";
         client.publish(controlModeTopic,new MqttMessage(value.getBytes(StandardCharsets.UTF_8)));
+    }
+    public void setEmergencyCheck(boolean b) throws MqttException{
+        client.publish(emergencyDetectionTopic, new MqttMessage(Boolean.toString(b).getBytes(StandardCharsets.UTF_8)));
     }
 
 }

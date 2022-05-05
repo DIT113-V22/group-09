@@ -92,7 +92,7 @@ bool emergencyCheck = false;
     unsigned long time;
     int heading;
     long distance;
-} ;
+};
 
 struct Command{
     int lWheel;
@@ -139,7 +139,7 @@ void parseCSV(String message){
         stringCommands = split(message,";");
     }
 
-    for(String strCmd : stringCommands){ //this always assume we send with the right formatting. give it something random and it'll explode :)
+    for(String strCmd : stringCommands){
         std::vector<String> parsedCmd = split(strCmd,",");
         Command command;
         command.lWheel = parsedCmd.at(0).toInt();
@@ -184,7 +184,7 @@ void handleMqttMessage(String topic, String message) {
         }
     }
     else if (topic == CSV_COMMAND_TOPIC) {
-        parseCSV(message); //this always assume we're giving an input with right formatting. atm no one knows what happens if the format is messed up
+        parseCSV(message);
         manualControl = false;
     }
     else if(topic == EMERGENCY_DETECTION_TOPIC){
@@ -249,7 +249,7 @@ void setup() {
 
 unsigned long pauseTime = 0;
 void _pause(){
-    pauseTime = millis() + 500; //half a second pause
+    pauseTime = millis() + 666;
 }
 
 void emergencyDetection(){
@@ -263,15 +263,6 @@ void emergencyDetection(){
 }
 
 String stateToString(struct VehicleState state){
-    //startRWheel,startLWheel,startDistance,startHeading,startTime;endRWheel,endLWheel,endDistance,endHeading,endTime;%command%
-
-    /*struct VehicleState {
-    unsigned long lOdometerDistance;
-    unsigned long rOdometerDistance;
-    unsigned long time;
-    int heading;
-    long distance;
-} ;*/
 
     String stateString =
             String(state.rOdometerDistance) +
@@ -302,8 +293,16 @@ void executeCurrentCommand(){
         long currentDistance = smartCar.getDistance();
         if (amount>0){
             int offset = 10;
-            if (abs(currentDistance-initState.distance)>=amount-offset){
-                commandExecuted();
+            int difference = abs(currentDistance-initState.distance);
+            int target = amount - offset;
+            if (difference>=target - 50 ){
+                int direction;
+                if (currentCommand.rWheel < 0) direction = -1;
+                else direction = 1;
+                smartCar.overrideMotorSpeed(direction,direction);
+                if(difference >= target ){
+                    commandExecuted();
+                }
             }
             else {
                 smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);
@@ -322,12 +321,44 @@ void executeCurrentCommand(){
             smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);
         }
     }
-    else if (taskType == "ANGULAR"){ //todo improve
+    else if (taskType == "ANGULAR"){
         gyro.update();
         int currentHeading = gyro.getHeading();
+
+        boolean clockWise;
+        if(currentCommand.rWheel > 0 ) clockWise = false;
+        else clockWise = true;
+
         int targetDegree = amount % 360;
-        if (abs(initState.heading - currentHeading) >= targetDegree){
-            commandExecuted();
+        int offset;
+        if(amount > 75) offset = 2;
+        else offset = 1;
+
+        int difference;
+        if(!clockWise && currentHeading < initState.heading){
+            difference = abs(initState.heading - (currentHeading + 360));
+        }
+        else if(clockWise && currentHeading > initState.heading){
+            difference = abs(initState.heading - (currentHeading - 360));
+        }
+        else{
+            difference = abs(initState.heading - currentHeading);
+        }
+
+        int slowdown_threshold = 13;
+        if (difference >= targetDegree - slowdown_threshold){
+
+            int left = -1;
+            int right = 1;
+            if (clockWise) {
+                left *= -1;
+                right *= -1;
+            }
+            smartCar.overrideMotorSpeed(left,right);
+
+            if (difference >= targetDegree - offset){
+                commandExecuted();
+            }
         }
         else {
             smartCar.overrideMotorSpeed(currentCommand.lWheel,currentCommand.rWheel);

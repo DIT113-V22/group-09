@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 
 public class CarAPI {
 
-    private static final int MOVEMENT_SPEED = 70;
+    private static final int MOVEMENT_SPEED = 50;
     private static final int STRAIGHT_ANGLE = 0;
     private static final int STEERING_ANGLE = 50;
     private static final int IDLE_SPEED = 0;
@@ -58,12 +58,20 @@ public class CarAPI {
         this(host, UUID.randomUUID().toString(),carName);
     }
 
+    public CarAPI (String host,int port,String carName) throws MqttException{
+        this(host,port,UUID.randomUUID().toString(),carName);
+    }
+
     public CarAPI (String host,String clientId,String carName) throws MqttException{
         this(host,DEFAULT_MQTT_PORT,clientId,carName);
     }
 
     public CarAPI (String host,int port,String clientId,String carName) throws MqttException{
         this(host,port,clientId,carName,null,null);
+    }
+
+    public CarAPI (String host,int port,String carName,String user, char [] password) throws MqttException{
+        this(host, port, UUID.randomUUID().toString(), carName, user, password);
     }
 
     public CarAPI (String host,int port,String clientId,String carName,String user, char [] password) throws MqttException{
@@ -211,6 +219,15 @@ public class CarAPI {
     public void moveBackward() throws MqttException {
         drive(-MOVEMENT_SPEED, STRAIGHT_ANGLE);
     }
+
+    public void moveBackwardLeft() throws MqttException {
+        drive(-MOVEMENT_SPEED, -STEERING_ANGLE);
+    }
+
+    public void moveBackwardRight() throws MqttException {
+        drive(-MOVEMENT_SPEED, STEERING_ANGLE);
+    }
+
 
     public boolean isConnected(){
         return client.isConnected();

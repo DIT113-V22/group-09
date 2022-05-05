@@ -60,11 +60,11 @@ class TextTranslatorTest {
                 "left"
         };
         expectedTexts = new String[] {
-                "Command type:GO Direction:FORWARD Amount:999999999 Unit:CENTIMETER",
-                "Command type:GO Direction:FORWARD Amount:999999999 Unit:CENTIMETER",
-                "Command type:GO Direction:BACK Amount:999999999 Unit:CENTIMETER",
-                "Command type:TURN Direction:RIGHT Amount:90 Unit:DEGREE",
-                "Command type:TURN Direction:LEFT Amount:90 Unit:DEGREE"
+                "Type:GO Dir:FORWARD Amount:MAX Unit:CENTIMETER",
+                "Type:GO Dir:FORWARD Amount:MAX Unit:CENTIMETER",
+                "Type:GO Dir:BACK Amount:MAX Unit:CENTIMETER",
+                "Type:TURN Dir:RIGHT Amount:90 Unit:DEGREE",
+                "Type:TURN Dir:LEFT Amount:90 Unit:DEGREE"
         };
         for (int i=0; i<texts.length; i++){
             testText(texts[i], expectedTexts[i]);
@@ -81,11 +81,11 @@ class TextTranslatorTest {
                 "stop"
         };
         expectedTexts = new String[] {
-                "Command type:GO Direction:FORWARD Amount:999999999 Unit:CENTIMETER",
-                "Command type:GO Direction:BACK Amount:999999999 Unit:CENTIMETER",
-                "Command type:TURN Direction:LEFT Amount:90 Unit:DEGREE",
-                "Command type:TURN Direction:RIGHT Amount:90 Unit:DEGREE",
-                "Command type:STOP Direction:FORWARD Amount:0 Unit:CENTIMETER"
+                "Type:GO Dir:FORWARD Amount:MAX Unit:CENTIMETER",
+                "Type:GO Dir:BACK Amount:MAX Unit:CENTIMETER",
+                "Type:TURN Dir:LEFT Amount:90 Unit:DEGREE",
+                "Type:TURN Dir:RIGHT Amount:90 Unit:DEGREE",
+                "Type:STOP Dir:FORWARD Amount:0 Unit:CENTIMETER"
         };
         for (int i=0; i<texts.length; i++){
             testText(texts[i], expectedTexts[i]);
@@ -99,10 +99,10 @@ class TextTranslatorTest {
                 "go back, after that turn left",
         };
         expectedTexts = new String[] {
-                "Command type:GO Direction:FORWARD Amount:999999999 Unit:CENTIMETER\n" +
-                        "Command type:STOP Direction:FORWARD Amount:0 Unit:CENTIMETER",
-                "Command type:GO Direction:BACK Amount:999999999 Unit:CENTIMETER\n" +
-                        "Command type:TURN Direction:LEFT Amount:90 Unit:DEGREE"
+                "Type:GO Dir:FORWARD Amount:MAX Unit:CENTIMETER\n" +
+                        "Type:STOP Dir:FORWARD Amount:0 Unit:CENTIMETER",
+                "Type:GO Dir:BACK Amount:MAX Unit:CENTIMETER\n" +
+                        "Type:TURN Dir:LEFT Amount:90 Unit:DEGREE"
         };
         for (int i=0; i<texts.length; i++){
             testText(texts[i], expectedTexts[i]);
@@ -119,11 +119,11 @@ class TextTranslatorTest {
                 "stop after 50 yards"
         };
         expectedTexts = new String[] {
-                "Command type:GO Direction:FORWARD Amount:50 Unit:METER",
-                "Command type:GO Direction:BACK Amount:12 Unit:SECOND",
-                "Command type:TURN Direction:LEFT Amount:50 Unit:DEGREE",
-                "Command type:TURN Direction:RIGHT Amount:32 Unit:RADIAN",
-                "Command type:STOP Direction:FORWARD Amount:50 Unit:YARD"
+                "Type:GO Dir:FORWARD Amount:50 Unit:METER",
+                "Type:GO Dir:BACK Amount:12 Unit:SECOND",
+                "Type:TURN Dir:LEFT Amount:50 Unit:DEGREE",
+                "Type:TURN Dir:RIGHT Amount:32 Unit:RADIAN",
+                "Type:STOP Dir:FORWARD Amount:50 Unit:YARD"
         };
         for (int i=0; i<texts.length; i++){
             testText(texts[i], expectedTexts[i]);
@@ -137,11 +137,11 @@ class TextTranslatorTest {
                 "go 11 meters back, after that turn 32 degrees to the left, then stop",
         };
         expectedTexts = new String[] {
-                "Command type:GO Direction:FORWARD Amount:12 Unit:SECOND\n" +
-                        "Command type:TURN Direction:LEFT Amount:43 Unit:DEGREE",
-                "Command type:GO Direction:BACK Amount:11 Unit:METER\n" +
-                        "Command type:TURN Direction:LEFT Amount:32 Unit:DEGREE\n" +
-                            "Command type:STOP Direction:FORWARD Amount:0 Unit:CENTIMETER"
+                "Type:GO Dir:FORWARD Amount:12 Unit:SECOND\n" +
+                        "Type:TURN Dir:LEFT Amount:43 Unit:DEGREE",
+                "Type:GO Dir:BACK Amount:11 Unit:METER\n" +
+                        "Type:TURN Dir:LEFT Amount:32 Unit:DEGREE\n" +
+                            "Type:STOP Dir:FORWARD Amount:0 Unit:CENTIMETER"
         };
         for (int i=0; i<texts.length; i++){
             testText(texts[i], expectedTexts[i]);
@@ -150,8 +150,8 @@ class TextTranslatorTest {
 
     @Test
     void loadFromTxt(){
-        expectedText = "Command type:GO Direction:FORWARD Amount:10 Unit:METER\n" +
-                            "Command type:TURN Direction:LEFT Amount:90 Unit:DEGREE";
+        expectedText = "Type:GO Dir:FORWARD Amount:10 Unit:METER\n" +
+                            "Type:TURN Dir:LEFT Amount:90 Unit:DEGREE";
 
         ArrayList<String> textList = FileLoader.loadTxtFile(FilePaths.TEST_TEXT_PATH);
         testText(FileLoader.listToString(textList),expectedText);

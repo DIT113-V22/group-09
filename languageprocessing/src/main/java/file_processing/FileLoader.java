@@ -5,6 +5,8 @@ import grammar.PhrasalVerb;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +21,26 @@ public class FileLoader {
         try{
             File file = new File(Path.of(filePath).normalize().toString().replace("\\","/"));
             reader = new BufferedReader(new FileReader(file));
+
+            String line = reader.readLine();
+
+            while(line != null){
+                lines.add(line);
+                line = reader.readLine();
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return lines;
+    }
+
+    public static ArrayList<String> loadTxtFile(URL filePath){
+        BufferedReader reader;
+        ArrayList<String> lines = new ArrayList<>();
+
+        try{
+            reader = new BufferedReader(new InputStreamReader(filePath.openStream()));
 
             String line = reader.readLine();
 

@@ -15,7 +15,7 @@ import java.util.UUID;
 public class App extends Application {
 
     private static CarAPI carAPI;
-    private static KeyboardHandler keyboardHandler;
+    private static MovementHandler keyboardHandler;
 
     private final static String HOST = "127.0.0.1";
     private final static String CAR_NAME = "smartcar";
@@ -26,7 +26,7 @@ public class App extends Application {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("ui.fxml"));
         root.setOnKeyReleased(keyEvent -> {
             try {
-                keyboardHandler.handle(keyEvent);
+                keyboardHandler.handlePress(keyEvent);
             }
             catch (MqttException ignore){}
         });
@@ -47,14 +47,14 @@ public class App extends Application {
 
     private static void initClient() throws MqttException{
         carAPI = new CarAPI(HOST, UUID.randomUUID().toString(),CAR_NAME);
-        keyboardHandler  = new KeyboardHandler();
+        keyboardHandler  = new MovementHandler(carAPI);
     }
 
     public static CarAPI getCarAPI() {
         return carAPI;
     }
 
-    public static KeyboardHandler getKeyboardHandler(){
+    public static MovementHandler getKeyboardHandler(){
         return keyboardHandler;
     }
 }

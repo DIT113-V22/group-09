@@ -347,13 +347,13 @@ public class StartController implements Initializable {
         String password = usr_pass.getText();
         String carName = car_nm.getText();
         String host = host_inf.getText();
-        String connection = conn_inf.getText();
+        String port = conn_inf.getText();
         String MQTTusername = mqt_usr.getText();
         String MQTTpassword = mqt_pass.getText();
         String MQTTcliID = mqt_cli.getText();
 
 
-        if (!notNullOrBlank(username,password,carName,host,connection)){
+        if (!notNullOrBlank(username,password,carName,host,port)){
             throw new Exception("Cannot create user profile with lacking information.");
         }
 
@@ -364,9 +364,9 @@ public class StartController implements Initializable {
 
         ArrayList<String> MQTTinformation = blankReplace(";;;",MQTTusername,MQTTpassword,MQTTcliID);
 
-        String entry = concatenate(",",username,password,carName,host,connection,MQTTinformation.get(0),MQTTinformation.get(1),MQTTinformation.get(2));
+        String entry = concatenate(",",username,password,carName,host,port,MQTTinformation.get(0),MQTTinformation.get(1),MQTTinformation.get(2));
 
-        User user = new User(username,password,carName,host,connection,MQTTusername,MQTTpassword,MQTTcliID);
+        User user = new User(username,password,carName,host,port,MQTTusername,MQTTpassword,MQTTcliID);
         users.put(username,user);
 
         TxtWriter.writeEntry(getClass().getResource("/profiles/profiles.txt"),entry);

@@ -175,7 +175,7 @@
                                           <String fx:value="car-field" />
                                        </styleClass>
                                     </Region>
-                                    <TextField fx:id="conn_inf" id="conn-txt" promptText="Connection Address" VBox.vgrow="NEVER">
+                                    <TextField fx:id="conn_inf" id="conn-txt" promptText="Port" VBox.vgrow="NEVER">
                                        <styleClass>
                                           <String fx:value="txt" />
                                           <String fx:value="info" />

@@ -1,0 +1,80 @@
+.tab-pane {
+    -fx-tab-max-height: 0 ;
+}
+.tab-pane .tab-header-area {
+    visibility: hidden ;
+    -fx-padding: -20 0 0 0;
+}
+
+#m-man-btn,#a-aut-btn,#s-set-btn{
+    -fx-background-color: #3F7CAC;
+}
+
+.mock-top{
+    -fx-background-color: #141B41;
+}
+
+#sens-vbox,#a-sens-vbox,#s-sens-vbox{
+    -fx-background-color: #258d69;
+
+}
+
+#sens-vbox  Label,#a-sens-vbox  Label,#s-sens-vbox  Label{
+    -fx-text-fill: black;
+    /*!*-fx-border-color: #ff6200;*!*/
+    /*-fx-max-width: Infinity;*/
+    /*-fx-border-width: 2;*/
+    /*-fx-border-style: hidden solid solid solid;*/
+}
+
+#sens1,#sens10,#a-sens1,#a-sens10{
+    /*-fx-border-style: solid solid solid solid;*/
+}
+
+
+.sens{
+    -fx-font-size: 25;
+    -fx-font-family: System Bold;
+
+}
+
+#txt-inpt .scroll-pane {
+    -fx-hbar-policy: NEVER;
+    -fx-vbar-policy: NEVER;
+}
+
+.number-padding{
+    -fx-min-width: 5;
+}
+
+.icn-btn{
+    -fx-content-display: center;
+    -fx-pref-width:20;
+    -fx-pref-height:20;
+    -fx-min-width:20;
+    -fx-min-height:20;
+    -fx-max-width:20;
+    -fx-max-height:20;
+    -fx-background-radius: 0;
+    -fx-background-color: #3F7CAC;
+}
+
+.icon-balance-pad{
+    -fx-pref-width:20;
+    -fx-pref-height:20;
+    -fx-min-width:20;
+    -fx-min-height:20;
+    -fx-max-width:20;
+    -fx-max-height:20;
+}
+
+
+#txt-scrl{
+
+}
+
+#m-man-btn:hover,#a-aut-btn:hover,#s-set-btn:hover {
+    -fx-background-color: #3F7CAC;
+    -fx-text-fill: black;
+    -fx-scale-y: 1;
+}

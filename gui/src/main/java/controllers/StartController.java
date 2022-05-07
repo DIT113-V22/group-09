@@ -366,7 +366,7 @@ public class StartController implements Initializable {
 
         String entry = concatenate(",",username,password,carName,host,connection,MQTTinformation.get(0),MQTTinformation.get(1),MQTTinformation.get(2));
 
-        User user = new User(username,password,carName,host,connection,MQTTinformation.get(0),MQTTinformation.get(1),MQTTinformation.get(2));
+        User user = new User(username,password,carName,host,connection,MQTTusername,MQTTpassword,MQTTcliID);
         users.put(username,user);
 
         TxtWriter.writeEntry(getClass().getResource("/profiles/profiles.txt"),entry);

@@ -2,6 +2,8 @@ package commands_processing;
 
 import grammar.TextTranslator;
 
+import java.util.ArrayList;
+
 public class InputProcessor {
     //TODO:Move this class somewhere else where it makes more sense to have it.
     private final TextTranslator txtTranslator;
@@ -23,4 +25,14 @@ public class InputProcessor {
         return cmList.toJSON();
     }
 
+    public ArrayList<String> getCmList(){
+        ArrayList<String> stringList = new ArrayList<>();
+
+
+        for (Command command : cmList.getList()){
+            stringList.add(command.toString());
+        }
+
+        return stringList;
+    }
 }

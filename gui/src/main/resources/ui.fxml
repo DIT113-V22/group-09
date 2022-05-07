@@ -29,7 +29,7 @@
                      <children>
                         <ImageView fx:id="videoFeed" fitHeight="240.0" fitWidth="320.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@pic320.png" />
+                              <Image url="@img/Loading.jpg" />
                            </image>
                         </ImageView>
                         <Button layoutX="83.0" layoutY="301.0" mnemonicParsing="false" onAction="#left" prefHeight="26.0" prefWidth="49.0" text="Left" />
@@ -158,7 +158,7 @@
                            <children>
                               <ImageView fx:id="videoFeed2" fitHeight="240.0" fitWidth="320.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@pic320.png" />
+                                    <Image url="@img/Loading.jpg" />
                                  </image>
                               </ImageView>
                               <Label layoutX="14.0" layoutY="286.0" text="Ping:" />

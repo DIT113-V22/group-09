@@ -8,6 +8,7 @@ public class Command {
     private DirectionTypes direction;
     private Integer amount;
     private UnitTypes unit;
+    private static final int MAX_THRESHOLD = 10000000;
 
     public Command(ActionTypes action, DirectionTypes direction, Integer amount, UnitTypes unit){
         this.action = action;
@@ -33,7 +34,10 @@ public class Command {
 
 
     public String toString(){
-        return "Command type:"+ action +" Direction:"+direction+" Amount:"+amount+" Unit:"+unit;
+        if (amount> MAX_THRESHOLD){
+            return "Type:"+ action +" Dir:"+direction+" Amount:MAX Unit:"+unit;
+        }
+        return "Type:"+ action +" Dir:"+direction+" Amount:"+amount+" Unit:"+unit;
     }
 
     public boolean isEmpty(){

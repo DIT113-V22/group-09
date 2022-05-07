@@ -82,17 +82,6 @@ public class Controller {
 
     public Controller(){
         initialiseListeners();
-        runLater(() -> App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected()));
-        runLater(() -> manualTab.setOnSelectionChanged(event -> {
-            if (manualTab.isSelected())checkSelectedTab();
-            App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected());
-        }));
-        runLater(() -> autonomousTab.setOnSelectionChanged(event -> {
-
-            if (autonomousTab.isSelected())checkSelectedTab();
-            App.getKeyboardHandler().setEnabled(false);
-        }));
-        runLater(this::checkSelectedTab);
     }
 
     private void checkSelectedTab(){
@@ -235,7 +224,7 @@ public class Controller {
     }
 
     public void checkBoxToggle(){
-        App.getKeyboardHandler().setEnabled(keyBoardCheckBox.isSelected());
+
     }
 
     private void runLater(Runnable runnable){

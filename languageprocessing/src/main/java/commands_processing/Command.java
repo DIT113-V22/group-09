@@ -9,12 +9,16 @@ public class Command {
     private Integer amount;
     private UnitTypes unit;
     private static final int MAX_THRESHOLD = 10000000;
+    private Shapes shape;
+    private Rotations rotation;
 
-    public Command(ActionTypes action, DirectionTypes direction, Integer amount, UnitTypes unit){
+    public Command(ActionTypes action, DirectionTypes direction, Integer amount, UnitTypes unit, Shapes shape, Rotations rotation){
         this.action = action;
         this.direction = direction;
         this.amount = amount;
         this.unit = unit;
+        this.shape = shape;
+        this.rotation = rotation;
     }
 
     public String toJSON(){
@@ -34,10 +38,19 @@ public class Command {
 
 
     public String toString(){
+        String str_amount;
         if (amount> MAX_THRESHOLD){
-            return "Type:"+ action +" Dir:"+direction+" Amount:MAX Unit:"+unit;
+            str_amount="MAX";
         }
-        return "Type:"+ action +" Dir:"+direction+" Amount:"+amount+" Unit:"+unit;
+        else {
+            str_amount=Integer.toString(amount);
+        }
+
+        if (shape != Shapes.NULL){
+            return "Type:"+ action+"_"+shape+"_"+rotation+" Dir:"+direction+" Amount:"+str_amount+" Unit:"+unit;
+        }
+
+        return "Type:"+ action +" Dir:"+direction+" Amount:"+str_amount+" Unit:"+unit;
     }
 
     public boolean isEmpty(){
@@ -108,4 +121,28 @@ public class Command {
         return unit != UnitTypes.NULL;
     }
 
+    public boolean hasShape(){
+        return shape != null;
+    }
+
+    public boolean hasRotation(){
+        return rotation != null;
+    }
+
+
+    public Shapes getShape() {
+        return shape;
+    }
+
+    public Rotations getRotation() {
+        return rotation;
+    }
+
+    public void setShape(Shapes shape) {
+        this.shape = shape;
+    }
+
+    public void setRotation(Rotations rotation) {
+        this.rotation = rotation;
+    }
 }

@@ -37,6 +37,12 @@ class TextTranslatorTest {
         assertEquals(expected,json);
     }
 
+    @Test
+    void shapeTest(){
+        text = "Move forward and counterclockwise following a circumference of a circle with a radius of 4 feet.";
+        expectedText = "Type:GO_CIRCLE_COUNTERCLOCKWISE Dir:FORWARD Amount:4 Unit:FOOT";
+        testText(text,expectedText);
+    }
 
     @Test
     void csvTest(){
@@ -67,6 +73,9 @@ class TextTranslatorTest {
                 "Type:TURN Dir:LEFT Amount:90 Unit:DEGREE"
         };
         for (int i=0; i<texts.length; i++){
+            if (i==3){
+                System.out.println();
+            }
             testText(texts[i], expectedTexts[i]);
         }
     }

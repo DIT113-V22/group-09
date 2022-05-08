@@ -49,6 +49,20 @@ public class LanguageEnums {
         NONE
     }
 
+    public enum Shapes{
+        CIRCLE,
+        SQUARE,
+        RECTANGLE,
+        NULL;
+    }
+
+    public enum Rotations {
+        CLOCKWISE,
+        COUNTERCLOCKWISE,
+        NULL;
+    }
+
+
     public enum DirectionTypes {
         LEFT("RIGHT"),
         RIGHT("LEFT"),

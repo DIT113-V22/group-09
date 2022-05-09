@@ -249,7 +249,7 @@ void setup() {
 
 unsigned long pauseTime = 0;
 void _pause(){
-    pauseTime = millis() + 666;
+    pauseTime = millis() + 1111;
 }
 
 void emergencyDetection(){
@@ -292,10 +292,23 @@ void executeCurrentCommand(){
     if (taskType == "DISTANCE"){
         long currentDistance = smartCar.getDistance();
         if (amount>0){
-            int offset = 10;
+            int slowdown_threshold;
+            int offset;
+            if (amount < 80){
+                slowdown_threshold = 19;
+                offset = 8;
+            }
+            else if (amount < 150){
+                slowdown_threshold = 30;
+                offset = 9;
+            }
+            else{
+                slowdown_threshold = 50;
+                offset = 10;
+            }
             int difference = abs(currentDistance-initState.distance);
             int target = amount - offset;
-            if (difference>=target - 50 ){
+            if (difference>=target - slowdown_threshold ){
                 int direction;
                 if (currentCommand.rWheel < 0) direction = -1;
                 else direction = 1;
@@ -345,7 +358,15 @@ void executeCurrentCommand(){
             difference = abs(initState.heading - currentHeading);
         }
 
+        //Serial.println(difference);
+
         int slowdown_threshold = 13;
+
+        if(amount < 25){
+            offset = 0;
+            slowdown_threshold = 6;
+        }
+
         if (difference >= targetDegree - slowdown_threshold){
 
             int left = -1;

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="root-anchor" fx:id="root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="730.0" styleClass="anchor" stylesheets="@../stylesheets/defaultTheme.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="controllers.StartController">
+<AnchorPane id="root-anchor" fx:id="root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="730.0" styleClass="anchor" stylesheets="@../stylesheets/defaultTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
    <children>
       <HBox fx:id="root_box" onKeyPressed="#handleKeyPress" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -20,7 +20,7 @@
                <children>
                   <VBox id="btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="232.0" styleClass="box" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="log_btn" id="log-btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showLogScr" text="Log In">
+                        <Button id="log-btn" fx:id="log_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showLogScr" text="Log In">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
@@ -32,7 +32,7 @@
                               <String fx:value="side" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="anon_btn" id="anon-btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showAnonScr" text="Anonymous">
+                        <Button id="anon-btn" fx:id="anon_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showAnonScr" text="Anonymous">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
@@ -44,7 +44,7 @@
                               <String fx:value="side" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="prof_btn" id="prof-btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showUsrCreScr" text="Create Profile">
+                        <Button id="prof-btn" fx:id="prof_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showUsrCreScr" text="Create Profile">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
@@ -57,7 +57,7 @@
                               <String fx:value="chosen" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="set_btn" id="set-btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showSetScr" text="Settings">
+                        <Button id="set-btn" fx:id="set_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showSetScr" text="Settings">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
@@ -88,9 +88,9 @@
             </AnchorPane>
             <AnchorPane id="info-anchor" prefHeight="480.0" prefWidth="498.0" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox id="info-vbox" prefHeight="480.0" prefWidth="498.0" minHeight="400" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox id="info-vbox" minHeight="400" prefHeight="480.0" prefWidth="498.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox id="top-box" maxWidth="Infinity"  minHeight="52.0" prefHeight="52.0" prefWidth="498.0" styleClass="top">
+                        <HBox id="top-box" maxWidth="Infinity" minHeight="52.0" prefHeight="52.0" prefWidth="498.0" styleClass="top">
                            <children>
                               <Region id="l-top-pad" maxWidth="Infinity" minWidth="145.0" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                                  <styleClass>
@@ -98,7 +98,7 @@
                                     <String fx:value="region" />
                                  </styleClass>
                               </Region>
-                              <Label id="head-txt" fx:id="info_label" maxWidth="209.0" minWidth="209.0" prefHeight="52.0" prefWidth="209.0" text="Create Profile" HBox.hgrow="NEVER">
+                              <Label id="head-txt" fx:id="info_label" maxWidth="309.0" minWidth="309.0" prefHeight="52.0" prefWidth="309.0" text="Create Profile" translateX="-50.0" HBox.hgrow="NEVER">
                                  <styleClass>
                                     <String fx:value="top" />
                                     <String fx:value="label" />
@@ -112,13 +112,13 @@
                               </Region>
                            </children>
                         </HBox>
-                        <Region id="v1-info-pad"  VBox.vgrow="ALWAYS" maxHeight="Infinity" minHeight="10.0" prefHeight="20.0" prefWidth="498.0" />
+                        <Region id="v1-info-pad" maxHeight="Infinity" minHeight="10.0" prefHeight="20.0" prefWidth="498.0" VBox.vgrow="ALWAYS" />
                         <HBox id="main-box" maxWidth="Infinity" prefHeight="360.0" prefWidth="498.0">
                            <children>
-                              <Region id="l-main-pad"   prefHeight="232.0" HBox.hgrow="ALWAYS" maxWidth="Infinity" minWidth="0" prefWidth="150.0" />
-                              <VBox id="info-box" prefHeight="250.0" HBox.hgrow="NEVER" minWidth="209.0" maxWidth="209.0" prefWidth="209.0" styleClass="box">
+                              <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="232.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                              <VBox id="info-box" maxWidth="209.0" minWidth="209.0" prefHeight="250.0" prefWidth="209.0" styleClass="box" HBox.hgrow="NEVER">
                                  <children>
-                                    <TextField fx:id="usr_nm" id="usr-txt" prefHeight="25.0" prefWidth="183.0" promptText="Username" VBox.vgrow="NEVER">
+                                    <TextField id="usr-txt" fx:id="usr_nm" prefHeight="25.0" prefWidth="183.0" promptText="Username" VBox.vgrow="NEVER">
                                        <styleClass>
                                           <String fx:value="txt" />
                                           <String fx:value="info" />
@@ -132,7 +132,7 @@
                                           <String fx:value="user-field" />
                                        </styleClass>
                                     </Region>
-                                    <PasswordField fx:id="usr_pass" id="usr-pass" promptText="Password" VBox.vgrow="NEVER">
+                                    <PasswordField id="usr-pass" fx:id="usr_pass" promptText="Password" VBox.vgrow="NEVER">
                                        <styleClass>
                                           <String fx:value="pass" />
                                           <String fx:value="info" />
@@ -147,7 +147,7 @@
                                           <String fx:value="car-field" />
                                        </styleClass>
                                     </Region>
-                                    <TextField fx:id="car_nm" id="car-txt" promptText="Car Name" VBox.vgrow="NEVER">
+                                    <TextField id="car-txt" fx:id="car_nm" promptText="Car Name" VBox.vgrow="NEVER">
                                        <styleClass>
                                           <String fx:value="txt" />
                                           <String fx:value="info" />
@@ -161,7 +161,7 @@
                                           <String fx:value="car-field" />
                                        </styleClass>
                                     </Region>
-                                    <TextField fx:id="host_inf" id="hos-txt" promptText="Host" VBox.vgrow="NEVER">
+                                    <TextField id="hos-txt" fx:id="host_inf" promptText="Host" VBox.vgrow="NEVER">
                                        <styleClass>
                                           <String fx:value="txt" />
                                           <String fx:value="info" />
@@ -175,7 +175,7 @@
                                           <String fx:value="car-field" />
                                        </styleClass>
                                     </Region>
-                                    <TextField fx:id="conn_inf" id="conn-txt" promptText="Port" VBox.vgrow="NEVER">
+                                    <TextField id="conn-txt" fx:id="conn_inf" promptText="Port" VBox.vgrow="NEVER">
                                        <styleClass>
                                           <String fx:value="txt" />
                                           <String fx:value="info" />
@@ -189,7 +189,7 @@
                                           <String fx:value="car-field" />
                                        </styleClass>
                                     </Region>
-                                    <TextField fx:id="mqt_usr" id="mq-usr-txt" promptText="MQTT username (optional)">
+                                    <TextField id="mq-usr-txt" fx:id="mqt_usr" promptText="MQTT username (optional)">
                                        <styleClass>
                                           <String fx:value="txt" />
                                           <String fx:value="info" />
@@ -203,7 +203,7 @@
                                           <String fx:value="car-field" />
                                        </styleClass>
                                     </Region>
-                                    <TextField fx:id="mqt_pass" id="mq-pass-txt" promptText="MQTT password (optional)">
+                                    <TextField id="mq-pass-txt" fx:id="mqt_pass" promptText="MQTT password (optional)">
                                        <styleClass>
                                           <String fx:value="txt" />
                                           <String fx:value="info" />
@@ -217,7 +217,7 @@
                                           <String fx:value="car-field" />
                                        </styleClass>
                                     </Region>
-                                    <TextField fx:id="mqt_cli" id="mq-uid-txt" promptText="MQTT clientID (optional)">
+                                    <TextField id="mq-uid-txt" fx:id="mqt_cli" promptText="MQTT clientID (optional)">
                                        <styleClass>
                                           <String fx:value="txt" />
                                           <String fx:value="info" />
@@ -232,13 +232,13 @@
                                     </Region>
                                  </children>
                               </VBox>
-                              <Region id="r-main-pad" prefHeight="232.0" HBox.hgrow="ALWAYS" maxWidth="Infinity" minWidth="0" prefWidth="150.0" />
+                              <Region id="r-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="232.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-                        <Region id="v2-info-pad"  VBox.vgrow="ALWAYS" maxHeight="Infinity" minHeight="0" prefHeight="20.0" prefWidth="498.0" />
-                        <HBox id="conf-box" prefHeight="65.0" VBox.vgrow="NEVER" maxHeight="65" minHeight="65" AnchorPane.bottomAnchor="0.0" prefWidth="498.0" styleClass="box">
+                        <Region id="v2-info-pad" maxHeight="Infinity" minHeight="0" prefHeight="20.0" prefWidth="498.0" VBox.vgrow="ALWAYS" />
+                        <HBox id="conf-box" maxHeight="65" minHeight="65" prefHeight="65.0" prefWidth="498.0" styleClass="box" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
                            <children>
-                              <Region id="l-conf-pad" prefHeight="200.0" HBox.hgrow="ALWAYS" maxWidth="Infinity" minWidth="0" prefWidth="0.0" />
+                              <Region id="l-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                               <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" text="Clear">
                                  <styleClass>
                                     <String fx:value="btn" />
@@ -251,7 +251,7 @@
                                     <String fx:value="conf" />
                                  </styleClass>
                               </Button>
-                              <Region id="r-conf-pad" prefHeight="200.0" HBox.hgrow="ALWAYS" maxWidth="Infinity" minWidth="0" prefWidth="0.0" />
+                              <Region id="r-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                      </children>

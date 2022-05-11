@@ -1,6 +1,6 @@
 
 #root-anchor,#a-root-anchor,#s-root-anchor{
-    -fx-background-color: #848FA5;
+    -fx-background-color: linear-gradient(to left, #f0073b, #f9bc2c);
     maxHeight:"Infinity";
     maxWidth:"Infinity";
     minHeight:"-Infinity";
@@ -10,7 +10,8 @@
 }
 
 #side-anchor,#a-side-anchor,#s-side-anchor{
-    -fx-background-color: #32E875;
+
+    -fx-background-color: #f68131;
     minWidth:"120";
     maxWidth:"240";
     prefHeight:"480.0";
@@ -21,15 +22,16 @@
 
 .top{
     -fx-max-height: 52.0;
-    -fx-background-color: #141B41;
+    -fx-background-color: transparent
 
 }
 
 #head-txt,#a-head-txt,#s-head-txt{
     -fx-alignment: center;
     -fx-text-fill: WHITE;
-    -fx-font-family: "System Bold";
-    -fx-font-size: 25;
+    -fx-font-family: "Arial Rounded MT Bold", sans-serif;
+    -fx-font-size: 30;
+    -fx-opacity: 80%;
 }
 
 
@@ -53,32 +55,33 @@
 
 
 #prof-btn.chosen,#set-btn.chosen,#anon-btn.chosen,#log-btn.chosen{
-    -fx-background-color: #3F7CAC;
+    -fx-background-color: #fff;
+    -fx-background-radius: 0 100 100 0;
     -fx-text-fill: black;
-    -fx-scale-y: 1;
 }
 
-
 .side{
-    -fx-background-color: #32E875;
+    -fx-background-color: linear-gradient(to left, #f68131 95%, #fff 5%);
     -fx-alignment: baseline-left;
-    -fx-font-family: "System Bold";
-    -fx-font-size: 25;
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-font-size: 24;
 }
 
 .conf{
-    -fx-background-color: #11e8e8;
+    -fx-background-color: #FFF;
+    -fx-background-radius: 100 100 100 100;
     -fx-alignment: center;
     -fx-font-family: "System";
     -fx-font-size: 30;
+    -fx-scale-x: 60%;
+    -fx-scale-y: 70%;
 
 }
 
 
 .btn:hover {
-    -fx-background-color: #D81159;
-    -fx-text-fill: azure;
-    -fx-scale-y: 1.1;
+    -fx-background-color: linear-gradient(to left, transparent 95%, #f00e3a 5%);
+    -fx-text-fill: white;
 }
 
 /*.test:hover,*/

@@ -117,7 +117,7 @@ public class StartController implements Initializable {
 
     @FXML
     protected void showLogScr(){
-        info_label.setText("Log In");
+        info_label.setText("{ LOG IN }");
         handleButtonTags();
         log_btn.getStyleClass().add("chosen");
         mode= WindowModes.LOG_IN;
@@ -126,7 +126,7 @@ public class StartController implements Initializable {
 
     @FXML
     protected void showUsrCreScr(){
-        info_label.setText("Create Profile");
+        info_label.setText("{ CREATE PROFILE }");
         handleButtonTags();
         prof_btn.getStyleClass().add("chosen");
         mode= WindowModes.USR_CREATE;
@@ -135,7 +135,7 @@ public class StartController implements Initializable {
 
     @FXML
     protected void showAnonScr(){
-        info_label.setText("Simple Session");
+        info_label.setText("{ SIMPLE SESSION }");
         handleButtonTags();
         anon_btn.getStyleClass().add("chosen");
         mode= WindowModes.ANON;
@@ -144,7 +144,7 @@ public class StartController implements Initializable {
 
     @FXML
     protected void showSetScr(){
-        info_label.setText("Settings");
+        info_label.setText("{ SETTINGS }");
         handleButtonTags();
         set_btn.getStyleClass().add("chosen");
         mode= WindowModes.SETTINGS;

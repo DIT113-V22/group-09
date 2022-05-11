@@ -1,5 +1,6 @@
 .tab-pane {
     -fx-tab-max-height: 0 ;
+    -fx-background-radius: 20;
 }
 .tab-pane .tab-header-area {
     visibility: hidden ;
@@ -16,6 +17,7 @@
 
 #sens-vbox,#a-sens-vbox,#s-sens-vbox{
     -fx-background-color: #258d69;
+    -fx-background-radius: 20;
 
 }
 

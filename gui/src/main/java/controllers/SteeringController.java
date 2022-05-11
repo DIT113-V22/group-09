@@ -22,10 +22,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -231,6 +233,7 @@ public class SteeringController {
             Scene scene = new Scene(root, 740, 540);
             stage.setMinWidth(740);
             stage.setMinHeight(540);
+            scene.setFill(Color.TRANSPARENT);
             stage.setScene(scene);
         }
         catch (Exception e){

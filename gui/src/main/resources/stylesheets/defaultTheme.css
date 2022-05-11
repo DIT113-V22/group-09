@@ -1,39 +1,50 @@
 
+/* Main window */
 #root-anchor,#a-root-anchor,#s-root-anchor{
-    -fx-background-color: linear-gradient(to left, #f0073b, #f9bc2c);
+    -fx-background-color: linear-gradient(to bottom, #7678f7, #a233e5);
     maxHeight:"Infinity";
     maxWidth:"Infinity";
     minHeight:"-Infinity";
     minWidth:"-Infinity";
     prefHeight:"480.0";
     prefWidth:"730.0";
+    -fx-background-radius: 20;
 }
 
 #side-anchor,#a-side-anchor,#s-side-anchor{
 
-    -fx-background-color: #f68131;
+    -fx-background-color: linear-gradient(to bottom, #7678f7, #a233e5);
     minWidth:"120";
     maxWidth:"240";
     prefHeight:"480.0";
     prefWidth:"240";
+    -fx-background-radius: 20;
 }
-
-
 
 .top{
     -fx-max-height: 52.0;
-    -fx-background-color: transparent
+    -fx-background-color: transparent;
+
 
 }
 
 #head-txt,#a-head-txt,#s-head-txt{
     -fx-alignment: center;
     -fx-text-fill: WHITE;
-    -fx-font-family: "Arial Rounded MT Bold", sans-serif;
+    -fx-font-family: "Verdana", sans-serif;
     -fx-font-size: 30;
     -fx-opacity: 80%;
+
 }
 
+
+#info-box TextField, #info-box PasswordField{
+    -fx-background-color: transparent;
+    -fx-border-color: #fff;
+    -fx-border-width:  0px 0px 2px 0px;
+    -fx-font-family: "Verdana", sans-serif;
+
+}
 
 .info:hover{
     /*-fx-background-color: black;*/
@@ -43,45 +54,51 @@
 .btn{
 
     -fx-text-fill: #000000;
-
     -fx-background-radius: 0;
     -fx-max-height: "Infinity";
     -fx-max-width: "Infinity";
     -fx-pref-height: 50.0;
     -fx-pref-width: 246.0;
-
     /*-fx-text-fill: azure;*/
+}
+
+.specbtn{
+    -fx-text-fill: #000000;
+    -fx-background-radius: 0;
+    -fx-max-height: "Infinity";
+    -fx-max-width: "Infinity";
+    -fx-pref-height: 50.0;
+    -fx-pref-width: 246.0;
 }
 
 
 #prof-btn.chosen,#set-btn.chosen,#anon-btn.chosen,#log-btn.chosen{
-    -fx-background-color: #fff;
-    -fx-background-radius: 0 100 100 0;
+    -fx-background-color: linear-gradient(to right, #fff 10%, transparent 100%);
+    -fx-background-radius: 0 500 500 0;
     -fx-text-fill: black;
 }
 
 .side{
-    -fx-background-color: linear-gradient(to left, #f68131 95%, #fff 5%);
+    -fx-background-color: transparent;
     -fx-alignment: baseline-left;
-    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-font-family: "Verdana", sans-serif;
     -fx-font-size: 24;
+
 }
 
 .conf{
     -fx-background-color: #FFF;
-    -fx-background-radius: 100 100 100 100;
+    -fx-background-radius: 100;
     -fx-alignment: center;
-    -fx-font-family: "System";
+    -fx-font-family: "Verdana", sans-serif;
     -fx-font-size: 30;
     -fx-scale-x: 60%;
     -fx-scale-y: 70%;
 
 }
 
-
 .btn:hover {
-    -fx-background-color: linear-gradient(to left, transparent 95%, #f00e3a 5%);
-    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to right, #fff 0%, transparent 60%);
 }
 
 /*.test:hover,*/

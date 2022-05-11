@@ -20,31 +20,31 @@
                <children>
                   <VBox id="btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="232.0" styleClass="box" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button id="log-btn" fx:id="log_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showLogScr" text="Log In">
+                        <Button id="log-btn" fx:id="log_btn" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#showLogScr" text="Log In" translateY="60.0">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIconView glyphName="USER" />
+                              <FontAwesomeIconView glyphName="USER" translateX="4.7" />
                            </graphic>
                            <styleClass>
                               <String fx:value="btn" />
                               <String fx:value="side" />
                            </styleClass>
                         </Button>
-                        <Button id="anon-btn" fx:id="anon_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showAnonScr" text="Anonymous">
+                        <Button id="anon-btn" fx:id="anon_btn" alignment="BASELINE_LEFT" graphicTextGap="13.5" mnemonicParsing="false" onAction="#showAnonScr" text="Anonymous" translateY="80.0">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIconView glyphName="EYE" />
+                              <FontAwesomeIconView glyphName="EYE" translateX="1.6" />
                            </graphic>
                            <styleClass>
                               <String fx:value="btn" />
                               <String fx:value="side" />
                            </styleClass>
                         </Button>
-                        <Button id="prof-btn" fx:id="prof_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showUsrCreScr" text="Create Profile">
+                        <Button id="prof-btn" fx:id="prof_btn" alignment="BASELINE_LEFT" graphicTextGap="9.4" mnemonicParsing="false" onAction="#showUsrCreScr" text="Create Profile" translateY="100.0">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
@@ -57,25 +57,25 @@
                               <String fx:value="chosen" />
                            </styleClass>
                         </Button>
-                        <Button id="set-btn" fx:id="set_btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#showSetScr" text="Settings">
+                        <Button id="set-btn" fx:id="set_btn" alignment="BASELINE_LEFT" graphicTextGap="10.5" mnemonicParsing="false" onAction="#showSetScr" text="Settings" translateY="120.0">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIconView glyphName="GEARS" />
+                              <FontAwesomeIconView glyphName="GEARS" translateX="0.7" />
                            </graphic>
                            <styleClass>
                               <String fx:value="btn" />
                               <String fx:value="side" />
                            </styleClass>
                         </Button>
-                        <Region prefHeight="231.0" prefWidth="232.0" styleClass="region" VBox.vgrow="ALWAYS" />
-                        <Button id="exi-btn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#exit" text="Exit">
+                        <Region disable="true" prefHeight="231.0" prefWidth="232.0" styleClass="region" VBox.vgrow="ALWAYS" />
+                        <Button id="exi-btn" alignment="BASELINE_LEFT" graphicTextGap="15.5" mnemonicParsing="false" onAction="#exit" text="Exit" translateY="-60.0">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIconView glyphName="BAN" />
+                              <FontAwesomeIconView glyphName="BAN" translateX="3.3" />
                            </graphic>
                            <styleClass>
                               <String fx:value="btn" />
@@ -98,7 +98,7 @@
                                     <String fx:value="region" />
                                  </styleClass>
                               </Region>
-                              <Label id="head-txt" fx:id="info_label" maxWidth="309.0" minWidth="309.0" prefHeight="52.0" prefWidth="309.0" text="Create Profile" translateX="-50.0" HBox.hgrow="NEVER">
+                              <Label id="head-txt" fx:id="info_label" maxWidth="309.0" minWidth="309.0" prefHeight="52.0" prefWidth="309.0" text="Create Profile" translateX="-50.0" translateY="5.0" HBox.hgrow="NEVER">
                                  <styleClass>
                                     <String fx:value="top" />
                                     <String fx:value="label" />
@@ -241,13 +241,13 @@
                               <Region id="l-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                               <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" text="Clear">
                                  <styleClass>
-                                    <String fx:value="btn" />
+                                    <String fx:value="specbtn" />
                                     <String fx:value="conf" />
                                  </styleClass>
                               </Button>
                               <Button id="sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" text="Confirm">
                                  <styleClass>
-                                    <String fx:value="btn" />
+                                    <String fx:value="specbtn" />
                                     <String fx:value="conf" />
                                  </styleClass>
                               </Button>

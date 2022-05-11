@@ -6,7 +6,9 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.util.UUID;
@@ -34,10 +36,12 @@ public class App extends Application {
             Platform.exit();
             System.exit(0);
         });
-        primaryStage.setTitle("PROTOTYPE Control Panel");
-        primaryStage.setScene(new Scene(root));
+        //primaryStage.setTitle("PROTOTYPE Control Panel");
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 
     public static void main(String[] args) throws Exception {

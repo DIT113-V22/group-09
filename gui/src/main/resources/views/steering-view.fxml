@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<TabPane fx:id="main_pane" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyReleased" prefHeight="648.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="controllers.SteeringController">
+<TabPane fx:id="main_pane" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyReleased" prefHeight="648.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SteeringController">
    <tabs>
       <Tab id="manual-tab" fx:id="manual_tab">
          <content>
@@ -153,7 +153,6 @@
                            <children>
                               <VBox id="sens-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="260.0" styleClass="box" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Region id="top-sens-reg" maxHeight="52" minHeight="52" prefHeight="52" styleClass="mock-top" VBox.vgrow="NEVER" />
                                     <HBox>
                                        <children>
                                           <Label id="sens1" alignment="BASELINE_LEFT" text=" Gyroscope: ">
@@ -642,7 +641,6 @@
                            <children>
                               <VBox id="a-sens-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="260.0" styleClass="box" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Region id="a-top-sens-reg" maxHeight="52" minHeight="52" prefHeight="52" styleClass="mock-top" VBox.vgrow="NEVER" />
                                     <HBox>
                                        <children>
                                           <Label id="a-sens1" alignment="BASELINE_LEFT" text=" Gyroscope: ">

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="root-anchor" fx:id="root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="730.0" styleClass="anchor" stylesheets="@../stylesheets/defaultTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
+<AnchorPane id="root-anchor" fx:id="root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="730.0" styleClass="anchor" stylesheets="@../stylesheets/defaultTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
    <children>
       <HBox fx:id="root_box" onKeyPressed="#handleKeyPress" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -112,8 +112,7 @@
                               </Region>
                            </children>
                         </HBox>
-                        <Region id="v1-info-pad" maxHeight="Infinity" minHeight="10.0" prefHeight="20.0" prefWidth="498.0" VBox.vgrow="ALWAYS" />
-                        <HBox id="main-box" maxWidth="Infinity" prefHeight="360.0" prefWidth="498.0">
+                        <HBox id="main-box" maxWidth="Infinity" prefHeight="360.0" prefWidth="498.0" translateY="5.0">
                            <children>
                               <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="232.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                               <VBox id="info-box" maxWidth="209.0" minWidth="209.0" prefHeight="250.0" prefWidth="209.0" styleClass="box" HBox.hgrow="NEVER">
@@ -235,23 +234,10 @@
                               <Region id="r-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="232.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-                        <Region id="v2-info-pad" maxHeight="Infinity" minHeight="0" prefHeight="20.0" prefWidth="498.0" VBox.vgrow="ALWAYS" />
-                        <HBox id="conf-box" maxHeight="65" minHeight="65" prefHeight="65.0" prefWidth="498.0" styleClass="box" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
+                        <HBox id="conf-box" maxHeight="143.0" minHeight="65" prefHeight="143.0" prefWidth="498.0" styleClass="box" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
                            <children>
-                              <Region id="l-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                              <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" text="Clear">
-                                 <styleClass>
-                                    <String fx:value="specbtn" />
-                                    <String fx:value="conf" />
-                                 </styleClass>
-                              </Button>
-                              <Button id="sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" text="Confirm">
-                                 <styleClass>
-                                    <String fx:value="specbtn" />
-                                    <String fx:value="conf" />
-                                 </styleClass>
-                              </Button>
-                              <Region id="r-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                              <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" prefHeight="40.0" prefWidth="103.0" styleClass="specbtn2" text="Clear" translateX="190.0" translateY="10.0" />
+                              <Button id="sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" styleClass="specbtn" text="Confirm" translateX="66.0" translateY="75.0" />
                            </children>
                         </HBox>
                      </children>

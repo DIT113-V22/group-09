@@ -230,7 +230,7 @@ public class SteeringController {
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/views/start-view.fxml"));
-            Scene scene = new Scene(root, 740, 540);
+            Scene scene = new Scene(root, 720, 540);
             stage.setMinWidth(740);
             stage.setMinHeight(540);
             scene.setFill(Color.TRANSPARENT);

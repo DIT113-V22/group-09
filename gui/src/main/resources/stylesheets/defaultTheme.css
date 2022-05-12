@@ -46,10 +46,6 @@
 
 }
 
-.info:hover{
-    /*-fx-background-color: black;*/
-}
-
 
 .btn{
 
@@ -59,17 +55,39 @@
     -fx-max-width: "Infinity";
     -fx-pref-height: 50.0;
     -fx-pref-width: 246.0;
-    /*-fx-text-fill: azure;*/
 }
 
-.specbtn{
-    -fx-text-fill: #000000;
-    -fx-background-radius: 0;
-    -fx-max-height: "Infinity";
-    -fx-max-width: "Infinity";
-    -fx-pref-height: 50.0;
-    -fx-pref-width: 246.0;
+.btn:hover {
+    -fx-background-color: linear-gradient(to right, #fff 0%, transparent 60%);
 }
+
+.specbtn {
+    -fx-pref-height: 40.0;
+    -fx-pref-width: 125.0;
+    -fx-background-color: #fff;
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 3,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-background-radius: 50;
+}
+.specbtn:hover {
+    -fx-background-color: linear-gradient(#DCE35B, #45B649);
+}
+.specbtn2 {
+    -fx-pref-height: 40.0;
+    -fx-pref-width: 125.0;
+    -fx-background-color: #fff;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-background-radius: 50;
+}
+.specbtn2:hover {
+    -fx-background-color: linear-gradient(#ff5400, #be1d00);
+}
+
 
 
 #prof-btn.chosen,#set-btn.chosen,#anon-btn.chosen,#log-btn.chosen{
@@ -96,23 +114,3 @@
     -fx-scale-y: 70%;
 
 }
-
-.btn:hover {
-    -fx-background-color: linear-gradient(to right, #fff 0%, transparent 60%);
-}
-
-/*.test:hover,*/
-/*.test:focus {*/
-/*    color: #31202BFF;*/
-/*    text-shadow: none;*/
-
-/*}*/
-
-/*.test:hover::before,*/
-/*.test:focus::before {*/
-/*    opacity: 1;*/
-/*}*/
-/*.test:hover::after,*/
-/*.test:focus::after {*/
-/*    opacity: 0.8;*/
-/*}*/

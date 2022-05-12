@@ -149,12 +149,12 @@
          </content>
       </Tab>
       <Tab fx:id="autonomousTab" closable="false" text="Autonomous">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <SplitPane dividerPositions="0.5427892234548336" layoutX="14.0" layoutY="6.0" prefHeight="382.0" prefWidth="633.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="352.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="352.0">
                            <children>
                               <ImageView fx:id="videoFeed2" fitHeight="240.0" fitWidth="320.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -165,7 +165,7 @@
                               <Label fx:id="pingVal" layoutX="52.0" layoutY="286.0" text="\%PingValue%" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="269.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="269.0">
                            <children>
                               <TextArea fx:id="commandInfo" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="232.0" prefWidth="264.0" />
                               <TextArea fx:id="commandBox" layoutX="14.0" layoutY="253.0" prefHeight="77.0" prefWidth="264.0" promptText="command here" />
@@ -173,11 +173,11 @@
                               <Button fx:id="clearBtn" layoutX="111.0" layoutY="341.0" mnemonicParsing="false" onAction="#clearCommandBox" prefHeight="31.0" prefWidth="71.0" text="Clear" />
                            </children>
                         </AnchorPane>
-                    </items>
+                     </items>
                   </SplitPane>
                </children>
             </AnchorPane>
-        </content>
+         </content>
       </Tab>
    </tabs>
 </TabPane>

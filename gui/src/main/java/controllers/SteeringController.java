@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -119,7 +120,7 @@ public class SteeringController {
     public void initialize(CarAPI carAPI){
         if (this.carAPI == null){
 
-            voiceIsOn =false;
+            voiceIsOn = false;
             txt_scrl.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
             txt_scrl.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
@@ -228,16 +229,15 @@ public class SteeringController {
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/views/start-view.fxml"));
-            Scene scene = new Scene(root, 740, 540);
-            stage.setMinWidth(740);
-            stage.setMinHeight(540);
+
+            Scene scene = new Scene(root, 740, 620);
+            scene.setFill(Color.TRANSPARENT);
             stage.setScene(scene);
         }
         catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
-
 
     @FXML
     protected void switchToMTab(){

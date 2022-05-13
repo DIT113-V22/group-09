@@ -28,12 +28,6 @@ public class CommandParser {
         wheelSpeeds = new String[setsOfWheels];
     }
 
-//    private String parseCommand(Command command){
-//
-//        return ";";
-//    }
-
-
     public String parseCommands(CommandList list) {
         Integer unconvertedAmount;
         Double conversionRate;
@@ -59,49 +53,46 @@ public class CommandParser {
             amount = Integer.toString((int) (unconvertedAmount*conversionRate));
 
 
-           switch (command.getAction()){
-               case GO: {
-                    if (direction == DirectionTypes.BACK){
-                        Arrays.fill(wheelSpeeds,"-"+defaultMoveSpeed);
+            switch (command.getAction()) {
+                case GO -> {
+                    if (direction == DirectionTypes.BACK) {
+                        Arrays.fill(wheelSpeeds, "-" + defaultMoveSpeed);
                     }
                     //TODO: Make more methods to offload the in-between commands somewhere else.
-                    else if (direction == DirectionTypes.LEFT){
+                    else if (direction == DirectionTypes.LEFT) {
 
-                        inBetweenCSVEntry = "-"+defaultTurnSpeed+","+defaultTurnSpeed+","+"90,ANGULAR;";
+                        inBetweenCSVEntry = "-" + defaultTurnSpeed + "," + defaultTurnSpeed + "," + "90,ANGULAR;";
                         builder.append(inBetweenCSVEntry);
 
-                        Arrays.fill(wheelSpeeds,defaultMoveSpeed);
-                    }
-                    else if (direction == DirectionTypes.RIGHT){
-                        inBetweenCSVEntry = defaultTurnSpeed+",-"+defaultTurnSpeed+","+"90,ANGULAR;";
+                        Arrays.fill(wheelSpeeds, defaultMoveSpeed);
+                    } else if (direction == DirectionTypes.RIGHT) {
+                        inBetweenCSVEntry = defaultTurnSpeed + ",-" + defaultTurnSpeed + "," + "90,ANGULAR;";
                         builder.append(inBetweenCSVEntry);
 
-                        Arrays.fill(wheelSpeeds,defaultMoveSpeed);
-                    }
-                    else {
-                        Arrays.fill(wheelSpeeds,defaultMoveSpeed);
+                        Arrays.fill(wheelSpeeds, defaultMoveSpeed);
+                    } else {
+                        Arrays.fill(wheelSpeeds, defaultMoveSpeed);
                     }
                     break;
-               }
-               case STOP:{
-                   Arrays.fill(wheelSpeeds, defaultStopSpeed);
-                   break;
-               }
-               case TURN:{
-                   if (direction == DirectionTypes.LEFT){
-                       wheelSpeeds[0] = "-"+defaultTurnSpeed;
-                       wheelSpeeds[1] = defaultTurnSpeed;
-                   }
-                   else {
-                       wheelSpeeds[1] = "-"+defaultTurnSpeed;
-                       wheelSpeeds[0] = defaultTurnSpeed;
-                   }
-                   break;
-               }
-               default:{
+                }
+                case STOP -> {
+                    Arrays.fill(wheelSpeeds, defaultStopSpeed);
+                    break;
+                }
+                case TURN -> {
+                    if (direction == DirectionTypes.LEFT) {
+                        wheelSpeeds[0] = "-" + defaultTurnSpeed;
+                        wheelSpeeds[1] = defaultTurnSpeed;
+                    } else {
+                        wheelSpeeds[1] = "-" + defaultTurnSpeed;
+                        wheelSpeeds[0] = defaultTurnSpeed;
+                    }
+                    break;
+                }
+                default -> {
                     continue;
-               }
-           }
+                }
+            }
 
            for (int i = 0; i< setsOfWheels; i++){
                builder.append(wheelSpeeds[i]+",");

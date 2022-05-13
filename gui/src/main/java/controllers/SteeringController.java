@@ -27,7 +27,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.paho.client.mqttv3.MqttException;

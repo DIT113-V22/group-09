@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import javafx.scene.Cursor?>
@@ -17,19 +16,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
-
 <TabPane fx:id="main_pane" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyReleased" prefHeight="648.0" prefWidth="1025.0" stylesheets="@../stylesheets/tabs.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SteeringController">
    <tabs>
       <Tab id="manual-tab" fx:id="manual_tab">
          <content>
             <AnchorPane id="root-anchor" fx:id="root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="730.0" styleClass="anchor">
-               <children>
                   <HBox fx:id="root_box" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
                         <AnchorPane id="side-anchor" fx:id="side_anchor" cache="true" maxWidth="232.0" minWidth="232.0" styleClass="anchor" HBox.hgrow="NEVER">
-                           <children>
                               <VBox id="btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="648.0" prefWidth="247.0" styleClass="shadow" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-15.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
-                                 <children>
                                     <Button id="m-man-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="tbtn" text="Manual" translateY="120.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
@@ -70,16 +64,11 @@
                                           <FontAwesomeIconView glyphName="BAN" translateX="3.0" />
                                        </graphic>
                                     </Button>
-                                 </children>
                               </VBox>
-                           </children>
                         </AnchorPane>
                         <AnchorPane id="info-anchor" prefHeight="480.0" prefWidth="498.0" HBox.hgrow="ALWAYS">
-                           <children>
                               <VBox id="info-vbox" prefHeight="480.0" prefWidth="498.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
                                     <HBox id="top-box" maxWidth="Infinity" minHeight="52.0" prefHeight="52.0" prefWidth="498.0" styleClass="top">
-                                       <children>
                                           <Region id="l-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                                              <styleClass>
                                                 <String fx:value="top" />
@@ -97,45 +86,32 @@
                                                 <String fx:value="region" />
                                              </styleClass>
                                           </Region>
-                                       </children>
                                     </HBox>
                                     <Region id="v1-info-pad" maxHeight="Infinity" minHeight="20.0" prefHeight="20.0" prefWidth="498.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
-                                       <children>
                                           <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
                                           <VBox id="info-box" maxWidth="320.0" minWidth="320.0" prefHeight="240.0" prefWidth="320.0" styleClass="box" HBox.hgrow="NEVER">
-                                             <children>
-                                                <ImageView fx:id="m_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" preserveRatio="false" translateX="-101.0" translateY="28.0">
+                                                <ImageView fx:id="m_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-101.0" translateY="28.0">
                                                    <image>
                                                       <Image url="@../img/Loading.jpg" />
                                                    </image>
                                                 </ImageView>
-                                             </children>
                                           </VBox>
-                                       </children>
                                     </HBox>
                                     <Region id="v2-info-pad" maxHeight="Infinity" prefHeight="40.0" prefWidth="498.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="conf-box" maxHeight="65" minHeight="65" prefHeight="65.0" prefWidth="498.0" styleClass="box" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
-                                       <children>
                                           <Region id="l-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                           <Region id="r-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                                       </children>
                                     </HBox>
-                                 </children>
                               </VBox>
-                           </children>
                         </AnchorPane>
                         <AnchorPane id="sensor-anchor" fx:id="sensor_anchor" maxWidth="300.0" minWidth="300.0" styleClass="anchor" stylesheets="@../stylesheets/defaultTheme.css" HBox.hgrow="NEVER">
-                           <children>
-                              <VBox id="sens-vbox" layoutX="-61.0" layoutY="41.0" prefHeight="483.0" prefWidth="361.0" styleClass="box" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
-                                 <children>
+                           <VBox id="sens-vbox" layoutX="-61.0" layoutY="41.0" prefHeight="483.0" prefWidth="361.0" styleClass="box" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                                     <HBox>
-                                       <children>
                                           <Label id="sens1" alignment="BASELINE_LEFT" text=" Gyroscope: " translateX="80.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
                                              <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
@@ -147,15 +123,12 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np1" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
                                           <Label id="sens2" alignment="BASELINE_LEFT" text=" Front Infrared: " translateX="60.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
                                              <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
@@ -167,16 +140,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np2" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="sens3" alignment="BASELINE_LEFT" text=" Right Infrared: " translateX="40.0">
+                                       <Label id="sens3" alignment="BASELINE_LEFT" text=" Right Infrared: " translateX="40.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -187,16 +157,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np3" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="sens4" alignment="BASELINE_LEFT" text=" Left Infrared: " translateX="20.0">
+                                       <Label id="sens4" alignment="BASELINE_LEFT" text=" Left Infrared: " translateX="20.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -207,11 +174,9 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np4" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="sens5" alignment="BASELINE_LEFT" text=" Back Infrared: ">
+                                       <Label id="sens5" alignment="BASELINE_LEFT" text=" Back Infrared: ">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
@@ -226,16 +191,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np5" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="sens6" alignment="BASELINE_LEFT" text=" Front Ultrasonic: " translateX="-20.0">
+                                       <Label id="sens6" alignment="BASELINE_LEFT" text=" Front Ultrasonic: " translateX="-20.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -246,16 +208,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np6" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox prefHeight="36.0" prefWidth="314.0">
-                                       <children>
-                                          <Label id="sens8" alignment="BASELINE_LEFT" text=" Left Odometer: " translateX="-40.0" translateY="10.0">
+                                       <Label id="sens8" alignment="BASELINE_LEFT" text=" Left Odometer: " translateX="-40.0" translateY="10.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -266,16 +225,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np8" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="sens9" alignment="BASELINE_LEFT" text=" Right Odometer: " translateX="-60.0" translateY="-5.0">
+                                       <Label id="sens9" alignment="BASELINE_LEFT" text=" Right Odometer: " translateX="-60.0" translateY="-5.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -286,16 +242,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np9" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox prefHeight="36.0" prefWidth="314.0">
-                                       <children>
-                                          <Label id="sens10" alignment="BASELINE_LEFT" text=" Tot. Dis. Left: " translateY="20.0">
+                                       <Label id="sens10" alignment="BASELINE_LEFT" text=" Tot. Dis. Left: " translateY="20.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -306,16 +259,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np10" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="sens11" alignment="BASELINE_LEFT" text=" Tot. Dis. Right: " textFill="WHITE" translateY="5.0">
+                                       <Label id="sens11" alignment="BASELINE_LEFT" text=" Tot. Dis. Right: " textFill="WHITE" translateY="5.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -326,16 +276,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np11" disable="true" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="sens12" alignment="BASELINE_LEFT" text=" X-Coord:" translateY="30.0">
+                                       <Label id="sens12" alignment="BASELINE_LEFT" text=" X-Coord:" translateY="30.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -346,11 +293,9 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np12" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="sens13" alignment="BASELINE_LEFT" text=" Y-Coord: " translateY="30.0">
+                                       <Label id="sens13" alignment="BASELINE_LEFT" text=" Y-Coord: " translateY="30.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
@@ -365,11 +310,9 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np13" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox translateY="50.0">
-                                       <children>
-                                          <Label id="sens14" alignment="BASELINE_LEFT" text=" Ping: " translateY="-5.0">
+                                       <Label id="sens14" alignment="BASELINE_LEFT" text=" Ping: " translateY="-5.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
@@ -384,28 +327,19 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="np14" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
-                                 </children>
                               </VBox>
-                           </children>
                         </AnchorPane>
-                     </children>
                   </HBox>
-               </children>
             </AnchorPane>
          </content>
       </Tab>
       <Tab id="autonomous-tab" fx:id="autonomous_tab" text="Untitled Tab">
          <content>
             <AnchorPane id="a-root-anchor" fx:id="a_root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="730.0" styleClass="anchor">
-               <children>
                   <HBox fx:id="a_root_box" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
                         <AnchorPane id="a-side-anchor" fx:id="a_side_anchor" cache="true" maxWidth="232.0" minWidth="232.0" styleClass="anchor" HBox.hgrow="NEVER">
-                           <children>
                               <VBox id="a-btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="648.0" prefWidth="247.0" styleClass="shadow" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-15.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
-                                 <children>
                                     <Button id="a-man-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToMTab" prefHeight="47.0" prefWidth="232.0" styleClass="tbtn" text="Manual" translateY="120.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
@@ -446,16 +380,11 @@
                                           <FontAwesomeIconView glyphName="BAN" translateX="3.0" />
                                        </graphic>
                                     </Button>
-                                 </children>
                               </VBox>
-                           </children>
                         </AnchorPane>
                         <AnchorPane id="a_info-anchor" prefHeight="480.0" prefWidth="498.0" HBox.hgrow="ALWAYS">
-                           <children>
                               <VBox id="a-info-vbox" prefHeight="480.0" prefWidth="498.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
                                     <HBox id="a-top-box" maxWidth="Infinity" minHeight="52.0" prefHeight="52.0" prefWidth="498.0" styleClass="top">
-                                       <children>
                                           <Region id="a-l-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                                              <styleClass>
                                                 <String fx:value="top" />
@@ -477,39 +406,30 @@
                                                 <String fx:value="region" />
                                              </styleClass>
                                           </Region>
-                                       </children>
                                     </HBox>
                                     <Region id="a-v1-info-pad" maxHeight="Infinity" minHeight="0.0" prefHeight="0.0" prefWidth="493.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="a-main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
-                                       <children>
                                           <Region id="a-l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
                                           <VBox id="a-info-box" maxWidth="320.0" minWidth="320.0" prefHeight="240.0" prefWidth="320.0" styleClass="box" HBox.hgrow="NEVER">
-                                             <children>
-                                                <ImageView fx:id="a_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" preserveRatio="false" translateX="-101.0" translateY="115.0">
+                                                <ImageView fx:id="a_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-101.0" translateY="115.0">
                                                    <image>
                                                       <Image url="@../img/Loading.jpg" />
                                                    </image>
                                                 </ImageView>
-                                             </children>
                                           </VBox>
-                                       </children>
                                     </HBox>
                                     <Region id="a-v2-info-pad" maxHeight="Infinity" prefHeight="0.0" prefWidth="493.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="a-out-box" maxHeight="137.0" minHeight="65" prefHeight="97.0" prefWidth="493.0" styleClass="box">
-                                       <children>
                                           <Region id="a-l-out-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                           <Region styleClass="icon-balance-pad" />
                                           <ScrollPane id="txt-scrl" fx:id="txt_scrl" prefHeight="97.0" prefWidth="311.0" translateX="30.0" translateY="98.0">
                                              <content>
                                                 <AnchorPane id="out-anchor" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="325.0">
-                                                   <children>
                                                       <TextFlow id="txt-out" fx:id="txt_out" prefHeight="200.0" prefWidth="325.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
                                                 </AnchorPane>
                                              </content>
                                           </ScrollPane>
                                           <VBox>
-                                             <children>
                                                 <Button id="i-btn-v" ellipsisString="" mnemonicParsing="false" onAction="#toggleVoice" styleClass="icn-btn" text="Button" translateX="33.0" translateY="97.0">
                                                    <graphic>
                                                       <FontAwesomeIconView fx:id="microphone_glyph" glyphName="MICROPHONE_SLASH" />
@@ -533,41 +453,29 @@
                                                       </FontAwesomeIconView>
                                                    </graphic>
                                                 </Button>
-                                             </children>
                                           </VBox>
                                           <Region id="a-r-out-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                                       </children>
                                     </HBox>
                                     <HBox id="a-inpt-box" maxHeight="137.0" minHeight="65" prefHeight="97.0" prefWidth="493.0" styleClass="box">
-                                       <children>
-                                          <Region id="a-l-inpt-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                                       <Region id="a-l-inpt-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                           <TextArea id="txt-inpt" fx:id="txt_inpt" prefHeight="0.0" prefWidth="331.0" wrapText="true" />
                                           <Region id="a-r-inpt-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                                       </children>
                                     </HBox>
                                     <HBox id="a-conf-box" maxHeight="65" minHeight="65" prefHeight="65.0" prefWidth="498.0" styleClass="box" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
-                                       <children>
-                                          <Region id="a-l-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                                       <Region id="a-l-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                           <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" prefHeight="50.0" prefWidth="150.0" styleClass="aplbtnCl" text="Clear" translateX="-20.0" />
                                           <Button id="sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" prefHeight="50.0" prefWidth="150.0" styleClass="aplbtnCo" text="Confirm" translateX="20.0" />
                                           <Region id="a-r-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                                       </children>
                                     </HBox>
-                                 </children>
                               </VBox>
-                           </children>
                         </AnchorPane>
                         <AnchorPane id="a_sensor-anchor" fx:id="a_sensor_anchor" maxWidth="300.0" minWidth="300.0" styleClass="anchor" stylesheets="@../stylesheets/defaultTheme.css" HBox.hgrow="NEVER">
-                           <children>
-                              <VBox id="a-sens-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="260.0" styleClass="box" translateY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
-                                 <children>
+                           <VBox id="a-sens-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="260.0" styleClass="box" translateY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                                     <HBox>
-                                       <children>
                                           <Label id="a-sens1" alignment="BASELINE_LEFT" text=" Gyroscope: " translateX="80.0" translateY="-10.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
                                              <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
@@ -579,15 +487,12 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np2" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
                                           <Label id="a-sens2" alignment="BASELINE_LEFT" text=" Front Infrared: " translateX="60.0" translateY="-10.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
                                              <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
@@ -599,16 +504,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np3" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="a-sens3" alignment="BASELINE_LEFT" text=" Right Infrared: " translateX="40.0" translateY="-10.0">
+                                       <Label id="a-sens3" alignment="BASELINE_LEFT" text=" Right Infrared: " translateX="40.0" translateY="-10.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -619,16 +521,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np4" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="a-sens4" alignment="BASELINE_LEFT" text=" Left Infrared: " translateX="20.0" translateY="-10.0">
+                                       <Label id="a-sens4" alignment="BASELINE_LEFT" text=" Left Infrared: " translateX="20.0" translateY="-10.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -639,11 +538,9 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np5" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="a-sens5" alignment="BASELINE_LEFT" text=" Back Infrared: " translateY="-10.0">
+                                       <Label id="a-sens5" alignment="BASELINE_LEFT" text=" Back Infrared: " translateY="-10.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
@@ -658,16 +555,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np6" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="a-sens6" alignment="BASELINE_LEFT" text=" Front Ultrasonic: " translateX="-20.0" translateY="-10.0">
+                                       <Label id="a-sens6" alignment="BASELINE_LEFT" text=" Front Ultrasonic: " translateX="-20.0" translateY="-10.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -678,16 +572,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np7" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox prefHeight="36.0" prefWidth="314.0">
-                                       <children>
-                                          <Label id="a-sens8" alignment="BASELINE_LEFT" text=" Left Odometer: " translateX="-40.0">
+                                       <Label id="a-sens8" alignment="BASELINE_LEFT" text=" Left Odometer: " translateX="-40.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -698,16 +589,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np9" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="a-sens9" alignment="BASELINE_LEFT" text=" Right Odometer: " translateX="-60.0" translateY="-15.0">
+                                       <Label id="a-sens9" alignment="BASELINE_LEFT" text=" Right Odometer: " translateX="-60.0" translateY="-15.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -718,16 +606,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np10" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox prefHeight="36.0" prefWidth="314.0">
-                                       <children>
-                                          <Label id="a-sens10" alignment="BASELINE_LEFT" text=" Tot. Dis. Left: " translateY="10.0">
+                                       <Label id="a-sens10" alignment="BASELINE_LEFT" text=" Tot. Dis. Left: " translateY="10.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -738,16 +623,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np11" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="a-sens11" alignment="BASELINE_LEFT" text=" Tot. Dis. Right: " translateY="-5.0">
+                                       <Label id="a-sens11" alignment="BASELINE_LEFT" text=" Tot. Dis. Right: " translateY="-5.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -758,16 +640,13 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np12" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="a-sens12" alignment="BASELINE_LEFT" text=" X-Coord:" translateY="20.0">
+                                       <Label id="a-sens12" alignment="BASELINE_LEFT" text=" X-Coord:" translateY="20.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
-
-                                             <styleClass>
+                                          <styleClass>
                                                 <String fx:value="sens" />
                                              </styleClass>
                                           </Label>
@@ -778,11 +657,9 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np13" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="a-sens13" alignment="BASELINE_LEFT" text=" Y-Coord: " translateY="20.0">
+                                       <Label id="a-sens13" alignment="BASELINE_LEFT" text=" Y-Coord: " translateY="20.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
@@ -797,11 +674,9 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np14" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
                                     <HBox>
-                                       <children>
-                                          <Label id="a-sens14" alignment="BASELINE_LEFT" text=" Ping: " translateY="35.0">
+                                       <Label id="a-sens14" alignment="BASELINE_LEFT" text=" Ping: " translateY="35.0">
                                              <font>
                                                 <Font name="System Bold" size="25.0" />
                                              </font>
@@ -816,28 +691,19 @@
                                              </styleClass>
                                           </Label>
                                           <Region id="a-np1" maxWidth="Infinity" styleClass="number-padding" />
-                                       </children>
                                     </HBox>
-                                 </children>
                               </VBox>
-                           </children>
                         </AnchorPane>
-                     </children>
                   </HBox>
-               </children>
             </AnchorPane>
          </content>
       </Tab>
       <Tab id="settings-tab" fx:id="settings_tab" text="Untitled Tab">
          <content>
             <AnchorPane id="s-root-anchor" fx:id="s_root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="730.0" styleClass="anchor">
-               <children>
                   <HBox fx:id="s_root_box" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
                         <AnchorPane id="s-side-anchor" fx:id="s_side_anchor" cache="true" maxWidth="232.0" minWidth="232.0" styleClass="anchor" HBox.hgrow="NEVER">
-                           <children>
                               <VBox id="s-btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="648.0" prefWidth="247.0" styleClass="shadow" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-15.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
-                                 <children>
                                     <Button id="s-man-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToMTab" prefHeight="47.0" prefWidth="232.0" styleClass="tbtn" text="Manual" translateY="120.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
@@ -884,16 +750,11 @@
                                           <String fx:value="tbtn" />
                                        </styleClass>
                                     </Button>
-                                 </children>
                               </VBox>
-                           </children>
                         </AnchorPane>
                         <AnchorPane id="s_info-anchor" prefHeight="480.0" prefWidth="498.0" HBox.hgrow="ALWAYS">
-                           <children>
                               <VBox id="s-info-vbox" prefHeight="480.0" prefWidth="498.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
                                     <HBox id="s-top-box" maxWidth="Infinity" minHeight="52.0" prefHeight="52.0" prefWidth="498.0" styleClass="top">
-                                       <children>
                                           <Region id="s-l-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                                              <styleClass>
                                                 <String fx:value="top" />
@@ -915,30 +776,21 @@
                                                 <String fx:value="region" />
                                              </styleClass>
                                           </Region>
-                                       </children>
                                     </HBox>
                                     <HBox id="s-main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
-                                       <children>
                                           <Region id="s-l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
                                           <Region id="s-r-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
-                                       </children>
                                     </HBox>
                                     <Region id="s-v2-info-pad" maxHeight="Infinity" prefHeight="0.0" prefWidth="493.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="s-conf-box" maxHeight="65" minHeight="65" prefHeight="65.0" prefWidth="498.0" styleClass="box" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
-                                       <children>
                                           <Region id="s-l-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                           <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" prefHeight="50.0" prefWidth="150.0" styleClass="aplbtnCl" text="Clear" translateX="-170.0" translateY="-1.0" />
                                           <Button id="sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" prefHeight="50.0" prefWidth="150.0" styleClass="aplbtnCo" text="Confirm" translateX="-130.0" translateY="-1.0" />
                                           <Region id="s-r-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                                       </children>
                                     </HBox>
-                                 </children>
                               </VBox>
-                           </children>
                         </AnchorPane>
-                     </children>
                   </HBox>
-               </children>
             </AnchorPane>
          </content>
       </Tab>

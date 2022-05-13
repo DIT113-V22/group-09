@@ -1,7 +1,6 @@
 package grammar;
 
 import file_processing.FileLoader;
-import settings.FilePaths;
 
 import java.util.ArrayList;
 import java.util.Comparator;

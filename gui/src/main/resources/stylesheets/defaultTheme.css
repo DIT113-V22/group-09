@@ -1,7 +1,7 @@
 
 /* Main window */
 #root-anchor,#a-root-anchor,#s-root-anchor{
-    -fx-background-color: linear-gradient(to bottom, #7678f7, #a233e5);
+    -fx-background-color: linear-gradient(to bottom, #c20000, #1c1c1c);
     maxHeight:"Infinity";
     maxWidth:"Infinity";
     minHeight:"-Infinity";
@@ -13,7 +13,7 @@
 
 #side-anchor,#a-side-anchor,#s-side-anchor{
 
-    -fx-background-color: linear-gradient(to bottom, #7678f7, #a233e5);
+    -fx-background-color: linear-gradient(to bottom, #c20000, #1e1e1e);
     minWidth:"120";
     maxWidth:"240";
     prefHeight:"480.0";
@@ -66,7 +66,6 @@
     -fx-pref-width: 125.0;
     -fx-background-color: #fff;
     -fx-background-insets: 0,1,2,3;
-    -fx-background-radius: 3,2,2,2;
     -fx-padding: 12 30 12 30;
     -fx-text-fill: black;
     -fx-font-size: 12px;
@@ -101,16 +100,5 @@
     -fx-alignment: baseline-left;
     -fx-font-family: "Verdana", sans-serif;
     -fx-font-size: 24;
-
-}
-
-.conf{
-    -fx-background-color: #FFF;
-    -fx-background-radius: 100;
-    -fx-alignment: center;
-    -fx-font-family: "Verdana", sans-serif;
-    -fx-font-size: 30;
-    -fx-scale-x: 60%;
-    -fx-scale-y: 70%;
 
 }

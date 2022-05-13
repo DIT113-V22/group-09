@@ -19,20 +19,14 @@ public class CarGUI extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
         /*
         Make sure to have those vm arguments when launching the app:
 
         --module-path "JAVA FX LIB FOLDER" --add-modules javafx.controls,javafx.fxml,javafx.media
          */
-
         Parent root = FXMLLoader.load(getClass().getResource("/views/start-view.fxml"));
-
-        Scene scene = new Scene(root, 720, 540);
-
+        Scene scene = new Scene(root, 740, 620);
         stage.setScene(scene);
-        stage.setMinWidth(740);
-        stage.setMinHeight(540);
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
 

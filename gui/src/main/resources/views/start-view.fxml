@@ -12,14 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="root-anchor" fx:id="root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="730.0" styleClass="anchor" stylesheets="@../stylesheets/defaultTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
-   <children>
+<AnchorPane id="root-anchor" fx:id="root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="730.0" stylesheets="@../stylesheets/defaultTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
       <HBox fx:id="root_box" onKeyPressed="#handleKeyPress" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <AnchorPane id="side-anchor" fx:id="side_anchor" maxWidth="232.0" minWidth="232.0" styleClass="anchor" stylesheets="@../stylesheets/defaultTheme.css" HBox.hgrow="NEVER">
-               <children>
-                  <VBox id="btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="232.0" styleClass="box" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
-                     <children>
+            <AnchorPane id="side-anchor" fx:id="side_anchor" maxWidth="232.0" minWidth="232.0" prefHeight="550.0" prefWidth="281.0" stylesheets="@../stylesheets/defaultTheme.css" HBox.hgrow="NEVER">
+                  <VBox id="btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="232.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                         <Button id="log-btn" fx:id="log_btn" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#showLogScr" text="Log In" translateY="60.0">
                            <font>
                               <Font name="System Bold" size="25.0" />
@@ -69,7 +65,7 @@
                               <String fx:value="side" />
                            </styleClass>
                         </Button>
-                        <Region disable="true" prefHeight="231.0" prefWidth="232.0" styleClass="region" VBox.vgrow="ALWAYS" />
+                        <Region disable="true" prefHeight="231.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
                         <Button id="exi-btn" alignment="BASELINE_LEFT" graphicTextGap="15.5" mnemonicParsing="false" onAction="#exit" text="Exit" translateY="-60.0">
                            <font>
                               <Font name="System Bold" size="25.0" />
@@ -82,16 +78,12 @@
                               <String fx:value="side" />
                            </styleClass>
                         </Button>
-                     </children>
                   </VBox>
-               </children>
             </AnchorPane>
             <AnchorPane id="info-anchor" prefHeight="480.0" prefWidth="498.0" HBox.hgrow="ALWAYS">
-               <children>
+
                   <VBox id="info-vbox" minHeight="400" prefHeight="480.0" prefWidth="498.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
                         <HBox id="top-box" maxWidth="Infinity" minHeight="52.0" prefHeight="52.0" prefWidth="498.0" styleClass="top">
-                           <children>
                               <Region id="l-top-pad" maxWidth="Infinity" minWidth="145.0" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                                  <styleClass>
                                     <String fx:value="top" />
@@ -110,13 +102,10 @@
                                     <String fx:value="region" />
                                  </styleClass>
                               </Region>
-                           </children>
                         </HBox>
                         <HBox id="main-box" maxWidth="Infinity" prefHeight="360.0" prefWidth="498.0" translateY="5.0">
-                           <children>
                               <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="232.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                               <VBox id="info-box" maxWidth="209.0" minWidth="209.0" prefHeight="250.0" prefWidth="209.0" styleClass="box" HBox.hgrow="NEVER">
-                                 <children>
                                     <TextField id="usr-txt" fx:id="usr_nm" prefHeight="25.0" prefWidth="183.0" promptText="Username" VBox.vgrow="NEVER">
                                        <styleClass>
                                           <String fx:value="txt" />
@@ -229,22 +218,15 @@
                                           <String fx:value="info" />
                                        </styleClass>
                                     </Region>
-                                 </children>
                               </VBox>
                               <Region id="r-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="232.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
-                           </children>
                         </HBox>
                         <HBox id="conf-box" maxHeight="143.0" minHeight="65" prefHeight="143.0" prefWidth="498.0" styleClass="box" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
-                           <children>
+
                               <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" prefHeight="40.0" prefWidth="103.0" styleClass="specbtn2" text="Clear" translateX="190.0" translateY="10.0" />
                               <Button id="sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" styleClass="specbtn" text="Confirm" translateX="66.0" translateY="75.0" />
-                           </children>
                         </HBox>
-                     </children>
                   </VBox>
-               </children>
             </AnchorPane>
-         </children>
       </HBox>
-   </children>
 </AnchorPane>

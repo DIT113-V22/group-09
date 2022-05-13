@@ -19,7 +19,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import models.User;
 import util.TxtWriter;
 
@@ -294,8 +293,7 @@ public class StartController implements Initializable {
 
         Scene scene = new Scene(loader.load(), 1040, 620);
         scene.setFill(Color.TRANSPARENT);
-        stage.setMinWidth(1040);
-        stage.setMinHeight(620);
+
 
         SteeringController controller = loader.getController();
 

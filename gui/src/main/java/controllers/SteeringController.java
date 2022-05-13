@@ -27,7 +27,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -121,7 +120,7 @@ public class SteeringController {
     public void initialize(CarAPI carAPI){
         if (this.carAPI == null){
 
-            voiceIsOn =false;
+            voiceIsOn = false;
             txt_scrl.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
             txt_scrl.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
@@ -230,9 +229,8 @@ public class SteeringController {
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/views/start-view.fxml"));
-            Scene scene = new Scene(root, 720, 540);
-            stage.setMinWidth(740);
-            stage.setMinHeight(540);
+
+            Scene scene = new Scene(root, 740, 620);
             scene.setFill(Color.TRANSPARENT);
             stage.setScene(scene);
         }
@@ -240,7 +238,6 @@ public class SteeringController {
             System.out.println(e.getMessage());
         }
     }
-
 
     @FXML
     protected void switchToMTab(){

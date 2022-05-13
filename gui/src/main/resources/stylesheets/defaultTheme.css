@@ -1,7 +1,7 @@
 
 /* Main window */
 #root-anchor,#a-root-anchor,#s-root-anchor{
-    -fx-background-color: linear-gradient(to bottom, #7678f7, #a233e5);
+    -fx-background-color: linear-gradient(to bottom, #c20000, #1c1c1c);
     maxHeight:"Infinity";
     maxWidth:"Infinity";
     minHeight:"-Infinity";
@@ -13,7 +13,7 @@
 
 #side-anchor,#a-side-anchor,#s-side-anchor{
 
-    -fx-background-color: linear-gradient(to bottom, #7678f7, #a233e5);
+    -fx-background-color: linear-gradient(to bottom, #c20000, #1e1e1e);
     minWidth:"120";
     maxWidth:"240";
     prefHeight:"480.0";

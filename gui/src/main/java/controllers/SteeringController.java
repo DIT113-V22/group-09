@@ -121,7 +121,7 @@ public class SteeringController {
     public void initialize(CarAPI carAPI){
         if (this.carAPI == null){
 
-            voiceIsOn =false;
+            voiceIsOn = false;
             txt_scrl.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
             txt_scrl.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
@@ -230,9 +230,8 @@ public class SteeringController {
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/views/start-view.fxml"));
-            Scene scene = new Scene(root, 720, 540);
-            stage.setMinWidth(740);
-            stage.setMinHeight(540);
+
+            Scene scene = new Scene(root, 740, 620);
             scene.setFill(Color.TRANSPARENT);
             stage.setScene(scene);
         }
@@ -240,7 +239,6 @@ public class SteeringController {
             System.out.println(e.getMessage());
         }
     }
-
 
     @FXML
     protected void switchToMTab(){

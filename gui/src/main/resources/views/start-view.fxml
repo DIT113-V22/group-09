@@ -16,9 +16,9 @@
    <children>
       <HBox fx:id="root_box" onKeyPressed="#handleKeyPress" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane id="side-anchor" fx:id="side_anchor" maxWidth="232.0" minWidth="232.0" styleClass="anchor" stylesheets="@../stylesheets/defaultTheme.css" HBox.hgrow="NEVER">
+            <AnchorPane id="side-anchor" fx:id="side_anchor" maxWidth="232.0" minWidth="232.0" prefHeight="550.0" prefWidth="281.0" stylesheets="@../stylesheets/defaultTheme.css" HBox.hgrow="NEVER">
                <children>
-                  <VBox id="btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="232.0" styleClass="box" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
+                  <VBox id="btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="232.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Button id="log-btn" fx:id="log_btn" alignment="BASELINE_LEFT" graphicTextGap="20.0" mnemonicParsing="false" onAction="#showLogScr" text="Log In" translateY="60.0">
                            <font>
@@ -69,7 +69,7 @@
                               <String fx:value="side" />
                            </styleClass>
                         </Button>
-                        <Region disable="true" prefHeight="231.0" prefWidth="232.0" styleClass="region" VBox.vgrow="ALWAYS" />
+                        <Region disable="true" prefHeight="231.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
                         <Button id="exi-btn" alignment="BASELINE_LEFT" graphicTextGap="15.5" mnemonicParsing="false" onAction="#exit" text="Exit" translateY="-60.0">
                            <font>
                               <Font name="System Bold" size="25.0" />

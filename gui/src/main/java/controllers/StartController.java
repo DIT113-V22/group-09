@@ -294,8 +294,7 @@ public class StartController implements Initializable {
 
         Scene scene = new Scene(loader.load(), 1040, 620);
         scene.setFill(Color.TRANSPARENT);
-        stage.setMinWidth(1040);
-        stage.setMinHeight(620);
+
 
         SteeringController controller = loader.getController();
 

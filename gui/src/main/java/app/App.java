@@ -6,9 +6,11 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
+import java.awt.*;
 import java.util.UUID;
 
 
@@ -43,6 +45,7 @@ public class App extends Application {
     public static void main(String[] args) throws Exception {
         initClient();
         launch(args);
+
     }
 
     private static void initClient() throws MqttException{

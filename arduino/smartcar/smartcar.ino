@@ -107,28 +107,7 @@ struct Command{
 std::deque<Command> commandsDqe;
 Command currentCommand;
 
-std::vector<String> split(String str,const String& split){
 
-    std::vector<String> result;
-
-    int startIndex = 0;
-    int index = str.indexOf(split);
-    if (index == -1) return result;
-
-    while(index != -1){
-
-        String substr = str.substring(startIndex,index);
-        result.push_back(substr);
-        startIndex = index +1;
-        index = str.indexOf(split,startIndex);
-
-        if(index == -1){
-            String lastSubStr = str.substring(startIndex);
-            result.push_back(lastSubStr);
-        }
-    }
-    return result;
-}
 
 void parseCSV(String message){
     std::vector<String> stringCommands;

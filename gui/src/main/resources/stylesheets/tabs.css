@@ -32,9 +32,9 @@
 }
 
 .tbtn {
-    -fx-font-family: "Agency FB";
+    -fx-font-family: "Arial Rounded MT Bold";
     -fx-background-color: #fff;
-    -fx-font-size: 25;
+    -fx-font-size: 19;
 }
 
 .tbtn:hover {
@@ -59,7 +59,7 @@
     -fx-background-insets: 0,1,4,5;
     -fx-background-radius: 9,8,5,4;
     -fx-padding: 15 30 15 30;
-    -fx-font-family: "Agency FB";
+    -fx-font-family: "Arial Rounded MT Bold";
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
@@ -86,7 +86,7 @@
     -fx-background-insets: 0,1,4,5;
     -fx-background-radius: 9,8,5,4;
     -fx-padding: 15 30 15 30;
-    -fx-font-family: "Agency FB";
+    -fx-font-family: "Arial Rounded MT Bold";
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;

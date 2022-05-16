@@ -7,13 +7,36 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.sun.glass.ui.Pixels;
 import commands_processing.InputProcessor;
 import exceptions.UnclearInputException;
 import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Path;
 import org.eclipse.paho.client.mqttv3.MqttException;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Path2D;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Controller {
 
@@ -75,9 +98,13 @@ public class Controller {
     private TextArea commandBox;
 
     @FXML
-    private Button sendBtn;
+    private Button drawSendBtn;
     @FXML
-    private Button clearBtn;
+    private Button drawClearBtn;
+    @FXML
+    private Canvas drawCanvas;
+    @FXML
+    private Tab drawTab;
     //end
 
     public Controller(){
@@ -103,6 +130,9 @@ public class Controller {
                     carAPI.setManualMode(true);
                 } else if (autonomousTab.equals(selectedTab)) {
 
+                    carAPI.setManualMode(false);
+                }
+                else if (drawTab.equals(selectedTab)){
                     carAPI.setManualMode(false);
                 }
             }
@@ -232,6 +262,41 @@ public class Controller {
     public void clearCommandBox(){
         commandBox.setText("");
         commandInfo.setText("");
+    }
+
+    public HashMap drawCanvas(){
+
+        HashMap<Integer, Integer> points = new HashMap<>();
+        GraphicsContext gc = drawCanvas.getGraphicsContext2D();
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(1);
+        drawCanvas.setOnMousePressed(mouseEvent -> {
+            gc.beginPath();
+            gc.lineTo(mouseEvent.getSceneX(), mouseEvent.getSceneY());
+            gc.stroke();
+            final double startingX = mouseEvent.getSceneX();
+            final double startingY = mouseEvent.getSceneY();
+            points.clear();
+            points.put(0, 0);
+            drawCanvas.setOnMouseDragged(mouseEvent2 -> {
+                gc.lineTo(mouseEvent2.getSceneX(), mouseEvent2.getSceneY());
+                gc.stroke();
+                points.put((((int) (mouseEvent2.getSceneX()-startingX))), ((int) (mouseEvent2.getSceneY()-startingY)));
+            });
+        });
+    return points;
+    }
+
+    public void clearCanvas(){
+            drawCanvas.getGraphicsContext2D().clearRect(0,0, drawCanvas.getWidth(), drawCanvas.getHeight());
+    }
+
+    public void sendCanvas(){
+
+        drawCanvas().forEach((key, value) -> {
+
+        });
+
     }
 
     public void checkBoxToggle(){

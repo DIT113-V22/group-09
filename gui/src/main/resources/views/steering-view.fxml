@@ -93,7 +93,7 @@
                                     <HBox id="main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
                                           <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
                                           <VBox id="info-box" maxWidth="320.0" minWidth="320.0" prefHeight="240.0" prefWidth="320.0" styleClass="box" HBox.hgrow="NEVER">
-                                                <ImageView fx:id="m_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-101.0" translateY="28.0">
+                                                <ImageView fx:id="m_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-93.0" translateY="28.0">
                                                    <image>
                                                       <Image url="@../img/Loading.jpg" />
                                                    </image>
@@ -387,33 +387,21 @@
                         <AnchorPane id="a_info-anchor" prefHeight="480.0" prefWidth="498.0" HBox.hgrow="ALWAYS">
                               <VBox id="a-info-vbox" prefHeight="480.0" prefWidth="498.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <HBox id="a-top-box" maxWidth="Infinity" minHeight="52.0" prefHeight="52.0" prefWidth="498.0" styleClass="top">
-                                          <Region id="a-l-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
-                                             <styleClass>
-                                                <String fx:value="top" />
-                                                <String fx:value="region" />
-                                             </styleClass>
-                                          </Region>
-                                          <Label id="a-head-txt" fx:id="a_info_label" alignment="CENTER" maxWidth="358.0" minWidth="209.0" prefHeight="72.0" prefWidth="358.0" text="Command Mode" textFill="RED" translateX="20.0" translateY="20.0" HBox.hgrow="NEVER">
+                                          <Label id="a-head-txt" fx:id="a_info_label" alignment="CENTER" maxWidth="468.0" minWidth="209.0" prefHeight="71.0" prefWidth="468.0" text="Command Mode" textFill="RED" translateX="20.0" translateY="20.0" HBox.hgrow="NEVER">
                                              <styleClass>
                                                 <String fx:value="top" />
                                                 <String fx:value="label" />
                                              </styleClass>
                                              <font>
-                                                <Font name="Agency FB" size="60.0" />
+                                                <Font name="Arial Rounded MT Bold" size="45.0" />
                                              </font>
                                           </Label>
-                                          <Region id="a-r-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
-                                             <styleClass>
-                                                <String fx:value="top" />
-                                                <String fx:value="region" />
-                                             </styleClass>
-                                          </Region>
                                     </HBox>
                                     <Region id="a-v1-info-pad" maxHeight="Infinity" minHeight="0.0" prefHeight="0.0" prefWidth="493.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="a-main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
                                           <Region id="a-l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
                                           <VBox id="a-info-box" maxWidth="320.0" minWidth="320.0" prefHeight="240.0" prefWidth="320.0" styleClass="box" HBox.hgrow="NEVER">
-                                                <ImageView fx:id="a_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-101.0" translateY="115.0">
+                                                <ImageView fx:id="a_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-93.0" translateY="115.0">
                                                    <image>
                                                       <Image url="@../img/Loading.jpg" />
                                                    </image>

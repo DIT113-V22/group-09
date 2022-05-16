@@ -16,6 +16,9 @@
     -fx-background-color: #b60000;
 }
 
+.wraptxt {
+    -fx-wrap-text: true;
+}
 .sens{
     -fx-font-size: 16;
     -fx-font-family: "Arial Rounded MT Bold";
@@ -48,6 +51,11 @@
 
 .shadow {
     -fx-background-color: #1E1E1E;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 30, 0.6, 0.0, 0.0);
+}
+
+.shadow2 {
+    -fx-background-color: #352a24;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 30, 0.6, 0.0, 0.0);
 }
 .aplbtnCl {
@@ -103,4 +111,8 @@
     -fx-min-height:20;
     -fx-max-width:20;
     -fx-max-height:20;
+}
+
+.smallertxt {
+    -fx-font-size: 12px;
 }

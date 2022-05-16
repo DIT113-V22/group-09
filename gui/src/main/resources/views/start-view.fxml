@@ -89,7 +89,7 @@
                                     <String fx:value="region" />
                                  </styleClass>
                               </Region>
-                              <Label id="head-txt" fx:id="info_label" maxWidth="309.0" minWidth="309.0" prefHeight="52.0" prefWidth="309.0" text="Create Profile" translateX="-40.0" translateY="5.0" HBox.hgrow="NEVER">
+                              <Label id="head-txt" fx:id="info_label" maxWidth="309.0" minWidth="309.0" prefHeight="52.0" prefWidth="309.0" text="Create Profile" translateX="-60.0" translateY="5.0" HBox.hgrow="NEVER">
                                  <styleClass>
                                     <String fx:value="top" />
                                     <String fx:value="label" />
@@ -105,20 +105,21 @@
                         <HBox id="main-box" maxWidth="Infinity" prefHeight="360.0" prefWidth="498.0" translateY="5.0">
                               <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="232.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                               <VBox id="info-box" maxWidth="209.0" minWidth="209.0" prefHeight="250.0" prefWidth="209.0" styleClass="box" HBox.hgrow="NEVER">
-                                    <PasswordField id="usr-pass" fx:id="usr_pass" prefHeight="25.0" prefWidth="183.0" promptText="Password" translateY="45.0" VBox.vgrow="NEVER">
-                                       <styleClass>
-                                          <String fx:value="pass" />
-                                          <String fx:value="info" />
-                                          <String fx:value="user-field" />
-                                       </styleClass>
-                                    </PasswordField>
-                                  <TextField id="usr-txtusr-txt" fx:id="usr_nm" prefHeight="25.0" prefWidth="183.0" promptText="Username" translateY="-25.0" VBox.vgrow="NEVER">
+                                  <TextField id="usr-txtusr-txt" fx:id="usr_nm" prefHeight="25.0" prefWidth="183.0" promptText="Username" VBox.vgrow="NEVER">
                                       <styleClass>
                                           <String fx:value="txt" />
                                           <String fx:value="info" />
                                           <String fx:value="user-field" />
                                       </styleClass>
                                   </TextField>
+                                  <PasswordField id="usr-pass" fx:id="usr_pass" prefHeight="25.0" prefWidth="183.0" promptText="Password" translateY="20.0" VBox.vgrow="NEVER">
+                                       <styleClass>
+                                           <String fx:value="txt" />
+                                          <String fx:value="pass" />
+                                          <String fx:value="info" />
+                                          <String fx:value="user-field" />
+                                       </styleClass>
+                                    </PasswordField>
                                     <Region id="info-region1" disable="true" maxHeight="20.0" prefHeight="20.0" prefWidth="209.0" VBox.vgrow="NEVER">
                                        <styleClass>
                                           <String fx:value="region" />
@@ -222,12 +223,12 @@
                         </HBox>
                         <HBox id="conf-box" maxHeight="143.0" minHeight="65" prefHeight="143.0" prefWidth="526.0" styleClass="box" stylesheets="@../stylesheets/tabs.css" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
 
-                              <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" prefHeight="40.0" prefWidth="120.0" text="Clear" translateX="160.0" translateY="10.0">
+                              <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" prefHeight="40.0" prefWidth="120.0" text="Clear" translateX="195.0" translateY="10.0">
                   <styleClass>
                      <String fx:value="aplbtnCl" />
                      <String fx:value="smallertxt" />
                   </styleClass></Button>
-                              <Button id="sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" prefHeight="40.0" prefWidth="120.0" text="Confirm" translateX="40.0" translateY="75.0">
+                              <Button id="sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" prefHeight="40.0" prefWidth="120.0" text="Confirm" translateX="75.0" translateY="75.0">
                   <styleClass>
                      <String fx:value="aplbtnCo" />
                      <String fx:value="smallertxt" />

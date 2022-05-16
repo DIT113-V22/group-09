@@ -5,7 +5,6 @@
 
 /* Main window */
 #root-anchor,#a-root-anchor,#s-root-anchor{
-    -fx-background-color: linear-gradient(to bottom, #c20000, #1c1c1c);
     maxHeight:"Infinity";
     maxWidth:"Infinity";
     minHeight:"-Infinity";
@@ -13,6 +12,7 @@
     prefHeight:"480.0";
     prefWidth:"630.0";
     -fx-background-radius: 20;
+    -fx-background-color: transparent;
 }
 
 #side-anchor,#a-side-anchor,#s-side-anchor{
@@ -49,51 +49,9 @@
 
 }
 
-
-.btn{
-    -fx-text-fill: #000000;
-    -fx-background-radius: 0;
-    -fx-max-height: "Infinity";
-    -fx-max-width: "Infinity";
-    -fx-pref-height: 50.0;
-    -fx-pref-width: 246.0;
-}
-
 .txt {
-    -fx-text-fill: #5e81ad;
+    -fx-text-fill: #00f7ff;
 }
-
-.btn:hover {
-    -fx-background-color: linear-gradient(to right, #fff 0%, transparent 60%);
-}
-
-.specbtn {
-    -fx-pref-height: 40.0;
-    -fx-pref-width: 125.0;
-    -fx-background-color: #fff;
-    -fx-background-insets: 0,1,2,3;
-    -fx-padding: 12 30 12 30;
-    -fx-text-fill: black;
-    -fx-font-size: 12px;
-    -fx-background-radius: 50;
-}
-.specbtn:hover {
-    -fx-background-color: linear-gradient(#DCE35B, #45B649);
-}
-.specbtn2 {
-    -fx-pref-height: 40.0;
-    -fx-pref-width: 125.0;
-    -fx-background-color: #fff;
-    -fx-background-insets: 0;
-    -fx-text-fill: black;
-    -fx-font-size: 12px;
-    -fx-background-radius: 50;
-}
-.specbtn2:hover {
-    -fx-background-color: linear-gradient(#ff5400, #be1d00);
-}
-
-
 
 #prof-btn.chosen,#set-btn.chosen,#anon-btn.chosen,#log-btn.chosen{
     -fx-background-color: #be1a21;

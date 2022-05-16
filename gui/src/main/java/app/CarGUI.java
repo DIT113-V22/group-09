@@ -25,7 +25,7 @@ public class CarGUI extends Application {
         --module-path "JAVA FX LIB FOLDER" --add-modules javafx.controls,javafx.fxml,javafx.media
          */
         Parent root = FXMLLoader.load(getClass().getResource("/views/start-view.fxml"));
-        Scene scene = new Scene(root, 740, 620);
+        Scene scene = new Scene(root, 700, 550);
         stage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);

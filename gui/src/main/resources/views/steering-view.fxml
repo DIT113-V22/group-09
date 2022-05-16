@@ -93,7 +93,7 @@
                                     <HBox id="main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
                                           <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
                                           <VBox id="info-box" maxWidth="320.0" minWidth="320.0" prefHeight="240.0" prefWidth="320.0" styleClass="box" HBox.hgrow="NEVER">
-                                                <ImageView fx:id="m_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-93.0" translateY="28.0">
+                                                <ImageView fx:id="m_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-102.0" translateY="28.0">
                                                    <image>
                                                       <Image url="@../img/Loading.jpg" />
                                                    </image>
@@ -393,7 +393,7 @@
                                                 <String fx:value="label" />
                                              </styleClass>
                                              <font>
-                                                <Font name="Arial Rounded MT Bold" size="45.0" />
+                                                <Font name="Arial" size="50.0" />
                                              </font>
                                           </Label>
                                     </HBox>
@@ -401,7 +401,7 @@
                                     <HBox id="a-main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
                                           <Region id="a-l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
                                           <VBox id="a-info-box" maxWidth="320.0" minWidth="320.0" prefHeight="240.0" prefWidth="320.0" styleClass="box" HBox.hgrow="NEVER">
-                                                <ImageView fx:id="a_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-93.0" translateY="115.0">
+                                                <ImageView fx:id="a_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-102.0" translateY="115.0">
                                                    <image>
                                                       <Image url="@../img/Loading.jpg" />
                                                    </image>
@@ -757,7 +757,7 @@
                                                 <String fx:value="label" />
                                              </styleClass>
                                              <font>
-                                                <Font name="Agency FB" size="60.0" />
+                                                <Font name="Arial" size="50.0" />
                                              </font>
                                           </Label>
                                           <Region id="s-r-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">

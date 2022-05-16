@@ -16,9 +16,6 @@
     -fx-background-color: #b60000;
 }
 
-.wraptxt {
-    -fx-wrap-text: true;
-}
 .sens{
     -fx-font-size: 16;
     -fx-font-family: "Arial Rounded MT Bold";

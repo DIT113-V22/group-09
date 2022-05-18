@@ -2,7 +2,8 @@ package commands_processing;
 
 import file_processing.FileLoader;
 import grammar.LanguageEnums;
-import grammar.LanguageEnums.*;
+import grammar.LanguageEnums.DirectionTypes;
+import grammar.LanguageEnums.UnitTypes;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,15 +17,21 @@ public class CommandParser {
     private static final String defaultMoveSpeed = "50";
     private static final String defaultStopSpeed = "0";
 
-    private final HashMap<LanguageEnums.UnitTypes,Double> conversionsMap;
+    private HashMap<LanguageEnums.UnitTypes,Double> conversionsMap;
 
     private final String[] wheelSpeeds;
 
 
-
-
     public CommandParser() {
-        conversionsMap = FileLoader.loadConversionMap();
+        try {
+            conversionsMap = FileLoader.genericMapLoader(UnitTypes.class,Double.class,"\n",":",getClass().getResource("/files/unitConversions.txt"));
+            if (conversionsMap.isEmpty()){
+                throw new Exception("Loading conversionsMap went wrong or the file is empty.");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         wheelSpeeds = new String[setsOfWheels];
     }
 
@@ -34,7 +41,6 @@ public class CommandParser {
         String amount;
         LanguageEnums.CategoriesOfUnits unitCat;
         DirectionTypes direction;
-        Command inBetweenCommand;
         String inBetweenCSVEntry;
 
         StringBuilder builder = new StringBuilder();

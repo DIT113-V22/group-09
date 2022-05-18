@@ -6,10 +6,10 @@ import grammar.PhrasalVerb;
 import grammar.PhrasalVerbChecker;
 
 public class CommandBuilder {
-    private final LanguageMaps lMap;
+    private LanguageMaps lMap;
     private final CommandList cmList;
     private PhrasalVerb phrasalVerb;
-    private boolean afterUsed,andUsed;
+    private boolean afterUsed;
     private final PhrasalVerbChecker pvChecker;
 
     private ActionTypes currentAction;
@@ -20,13 +20,17 @@ public class CommandBuilder {
     private Rotations currentRotation;
 
     public CommandBuilder() {
-        lMap = new LanguageMaps();
+        try {
+            lMap = new LanguageMaps();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         cmList = new CommandList();
         pvChecker = new PhrasalVerbChecker();
         
         phrasalVerb = null;
         afterUsed = false;
-        andUsed = false;
 
         nullCurrent();
     }

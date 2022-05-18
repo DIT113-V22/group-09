@@ -2,7 +2,6 @@ package grammar;
 
 import file_processing.FileLoader;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class LanguageMaps {
@@ -12,20 +11,12 @@ public class LanguageMaps {
     private final Map<String, LanguageEnums.Shapes> shapesMap;
     private final Map<String, LanguageEnums.Rotations> rotationsMap;
 
-    public LanguageMaps(){
-        actionMap = FileLoader.loadActionMap();
-        unitsMap = FileLoader.loadUnitMap();
-        directionMap = FileLoader.loadDirectionMap();
-
-        shapesMap = new HashMap<>();
-        shapesMap.put("square", LanguageEnums.Shapes.SQUARE);
-        shapesMap.put("circle", LanguageEnums.Shapes.CIRCLE);
-        shapesMap.put("circular", LanguageEnums.Shapes.CIRCLE);
-
-
-        rotationsMap = new HashMap<>();
-        rotationsMap.put("clockwise", LanguageEnums.Rotations.CLOCKWISE);
-        rotationsMap.put("counterclockwise", LanguageEnums.Rotations.COUNTERCLOCKWISE);
+    public LanguageMaps() throws Exception {
+        actionMap =  FileLoader.genericMapLoader(String.class, LanguageEnums.ActionTypes.class, "/n", ":",getClass().getResource("/files/actions_map.txt"));
+        unitsMap = FileLoader.genericMapLoader(String.class, LanguageEnums.UnitTypes.class, "/n", ":",getClass().getResource("/files/units_map.txt"));
+        directionMap =  FileLoader.genericMapLoader(String.class, LanguageEnums.DirectionTypes.class, "/n", ":",getClass().getResource("/files/directions_map.txt"));
+        shapesMap = FileLoader.genericMapLoader(String.class, LanguageEnums.Shapes.class, "/n",":",getClass().getResource("/files/shapes_map.txt"));
+        rotationsMap = FileLoader.genericMapLoader(String.class, LanguageEnums.Rotations.class, "/n",":",getClass().getResource("/files/rotations_map.txt"));
     }
 
     public LanguageEnums.ActionTypes getAction(String key){

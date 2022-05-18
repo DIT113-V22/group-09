@@ -265,6 +265,10 @@ public class StartController implements Initializable {
     }
 
 
+    private void tst(){
+
+    }
+
     private void startCarSession(User user) throws Exception{
         CarAPI api;
 

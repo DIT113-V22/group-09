@@ -5,39 +5,18 @@ import grammar.PhrasalVerb;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
 
 public class FileLoader {
-    public static ArrayList<String> loadTxtFile(String filePath){
-        BufferedReader reader;
-        ArrayList<String> lines = new ArrayList<>();
 
-        try{
-            File file = new File(Path.of(filePath).normalize().toString().replace("\\","/"));
-            reader = new BufferedReader(new FileReader(file));
-
-            String line = reader.readLine();
-
-            while(line != null){
-                lines.add(line);
-                line = reader.readLine();
-            }
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        return lines;
-    }
-
-    public static ArrayList<String> loadTxtFile(File file, String delimiter) throws Exception{
+    public static ArrayList<String> loadTxtFile(URL url) throws Exception{
+        File file = new File(correctPath(url));
         BufferedReader reader;
         ArrayList<String> lines = new ArrayList<>();
 
@@ -53,7 +32,31 @@ public class FileLoader {
         return lines;
     }
 
-    public static <K, V> HashMap<K, V> genericMapLoader(java.lang.reflect.Type kClass, java.lang.reflect.Type vClass, String delimiter, String keyValSeparator, URL path) throws Exception{
+    public static String loadWhole(URL url) throws Exception{
+        File file = new File(correctPath(url));
+        BufferedReader reader;
+        StringBuilder lines = new StringBuilder();
+
+        reader = new BufferedReader(new FileReader(file));
+
+        String line = reader.readLine();
+
+        while(line != null){
+            lines.append(line).append("\n");
+            line = reader.readLine();
+        }
+
+        if (lines.isEmpty()){
+            return "";
+        }
+
+        return lines.substring(0,lines.length()-1);
+    }
+
+
+
+
+    public static <K, V> HashMap<K, V> genericMapLoader(java.lang.reflect.Type kClass, java.lang.reflect.Type vClass, String keyValSeparator, URL path) throws Exception{
         Class c1 = (Class) kClass;
         Class c2 = (Class) vClass;
 
@@ -64,8 +67,7 @@ public class FileLoader {
             throw new IllegalArgumentException("Unsupported value type provided.");
         }
 
-        File file = new File(correctPath(path));
-        ArrayList<String> kvPairs = loadTxtFile(file,delimiter);
+        ArrayList<String> kvPairs = loadTxtFile(path);
 
         K key;
         V value;
@@ -111,25 +113,7 @@ public class FileLoader {
         return new URI(correctedPath);
     }
 
-    public static ArrayList<String> loadTxtFile(URL filePath){
-        BufferedReader reader;
-        ArrayList<String> lines = new ArrayList<>();
 
-        try{
-            reader = new BufferedReader(new InputStreamReader(filePath.openStream()));
-
-            String line = reader.readLine();
-
-            while(line != null){
-                lines.add(line);
-                line = reader.readLine();
-            }
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        return lines;
-    }
 
     public static String listToString(ArrayList<String> list){
         StringBuilder builder = new StringBuilder();
@@ -139,7 +123,7 @@ public class FileLoader {
         return builder.toString();
     }
 
-    public static ArrayList<PhrasalVerb> loadPhrasalVerbsList(URL url){
+    public static ArrayList<PhrasalVerb> loadPhrasalVerbsList(URL url) throws Exception{
         ArrayList<String> values = loadTxtFile(url);
         ArrayList<PhrasalVerb> phrasalVerbs = new ArrayList<>();
 

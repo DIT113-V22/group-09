@@ -12,11 +12,11 @@ public class LanguageMaps {
     private final Map<String, LanguageEnums.Rotations> rotationsMap;
 
     public LanguageMaps() throws Exception {
-        actionMap =  FileLoader.genericMapLoader(String.class, LanguageEnums.ActionTypes.class, "/n", ":",getClass().getResource("/files/actions_map.txt"));
-        unitsMap = FileLoader.genericMapLoader(String.class, LanguageEnums.UnitTypes.class, "/n", ":",getClass().getResource("/files/units_map.txt"));
-        directionMap =  FileLoader.genericMapLoader(String.class, LanguageEnums.DirectionTypes.class, "/n", ":",getClass().getResource("/files/directions_map.txt"));
-        shapesMap = FileLoader.genericMapLoader(String.class, LanguageEnums.Shapes.class, "/n",":",getClass().getResource("/files/shapes_map.txt"));
-        rotationsMap = FileLoader.genericMapLoader(String.class, LanguageEnums.Rotations.class, "/n",":",getClass().getResource("/files/rotations_map.txt"));
+        actionMap =  FileLoader.genericMapLoader(String.class, LanguageEnums.ActionTypes.class,  ":",getClass().getResource("/files/actions_map.txt"));
+        unitsMap = FileLoader.genericMapLoader(String.class, LanguageEnums.UnitTypes.class,  ":",getClass().getResource("/files/units_map.txt"));
+        directionMap =  FileLoader.genericMapLoader(String.class, LanguageEnums.DirectionTypes.class,  ":",getClass().getResource("/files/directions_map.txt"));
+        shapesMap = FileLoader.genericMapLoader(String.class, LanguageEnums.Shapes.class, ":",getClass().getResource("/files/shapes_map.txt"));
+        rotationsMap = FileLoader.genericMapLoader(String.class, LanguageEnums.Rotations.class, ":",getClass().getResource("/files/rotations_map.txt"));
     }
 
     public LanguageEnums.ActionTypes getAction(String key){

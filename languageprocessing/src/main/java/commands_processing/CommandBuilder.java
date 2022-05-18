@@ -10,7 +10,7 @@ public class CommandBuilder {
     private final CommandList cmList;
     private PhrasalVerb phrasalVerb;
     private boolean afterUsed;
-    private final PhrasalVerbChecker pvChecker;
+    private PhrasalVerbChecker pvChecker;
 
     private ActionTypes currentAction;
     private UnitTypes currentUnit;
@@ -27,8 +27,13 @@ public class CommandBuilder {
             e.printStackTrace();
         }
         cmList = new CommandList();
-        pvChecker = new PhrasalVerbChecker();
-        
+        try {
+            pvChecker = new PhrasalVerbChecker();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         phrasalVerb = null;
         afterUsed = false;
 

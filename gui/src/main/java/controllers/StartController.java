@@ -1,6 +1,8 @@
 package controllers;
 
 import api.CarAPI;
+import enums.Languages;
+import enums.S1Headers;
 import file_processing.FileLoader;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,12 +28,14 @@ import java.net.URL;
 import java.util.*;
 
 import static util.ValidityChecker.notNullOrBlank;
-import static util.VarargFunctions.blankReplace;
-import static util.VarargFunctions.concatenate;
+import static util.VarargFunctions.*;
 
 public class StartController implements Initializable {
 
     private Map<String,User> users;
+    private ArrayList<String> languageTexts;
+    private Map<String,String> languagePrompts;
+    private Map<String,String> languageHeaders;
 
     @FXML private Label info_label;
 
@@ -62,21 +66,33 @@ public class StartController implements Initializable {
     @FXML private TextField mqt_pass;
     @FXML private TextField mqt_cli;
 
+    List<TextField> inputFields;
 
+    @FXML private Button conf_btn;
+    @FXML private Button clr_btn;
+
+    @FXML private Button ex_btn;
+    @FXML private Button l_btn;
+
+    private Languages current_language;
 
     private boolean sideShown;
 
     public StartController(){
+        inputFields = new ArrayList<>();
         users = new HashMap<>();
         reloadUsers();
         sideShown = true;
         mode = WindowModes.USR_CREATE;
 
 
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        addMany(inputFields,usr_nm,usr_pass,car_nm,host_inf,conn_inf,mqt_usr,mqt_pass,mqt_cli);
+        loadLanguage();
         showLogScr();
     }
 
@@ -118,34 +134,34 @@ public class StartController implements Initializable {
 
     @FXML
     protected void showLogScr(){
-        info_label.setText("LOG IN");
+        info_label.setText(languageHeaders.get(S1Headers.LOG_IN));
         handleButtonTags();
         log_btn.getStyleClass().add("chosen");
         mode= WindowModes.LOG_IN;
-        hideInfoNodesByCSS(".car-field");
+        hideInfoNodesByCSS(".car-field",".settings-field");
     }
 
     @FXML
     protected void showUsrCreScr(){
-        info_label.setText("CREATE PROFILE");
+        info_label.setText(languageHeaders.get(S1Headers.CREATE_PROFILE));
         handleButtonTags();
         prof_btn.getStyleClass().add("chosen");
         mode= WindowModes.USR_CREATE;
-        restoreInfoNodes();
+        hideInfoNodesByCSS(".settings-field");
     }
 
     @FXML
     protected void showAnonScr(){
-        info_label.setText("SIMPLE SESSION");
+        info_label.setText(languageHeaders.get(S1Headers.SIMPLE_SESSION));
         handleButtonTags();
         anon_btn.getStyleClass().add("chosen");
         mode= WindowModes.ANON;
-        hideInfoNodesByCSS(".user-field");
+        hideInfoNodesByCSS(".user-field",".settings-field");
     }
 
     @FXML
     protected void showSetScr(){
-        info_label.setText("SETTINGS");
+        info_label.setText(languageHeaders.get(S1Headers.SETTINGS));
         handleButtonTags();
         set_btn.getStyleClass().add("chosen");
         mode= WindowModes.SETTINGS;
@@ -238,7 +254,6 @@ public class StartController implements Initializable {
         for (int i = 0; i<ids.length; i++){
             node = getNodeByCSS(ids[i]);
             usrInfo[i] = getTextInfo(node);
-            System.out.println(i+": "+ usrInfo[i]);
         }
 
         if (mode== WindowModes.ANON){
@@ -262,11 +277,6 @@ public class StartController implements Initializable {
         else {
             return "";
         }
-    }
-
-
-    private void tst(){
-
     }
 
     private void startCarSession(User user) throws Exception{
@@ -386,11 +396,119 @@ public class StartController implements Initializable {
         return root_anchor.lookupAll(selector);
     }
 
-    private void hideInfoNodesByCSS(String selector){
+    private void hideInfoNodesByCSS(String... selectors){
         restoreInfoNodes();
-        Set<Node> nodes = getNodesByCSS(selector);
+        Set<Node> nodes = new HashSet<>();
+
+        for (String selector: selectors){
+            nodes.addAll(getNodesByCSS(selector));
+        }
         for (Node node : nodes){
             ((VBox)node.getParent()).getChildren().remove(node);
+        }
+    }
+
+    private void reloadLanguage(){
+        updateLangMaps();
+        updateTexts();
+        updatePrompts();
+    }
+
+    private void loadLanguage(){
+        try {
+            languageTexts = FileLoader.loadTxtFile(getClass().getResource("/languages/current/s1.txt"));
+            languagePrompts = FileLoader.genericMapLoader(String.class,String.class,";;;",getClass().getResource("/languages/current/pTxt_s1.txt"));
+            languageHeaders = FileLoader.genericMapLoader(S1Headers.class,String.class,";;;",getClass().getResource("/languages/current/head_s1.txt"));
+
+            if (languageTexts.isEmpty()){
+                current_language = Languages.ENGLISH;
+                setLanguage();
+                reloadLanguage();
+            }
+            else {
+                current_language = Languages.valueOf(languageTexts.get(0).split(";;;")[1]);
+                updateTexts();
+                updatePrompts();
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void updateLangMaps(){
+        try {
+
+            languageTexts = FileLoader.loadTxtFile(getClass().getResource("/languages/current/s1.txt"));
+            languagePrompts = FileLoader.genericMapLoader(String.class,String.class,";;;",getClass().getResource("/languages/current/pTxt_s1.txt"));
+            languageHeaders = FileLoader.genericMapLoader(S1Headers.class,String.class,";;;",getClass().getResource("/languages/current/head_s1.txt"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void updateTexts(){
+        for (String entry : languageTexts){
+            String[] idAndValue = entry.split(";;;");
+
+            Node node =  getNodeByCSS(idAndValue[0]);
+            if (node != null){
+                if (node instanceof Button){
+                    Button btn = (Button) node;
+
+                    btn.setText(idAndValue[1]);
+                }
+                else {
+                    ((Label)node).setText(idAndValue[1]);
+
+                }
+            }
+        }
+    }
+
+    private void updatePrompts(){
+        for (TextField field : inputFields){
+            String id = field.getId();
+
+            String value = languagePrompts.get(id);
+            field.setPromptText(value);
+        }
+    }
+
+
+
+    @FXML
+    protected void switchLanguage(){
+        switch (current_language){
+            case ENGLISH -> {
+                current_language = Languages.POLISH;
+            }
+            case POLISH -> {
+                current_language = Languages.ENGLISH;
+            }
+        }
+
+        setLanguage();
+        reloadLanguage();
+    }
+
+    private void setLanguage(){
+        try {
+            String s1 = FileLoader.loadWhole(getClass().getResource(current_language.getS1Path()));
+            TxtWriter.write(getClass().getResource("/languages/current/s1.txt"),s1);
+
+            String s2 = FileLoader.loadWhole(getClass().getResource(current_language.getS2Path()));
+            TxtWriter.write(getClass().getResource("/languages/current/s2.txt"),s2);
+
+            String s1_head = FileLoader.loadWhole(getClass().getResource(current_language.getHPath()));
+            TxtWriter.write(getClass().getResource("/languages/current/head_s1.txt"),s1_head);
+
+            String s1_prompt = FileLoader.loadWhole(getClass().getResource(current_language.getPTxtPath()));
+            TxtWriter.write(getClass().getResource("/languages/current/pTxt_s1.txt"),s1_prompt);
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
     }
 

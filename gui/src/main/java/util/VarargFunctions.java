@@ -1,6 +1,7 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VarargFunctions {
 
@@ -34,7 +35,11 @@ public class VarargFunctions {
         return builder.substring(0,builder.length()-separator.length());
     }
 
-
+    public static  <T> void addMany(List<T> originalList, T... additions){
+            for (T addition : additions){
+                originalList.add(addition);
+            }
+    }
 
 
 }

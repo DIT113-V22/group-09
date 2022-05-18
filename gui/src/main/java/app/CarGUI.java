@@ -20,7 +20,7 @@ public class CarGUI extends Application {
         /*
         Make sure to have those vm arguments when launching the app:
 
-        --module-path "JAVA FX LIB FOLDER" --add-modules javafx.controls,javafx.fxml,javafx.media
+        --module-path "PATH_TO_JAVAFX_LIB_FOLDER" --add-modules javafx.controls,javafx.fxml,javafx.media
          */
 
 
@@ -46,11 +46,8 @@ public class CarGUI extends Application {
 
 
     public static void main(String[] args) {
+
         launch();
     }
 
-
-//    public static void main(String[] args) {
-//        FileLoader.genericMapLoader(String.class, Languages.class,"/n",";;;",new URL(""));
-//    }
 }

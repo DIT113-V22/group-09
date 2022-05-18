@@ -1,0 +1,50 @@
+#m-man-btn;;;Manual
+#a-man-btn;;;Manual
+#s-man-btn;;;Manual
+#m-aut-btn;;;Command
+#a-aut-btn;;;Command
+#s-aut-btn;;;Command
+#m-set-btn;;;Settings
+#a-set-btn;;;Settings
+#s-set-btn;;;Settings
+#m-q-btn;;;Quit session
+#a-q-btn;;;Quit session
+#s-q-btn;;;Quit session
+#m-exi-btn;;;Exit
+#a-exi-btn;;;Exit
+#s-exi-btn;;;Exit
+#head-txt;;;Manual
+#a-head-txt;;;Command
+#s-head-txt;;;Settings
+#sens1;;;Gyroscope:
+#sens2;;;Infrared front:
+#sens3;;;Infrared right:
+#sens4;;;Infrared left:
+#sens5;;;Infrared back:
+#sens6;;;Ultrasonic front:
+#sens7;;;Ultrasonic back:
+#sens8;;;Odometer left:
+#sens9;;;Odometer left:
+#sens10;;;Distance l. wheel:
+#sens11;;;Distance r. wheel:
+#sens12;;;X:
+#sens13;;;Y:
+#sens14;;;Ping:
+#a-sens1;;;Gyroscope:
+#a-sens2;;;Infrared front:
+#a-sens3;;;Infrared right:
+#a-sens4;;;Infrared left:
+#a-sens5;;;Infrared back:
+#a-sens6;;;Ultrasonic front:
+#a-sens7;;;Ultrasonic back:
+#a-sens8;;;Odometer left:
+#a-sens9;;;Odometer left:
+#a-sens10;;;Distance l. wheel:
+#a-sens11;;;Distance r. wheel:
+#a-sens12;;;X:
+#a-sens13;;;Y:
+#a-sens14;;;Ping:
+#clr-btn;;;Clear
+#sub-btn;;;Confirm
+#s-clr-btn;;;Clear
+#s-sub-btn;;;Confirm

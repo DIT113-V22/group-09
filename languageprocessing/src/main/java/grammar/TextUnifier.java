@@ -6,7 +6,13 @@ import java.util.ArrayList;
 
 public class TextUnifier {
     public String[] unify(String sentence){
-        ArrayList<String> clauseDividers = FileLoader.loadTxtFile(getClass().getResource("/files/clause_dividers_list.txt"));
+        ArrayList<String> clauseDividers = null;
+        try {
+            clauseDividers = FileLoader.loadTxtFile(getClass().getResource("/files/clause_dividers_list.txt"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
         // "\n" should be replaced with the system default line separator (or something like that, I don't remember the details, but it was used in the OOP course).
         //Also, most likely, some other special symbols should be replaced by " " - to be added.

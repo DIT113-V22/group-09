@@ -162,7 +162,13 @@ class TextTranslatorTest {
         expectedText = "Type:GO Dir:FORWARD Amount:10 Unit:METER\n" +
                             "Type:TURN Dir:LEFT Amount:90 Unit:DEGREE";
 
-        ArrayList<String> textList = FileLoader.loadTxtFile(getClass().getResource("/files/txtTest.txt"));
-        testText(FileLoader.listToString(textList),expectedText);
+        try {
+
+            ArrayList<String> textList = FileLoader.loadTxtFile(getClass().getResource("/files/txtTest.txt"));
+            testText(FileLoader.listToString(textList),expectedText);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

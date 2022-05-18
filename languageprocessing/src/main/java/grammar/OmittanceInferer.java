@@ -15,10 +15,10 @@ public class OmittanceInferer {
     private final HashMap<ActionTypes,Integer> amountFromActMap;
 
     public OmittanceInferer() throws Exception {
-        actFromDirMap = FileLoader.genericMapLoader(DirectionTypes.class,ActionTypes.class,"\n",":",getClass().getResource("/files/inferActFromDir_map.txt"));
-        dirFromActMap = FileLoader.genericMapLoader(ActionTypes.class,DirectionTypes.class,"\n",":",getClass().getResource("/files/inferDirFromAct_map.txt"));
-        unitFromActMap = FileLoader.genericMapLoader(ActionTypes.class,UnitTypes.class,"\n",":",getClass().getResource("/files/inferUnitFromAct_map.txt"));
-        amountFromActMap = FileLoader.genericMapLoader(ActionTypes.class,Integer.class,"\n",":",getClass().getResource("/files/inferAmountFromAct_map.txt"));
+        actFromDirMap = FileLoader.genericMapLoader(DirectionTypes.class,ActionTypes.class,":",getClass().getResource("/files/inferActFromDir_map.txt"));
+        dirFromActMap = FileLoader.genericMapLoader(ActionTypes.class,DirectionTypes.class,":",getClass().getResource("/files/inferDirFromAct_map.txt"));
+        unitFromActMap = FileLoader.genericMapLoader(ActionTypes.class,UnitTypes.class,":",getClass().getResource("/files/inferUnitFromAct_map.txt"));
+        amountFromActMap = FileLoader.genericMapLoader(ActionTypes.class,Integer.class,":",getClass().getResource("/files/inferAmountFromAct_map.txt"));
     }
 
     private ActionTypes inferActFromDir(DirectionTypes directionVal){

@@ -24,7 +24,7 @@ public class CommandParser {
 
     public CommandParser() {
         try {
-            conversionsMap = FileLoader.genericMapLoader(UnitTypes.class,Double.class,"\n",":",getClass().getResource("/files/unitConversions.txt"));
+            conversionsMap = FileLoader.genericMapLoader(UnitTypes.class,Double.class,":",getClass().getResource("/files/unitConversions.txt"));
             if (conversionsMap.isEmpty()){
                 throw new Exception("Loading conversionsMap went wrong or the file is empty.");
             }

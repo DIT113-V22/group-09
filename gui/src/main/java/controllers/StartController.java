@@ -485,6 +485,9 @@ public class StartController implements Initializable {
                 current_language = Languages.POLISH;
             }
             case POLISH -> {
+                current_language = Languages.PERSIAN;
+            }
+            case PERSIAN -> {
                 current_language = Languages.ENGLISH;
             }
         }

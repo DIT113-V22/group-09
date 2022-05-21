@@ -431,10 +431,13 @@ void loop() {
             if(currentCommand.isExecuted && !commandsDqe.empty()) {
                 currentCommand = commandsDqe.front();
                 commandsDqe.pop_front();
-                currentCommand.initialState = getCurrentState();
+                VehicleState emptyState;
+                emptyState.time = 0;
+                currentCommand.initialState = emptyState; //want to call getCurrentState() after the pause is done for more accurate initial state
             }
 
             if(!currentCommand.isExecuted && millis() > pauseTime){
+                if(currentCommand.initialState.time == 0) currentCommand.initialState = getCurrentState();
                 executeCurrentCommand();
             }
         }

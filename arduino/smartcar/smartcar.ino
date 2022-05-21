@@ -343,9 +343,6 @@ void executeCurrentCommand(){
         else clockWise = true;
 
         int targetDegree = amount % 360;
-        int offset;
-        if(amount > 75) offset = 2;
-        else offset = 1;
 
         int difference;
         if(!clockWise && currentHeading < initState.heading){
@@ -358,13 +355,18 @@ void executeCurrentCommand(){
             difference = abs(initState.heading - currentHeading);
         }
 
-        //Serial.println(difference);
-
         int slowdown_threshold = 13;
+        int offset;
 
-        if(amount < 25){
+        if(amount > 75) {
+            offset = 2;
+        }
+        else if(amount < 25){
             offset = 0;
             slowdown_threshold = 6;
+        }
+        else {
+            offset = 1;
         }
 
         if (difference >= targetDegree - slowdown_threshold){

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="root-anchor" fx:id="root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="730.0" stylesheets="@../stylesheets/defaultTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
+<AnchorPane id="root-anchor" fx:id="root_anchor" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="730.0" stylesheets="@../stylesheets/defaultTheme.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StartController">
       <HBox fx:id="root_box" onKeyPressed="#handleKeyPress" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <AnchorPane id="side-anchor" fx:id="side_anchor" maxWidth="232.0" minWidth="232.0" prefHeight="550.0" prefWidth="281.0" stylesheets="@../stylesheets/defaultTheme.css" HBox.hgrow="NEVER">
                   <VBox id="btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="483.0" prefWidth="232.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
@@ -107,10 +107,10 @@
                               <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="232.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                               <VBox id="info-box" maxWidth="209.0" minWidth="209.0" prefHeight="250.0" prefWidth="209.0" styleClass="box" HBox.hgrow="NEVER">
                   <Button fx:id="l_btn" id="l-btn" onAction="#switchLanguage" mnemonicParsing="false" text="Language: English">
-                     <styleClass>
-                        <String fx:value="btn" />
-                        <String fx:value="settings-field" />
-                     </styleClass>
+                      <styleClass>
+                          <String fx:value="btn" />
+                          <String fx:value="settings-field" />
+                      </styleClass>
                   </Button>
                                     <TextField id="usr-txt" fx:id="usr_nm" prefHeight="25.0" prefWidth="183.0" promptText="Username" VBox.vgrow="NEVER">
                                        <styleClass>

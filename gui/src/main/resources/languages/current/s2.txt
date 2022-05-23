@@ -1,46 +1,46 @@
-#m-man-btn;;;دستی
-#a-man-btn;;;دستی
-#s-man-btn;;;دستی
-#m-aut-btn;;;دستور
-#a-aut-btn;;;دستور
-#s-aut-btn;;;دستور
-#m-set-btn;;;تنظیمات
-#a-set-btn;;;تنظیمات
-#s-set-btn;;;تنظیمات
-#m-q-btn;;;خروج از نشست
-#a-q-btn;;;خروج از نشست
-#s-q-btn;;;خروج از نشست
-#m-exi-btn;;;خروج
-#a-exi-btn;;;خروج
-#s-exi-btn;;;خروج
-#head-txt;;;دستی
-#a-head-txt;;;دستور
-#s-head-txt;;;تنظیمات
-#sens1;;;ژیروسکوپ:
-#sens2;;;مادون قرمز جلو:
-#sens3;;;مادون قرمز راست:
-#sens4;;;مادون قرمز چپ:
-#sens5;;;مادون قرمز عقب:
-#sens6;;;فراصوت جلو:
-#sens7;;;فراصوت عقب:
-#sens8;;;ادومتر چپ:
-#sens9;;;ادومتر چپ:
-#sens10;;;فاصله چپ:
-#sens11;;;فاصله راست:
+#m-man-btn;;;Manual
+#a-man-btn;;;Manual
+#s-man-btn;;;Manual
+#m-aut-btn;;;Command
+#a-aut-btn;;;Command
+#s-aut-btn;;;Command
+#m-set-btn;;;Settings
+#a-set-btn;;;Settings
+#s-set-btn;;;Settings
+#m-q-btn;;;Quit session
+#a-q-btn;;;Quit session
+#s-q-btn;;;Quit session
+#m-exi-btn;;;Exit
+#a-exi-btn;;;Exit
+#s-exi-btn;;;Exit
+#head-txt;;;Manual
+#a-head-txt;;;Command
+#s-head-txt;;;Settings
+#sens1;;;Gyroscope:
+#sens2;;;Infrared front:
+#sens3;;;Infrared right:
+#sens4;;;Infrared left:
+#sens5;;;Infrared back:
+#sens6;;;Ultrasonic front:
+#sens7;;;Ultrasonic back:
+#sens8;;;Odometer left:
+#sens9;;;Odometer left:
+#sens10;;;Distance l. wheel:
+#sens11;;;Distance r. wheel:
 #sens12;;;X:
 #sens13;;;Y:
-#sens14;;;پینگ:
-#a-sens1;;;ژیروسکوپ:
-#a-sens2;;;مادون قرمز جلو:
-#a-sens3;;;مادون قرمز راست:
-#a-sens4;;;مادون قرمز چپ:
-#a-sens5;;;مادون قرمز عقب:
-#a-sens6;;;فراصوت جلو:
-#a-sens7;;;فراصوت عقب:
-#a-sens8;;;ادومتر چپ:
-#a-sens9;;;ادومتر چپ:
-#a-sens10;;;فاصله چپ:
-#a-sens11;;;فاصله راست:
+#sens14;;;Ping:
+#a-sens1;;;Gyroscope:
+#a-sens2;;;Infrared front:
+#a-sens3;;;Infrared right:
+#a-sens4;;;Infrared left:
+#a-sens5;;;Infrared back:
+#a-sens6;;;Ultrasonic front:
+#a-sens7;;;Ultrasonic back:
+#a-sens8;;;Odometer left:
+#a-sens9;;;Odometer left:
+#a-sens10;;;Distance l. wheel:
+#a-sens11;;;Distance r. wheel:
 #a-sens12;;;X:
 #a-sens13;;;Y:
 #a-sens14;;;Ping:

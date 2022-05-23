@@ -1,8 +1,8 @@
-usr-txt;;;نام کاربری
-usr-pass;;;رمز عبور
-car-txt;;;نام وسیله
-hos-txt;;;هاست
-conn-txt;;;پورت
-mq-usr-txt;;;نام کاربری MQTT (اختیاری)
-mq-pass-txt;;;رمز عبور MQTT (اختیاری)
-mq-uid-txt;;;شناسه MQTT (اختیاری)
+usr-txt;;;Username
+usr-pass;;;Password
+car-txt;;;Car Name
+hos-txt;;;Host
+conn-txt;;;Port
+mq-usr-txt;;;MQTT username (optional)
+mq-pass-txt;;;MQTT password (optional)
+mq-uid-txt;;;MQTT clientID (optional)

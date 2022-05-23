@@ -1,10 +1,10 @@
-currently-chosen-language;;;PERSIAN
-#log-btn;;;ورود
-#anon-btn;;;ناشناس
-#prof-btn;;;ایجاد پروفایل
-#set-btn;;;تنظیمات
-#exi-btn;;;خروج
-#head-txt;;;تنظیمات
-#l-btn;;;Language: فارسی
-#clr-btn;;;پاک کن
-#sub-btn;;;تایید
+currently-chosen-language;;;ENGLISH
+#log-btn;;;Log In
+#anon-btn;;;Anonymous
+#prof-btn;;;Create Profile
+#set-btn;;;Settings
+#exi-btn;;;Exit
+#head-txt;;;SETTINGS
+#l-btn;;;Language: English
+#clr-btn;;;Clear
+#sub-btn;;;Confirm

@@ -15,6 +15,16 @@
     -fx-background-color: transparent;
 }
 
+
+#l-btn{
+    -fx-text-fill: #000000;
+    -fx-background-radius: 0;
+    -fx-max-height: "Infinity";
+    -fx-max-width: "Infinity";
+    -fx-pref-height: 50.0;
+    -fx-pref-width: 246.0;
+}
+
 #side-anchor,#a-side-anchor,#s-side-anchor{
 
     minWidth:"120";
@@ -62,5 +72,4 @@
     -fx-alignment: baseline-left;
     -fx-font-family: "Verdana", sans-serif;
     -fx-font-size: 24;
-
 }

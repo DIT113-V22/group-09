@@ -24,7 +24,7 @@
 #sens6;;;Ultrasonic front:
 #sens7;;;Ultrasonic back:
 #sens8;;;Odometer left:
-#sens9;;;Odometer left:
+#sens9;;;Odometer right:
 #sens10;;;Distance l. wheel:
 #sens11;;;Distance r. wheel:
 #sens12;;;X:
@@ -38,7 +38,7 @@
 #a-sens6;;;Ultrasonic front:
 #a-sens7;;;Ultrasonic back:
 #a-sens8;;;Odometer left:
-#a-sens9;;;Odometer left:
+#a-sens9;;;Odometer right:
 #a-sens10;;;Distance l. wheel:
 #a-sens11;;;Distance r. wheel:
 #a-sens12;;;X:

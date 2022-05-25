@@ -4,10 +4,10 @@ import commands_processing.CommandList;
 import file_processing.FileLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import settings.FilePaths;
+
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TextTranslatorTest {
     TextTranslator translator;
@@ -162,7 +162,13 @@ class TextTranslatorTest {
         expectedText = "Type:GO Dir:FORWARD Amount:10 Unit:METER\n" +
                             "Type:TURN Dir:LEFT Amount:90 Unit:DEGREE";
 
-        ArrayList<String> textList = FileLoader.loadTxtFile(FilePaths.TEST_TEXT_PATH);
-        testText(FileLoader.listToString(textList),expectedText);
+        try {
+
+            ArrayList<String> textList = FileLoader.loadTxtFile(getClass().getResource("/files/txtTest.txt"));
+            testText(FileLoader.listToString(textList),expectedText);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

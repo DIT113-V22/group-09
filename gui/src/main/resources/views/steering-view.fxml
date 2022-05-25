@@ -18,7 +18,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<TabPane fx:id="main_pane" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyReleased" prefHeight="648.0" prefWidth="1025.0" stylesheets="@../stylesheets/tabs.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SteeringController">
+
+<TabPane fx:id="main_pane" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyReleased" prefHeight="648.0" prefWidth="1025.0" stylesheets="@../stylesheets/tabs.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SteeringController">
+
    <tabs>
       <Tab id="manual-tab" fx:id="manual_tab">
          <content>
@@ -774,8 +776,8 @@
                                     <Region id="s-v2-info-pad" maxHeight="Infinity" prefHeight="0.0" prefWidth="493.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="s-conf-box" maxHeight="65" minHeight="65" prefHeight="65.0" prefWidth="498.0" styleClass="box" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
                                           <Region id="s-l-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                                          <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" prefHeight="50.0" prefWidth="150.0" styleClass="aplbtnCl" text="Clear" translateX="-170.0" translateY="-1.0" />
-                                          <Button id="sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" prefHeight="50.0" prefWidth="150.0" styleClass="aplbtnCo" text="Confirm" translateX="-130.0" translateY="-1.0" />
+                                          <Button id="s-clr-btn" mnemonicParsing="false" onAction="#cancel" prefHeight="50.0" prefWidth="150.0" styleClass="aplbtnCl" text="Clear" translateX="-170.0" translateY="-1.0" />
+                                          <Button id="s-sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" prefHeight="50.0" prefWidth="150.0" styleClass="aplbtnCo" text="Confirm" translateX="-130.0" translateY="-1.0" />
                                           <Region id="s-r-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                     </HBox>
                               </VBox>

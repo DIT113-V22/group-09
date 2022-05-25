@@ -65,7 +65,14 @@
                               <String fx:value="side" />
                            </styleClass>
                         </Button>
-                        <Button id="exi-btn" alignment="BASELINE_LEFT" graphicTextGap="15.5" mnemonicParsing="false" onAction="#exit" prefHeight="40.0" prefWidth="205.0" text="Exit" translateY="240.0">
+
+                    /*
+                    potentially bad line
+                    */
+                        <Region disable="true" prefHeight="231.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
+                       
+                        <Button id="exi-btn" fx:id="ex_btn" alignment="BASELINE_LEFT" graphicTextGap="15.5" mnemonicParsing="false" onAction="#exit" prefHeight="40.0" prefWidth="205.0" text="Exit" translateY="240.0">
+
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
@@ -105,8 +112,16 @@
                         <HBox id="main-box" maxWidth="Infinity" prefHeight="360.0" prefWidth="498.0" translateY="5.0">
                               <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="232.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                               <VBox id="info-box" maxWidth="209.0" minWidth="209.0" prefHeight="250.0" prefWidth="209.0" styleClass="box" HBox.hgrow="NEVER">
-                                  <TextField id="usr-txtusr-txt" fx:id="usr_nm" prefHeight="25.0" prefWidth="183.0" promptText="Username" VBox.vgrow="NEVER">
-                                      <styleClass>
+
+                  <Button fx:id="l_btn" id="l-btn" onAction="#switchLanguage" mnemonicParsing="false" text="Language: English">
+                      <styleClass>
+                          <String fx:value="btn" />
+                          <String fx:value="settings-field" />
+                      </styleClass>
+                  </Button>
+                                    <TextField id="usr-txt" fx:id="usr_nm" prefHeight="25.0" prefWidth="183.0" promptText="Username" VBox.vgrow="NEVER">
+                                       <styleClass>
+
                                           <String fx:value="txt" />
                                           <String fx:value="info" />
                                           <String fx:value="user-field" />
@@ -223,16 +238,21 @@
                         </HBox>
                         <HBox id="conf-box" maxHeight="143.0" minHeight="65" prefHeight="143.0" prefWidth="526.0" styleClass="box" stylesheets="@../stylesheets/tabs.css" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
 
+
+                            
                               <Button id="clr-btn" mnemonicParsing="false" onAction="#cancel" prefHeight="40.0" prefWidth="120.0" text="Clear" translateX="195.0" translateY="10.0">
                   <styleClass>
+                    <String fx:value="specbtn" />
                      <String fx:value="aplbtnCl" />
                      <String fx:value="smallertxt" />
                   </styleClass></Button>
                               <Button id="sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" prefHeight="40.0" prefWidth="120.0" text="Confirm" translateX="75.0" translateY="75.0">
                   <styleClass>
+                                        <String fx:value="specbtn" />
                      <String fx:value="aplbtnCo" />
                      <String fx:value="smallertxt" />
                   </styleClass></Button>
+
                         </HBox>
                   </VBox>
             </AnchorPane>

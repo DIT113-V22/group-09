@@ -14,6 +14,13 @@ public class OmittanceInferer {
     private  final HashMap<ActionTypes, UnitTypes> unitFromActMap;
     private final HashMap<ActionTypes,Integer> amountFromActMap;
 
+    public OmittanceInferer() throws Exception {
+        actFromDirMap = FileLoader.genericMapLoader(DirectionTypes.class,ActionTypes.class,":",getClass().getResource("/files/inferActFromDir_map.txt"));
+        dirFromActMap = FileLoader.genericMapLoader(ActionTypes.class,DirectionTypes.class,":",getClass().getResource("/files/inferDirFromAct_map.txt"));
+        unitFromActMap = FileLoader.genericMapLoader(ActionTypes.class,UnitTypes.class,":",getClass().getResource("/files/inferUnitFromAct_map.txt"));
+        amountFromActMap = FileLoader.genericMapLoader(ActionTypes.class,Integer.class,":",getClass().getResource("/files/inferAmountFromAct_map.txt"));
+    }
+
     private ActionTypes inferActFromDir(DirectionTypes directionVal){
         if (directionVal == DirectionTypes.NULL){
             throw new UnclearInputException("The provided input is either too vague, grammatically incorrect or not supported.");
@@ -96,12 +103,7 @@ public class OmittanceInferer {
 
 
 
-    public OmittanceInferer() {
-        actFromDirMap = FileLoader.loadActFromDirMap();
-        dirFromActMap = FileLoader.loadDirFromActMap();
-        unitFromActMap = FileLoader.loadUnitFromActMap();
-        amountFromActMap = FileLoader.loadAmountFromActMap();
-    }
+
 
     public void inferOmitted(CommandList cmList){
         for (Command command : cmList.getList()){

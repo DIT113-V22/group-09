@@ -1,0 +1,4 @@
+LOG_IN;;;ورود
+SIMPLE_SESSION;;;ورود ناشناس
+CREATE_PROFILE;;;ایجاد پروفایل
+SETTINGS;;;تنظیمات

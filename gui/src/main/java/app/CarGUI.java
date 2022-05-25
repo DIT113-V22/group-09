@@ -1,11 +1,9 @@
 package app;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -22,8 +20,11 @@ public class CarGUI extends Application {
         /*
         Make sure to have those vm arguments when launching the app:
 
-        --module-path "JAVA FX LIB FOLDER" --add-modules javafx.controls,javafx.fxml,javafx.media
+        --module-path "PATH_TO_JAVAFX_LIB_FOLDER" --add-modules javafx.controls,javafx.fxml,javafx.media
          */
+
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/views/start-view.fxml"));
         Scene scene = new Scene(root, 700, 550);
         stage.setScene(scene);
@@ -45,6 +46,8 @@ public class CarGUI extends Application {
 
 
     public static void main(String[] args) {
+
         launch();
     }
+
 }

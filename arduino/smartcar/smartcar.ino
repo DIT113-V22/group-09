@@ -107,27 +107,8 @@ struct Command{
 std::deque<Command> commandsDqe;
 Command currentCommand;
 
-std::vector<String> split(String str,const String& split){
-
-    std::vector<String> result;
-
-    int startIndex = 0;
-    int index = str.indexOf(split);
-    if (index == -1) return result;
-
-    while(index != -1){
-
-        String substr = str.substring(startIndex,index);
-        result.push_back(substr);
-        startIndex = index +1;
-        index = str.indexOf(split,startIndex);
-
-        if(index == -1){
-            String lastSubStr = str.substring(startIndex);
-            result.push_back(lastSubStr);
-        }
-    }
-    return result;
+void split2(std::vector<std::string>& result, String csv, const String &splitStr ){
+    Serial.println("I äm useless");
 }
 
 void parseCSV(String message){
@@ -136,11 +117,67 @@ void parseCSV(String message){
         stringCommands.push_back(message);
     }
     else { //command batch
-        stringCommands = split(message,";");
+
+        //Sp start
+
+
+
+          std::vector<String> result;
+
+            int startIndex = 0;
+            int index = message.indexOf(";");
+            if (index == -1) {
+                stringCommands = result;
+            }
+
+            while(index != -1){
+
+                String substr = message.substring(startIndex,index);
+                result.push_back(substr);
+                startIndex = index +1;
+                index = message.indexOf(";",startIndex);
+
+                if(index == -1){
+                    String lastSubStr = message.substring(startIndex);
+                    result.push_back(lastSubStr);
+                }
+            }
+            stringCommands = result;
+
+        //Sp end
+
     }
 
     for(String strCmd : stringCommands){
-        std::vector<String> parsedCmd = split(strCmd,",");
+
+        std::vector<String> parsedCmd;
+
+        //Sp start
+
+                  std::vector<String> result;
+
+                    int startIndex = 0;
+                    int index = strCmd.indexOf(",");
+                    if (index == -1) {
+                        parsedCmd = result;
+                    }
+
+                    while(index != -1){
+
+                        String substr = strCmd.substring(startIndex,index);
+                        result.push_back(substr);
+                        startIndex = index +1;
+                        index = strCmd.indexOf(",",startIndex);
+
+                        if(index == -1){
+                            String lastSubStr = strCmd.substring(startIndex);
+                            result.push_back(lastSubStr);
+                        }
+                    }
+                    parsedCmd = result;
+
+        //Sp end
+
         Command command;
         command.lWheel = parsedCmd.at(0).toInt();
         command.rWheel = parsedCmd.at(1).toInt();

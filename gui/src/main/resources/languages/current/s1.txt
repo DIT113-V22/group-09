@@ -1,0 +1,10 @@
+currently-chosen-language;;;ENGLISH
+#log-btn;;;Log In
+#anon-btn;;;Anonymous
+#prof-btn;;;Create Profile
+#set-btn;;;Settings
+#exi-btn;;;Exit
+#head-txt;;;SETTINGS
+#l-btn;;;Language: English
+#clr-btn;;;Clear
+#sub-btn;;;Confirm

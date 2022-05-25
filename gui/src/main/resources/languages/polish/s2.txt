@@ -1,0 +1,50 @@
+#m-man-btn;;;Manualny
+#a-man-btn;;;Manualny
+#s-man-btn;;;Manualny
+#m-aut-btn;;;Komendowy
+#a-aut-btn;;;Komendowy
+#s-aut-btn;;;Komendowy
+#m-set-btn;;;Opcje
+#a-set-btn;;;Opcje
+#s-set-btn;;;Opcje
+#m-q-btn;;;Zakończ sesję
+#a-q-btn;;;Zakończ sesję
+#s-q-btn;;;Zakończ sesję
+#m-exi-btn;;;Wyjście
+#a-exi-btn;;;Wyjście
+#s-exi-btn;;;Wyjście
+#head-txt;;;Manualny
+#a-head-txt;;;Komendowy
+#s-head-txt;;;Opcje
+#sens1;;;Żyroskop:
+#sens2;;;Podczerwień przód:
+#sens3;;;Podczerwień prawo:
+#sens4;;;Podczerwień lewo:
+#sens5;;;Podczerwień tył:
+#sens6;;;Supersoniczny przód:
+#sens7;;;Supersoniczny tył:
+#sens8;;;Drogomierz lewy:
+#sens9;;;Drogomierz prawy:
+#sens10;;;Dystans lewe koło:
+#sens11;;;Dystans prawe koło:
+#sens12;;;Koordynat X:
+#sens13;;;Koordynat Y:
+#sens14;;;Ping:
+#a-sens1;;;Żyroskop:
+#a-sens2;;;Podczerwień przód:
+#a-sens3;;;Podczerwień prawo:
+#a-sens4;;;Podczerwień lewo:
+#a-sens5;;;Podczerwień tył:
+#a-sens6;;;Supersoniczny przód:
+#a-sens7;;;Supersoniczny tył:
+#a-sens8;;;Drogomierz lewy:
+#a-sens9;;;Drogomierz prawy:
+#a-sens10;;;Dystans lewe koło:
+#a-sens11;;;Dystans prawe koło:
+#a-sens12;;;Koordynat X:
+#a-sens13;;;Koordynat Y:
+#a-sens14;;;Ping:
+#clr-btn;;;Wyczyść
+#sub-btn;;;Zatwierdź
+#s-clr-btn;;;Wyczyść
+#s-sub-btn;;;Zatwierdź

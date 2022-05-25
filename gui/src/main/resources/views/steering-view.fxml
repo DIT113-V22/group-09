@@ -18,7 +18,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
+
 <TabPane fx:id="main_pane" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyReleased" prefHeight="648.0" prefWidth="1025.0" stylesheets="@../stylesheets/tabs.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SteeringController">
+
    <tabs>
       <Tab id="manual-tab" fx:id="manual_tab">
          <content>
@@ -26,7 +28,7 @@
                   <HBox fx:id="root_box" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <AnchorPane id="side-anchor" fx:id="side_anchor" cache="true" maxWidth="232.0" minWidth="232.0" styleClass="anchor" HBox.hgrow="NEVER">
                               <VBox id="btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="648.0" prefWidth="247.0" styleClass="shadow" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-15.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
-                                    <Button id="m-man-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="232.0" styleClass="tbtn" text="Manual" translateY="120.0">
+                                    <Button id="m-man-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Manual" translateY="120.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -34,15 +36,15 @@
                                           <FontAwesomeIconView glyphName="USERS" />
                                        </graphic>
                                     </Button>
-                                    <Button id="m-aut-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToATab" prefHeight="47.0" prefWidth="212.0" styleClass="tbtn" text="Autonomous" translateY="160.0">
+                                    <Button id="m-aut-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToATab" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Autonomous" translateY="160.0">
                                        <font>
-                                          <Font name="System Bold" size="25.0" />
+                                          <Font name="System Bold" size="23.0" />
                                        </font>
                                        <graphic>
                                           <FontAwesomeIconView glyphName="WIFI" />
                                        </graphic>
                                     </Button>
-                                    <Button id="m-set-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToSTab" prefWidth="192.0" styleClass="tbtn" text="Settings" translateY="200.0">
+                                    <Button id="m-set-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToSTab" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Settings" translateY="200.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -50,15 +52,15 @@
                                           <FontAwesomeIconView glyphName="GEARS" />
                                        </graphic>
                                     </Button>
-                                    <Button id="m-q-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#quitSession" prefWidth="175.0" styleClass="tbtn" text="Quit Session" translateY="240.0">
+                                    <Button id="m-q-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#quitSession" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Quit Session" translateY="240.0">
                                        <font>
-                                          <Font name="System Bold" size="25.0" />
+                                          <Font name="System Bold" size="18.0" />
                                        </font>
                                        <graphic>
                                           <FontAwesomeIconView glyphName="ARROW_CIRCLE_LEFT" translateX="2.5" />
                                        </graphic>
                                     </Button>
-                                    <Button id="m-exi-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#exit" prefWidth="152.0" styleClass="tbtn" text="Exit" translateY="280.0">
+                                    <Button id="m-exi-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#exit" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Exit" translateY="280.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -77,9 +79,9 @@
                                                 <String fx:value="region" />
                                              </styleClass>
                                           </Region>
-                                          <Label id="head-txt" fx:id="info_label" alignment="CENTER" maxWidth="291.0" minWidth="209.0" prefHeight="52.0" prefWidth="291.0" text="Manual Mode" textFill="RED" translateX="20.0" translateY="20.0" HBox.hgrow="NEVER">
+                                          <Label id="head-txt" fx:id="info_label" alignment="CENTER" maxWidth="459.0" minWidth="209.0" prefHeight="52.0" prefWidth="459.0" text="Manual Mode" textFill="RED" translateX="20.0" translateY="20.0" HBox.hgrow="NEVER">
                                              <font>
-                                                <Font name="Agency FB" size="60.0" />
+                                                <Font name="Arial" size="50.0" />
                                              </font>
                                           </Label>
                                           <Region id="r-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
@@ -93,7 +95,7 @@
                                     <HBox id="main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
                                           <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
                                           <VBox id="info-box" maxWidth="320.0" minWidth="320.0" prefHeight="240.0" prefWidth="320.0" styleClass="box" HBox.hgrow="NEVER">
-                                                <ImageView fx:id="m_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-101.0" translateY="28.0">
+                                                <ImageView fx:id="m_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-102.0" translateY="28.0">
                                                    <image>
                                                       <Image url="@../img/Loading.jpg" />
                                                    </image>
@@ -342,7 +344,7 @@
                   <HBox fx:id="a_root_box" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <AnchorPane id="a-side-anchor" fx:id="a_side_anchor" cache="true" maxWidth="232.0" minWidth="232.0" styleClass="anchor" HBox.hgrow="NEVER">
                               <VBox id="a-btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="648.0" prefWidth="247.0" styleClass="shadow" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-15.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
-                                    <Button id="a-man-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToMTab" prefHeight="47.0" prefWidth="232.0" styleClass="tbtn" text="Manual" translateY="120.0">
+                                    <Button id="a-man-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToMTab" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Manual" translateY="120.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -350,7 +352,7 @@
                                           <FontAwesomeIconView glyphName="USERS" />
                                        </graphic>
                                     </Button>
-                                    <Button id="a-aut-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToATab" prefHeight="47.0" prefWidth="212.0" styleClass="tbtn" text="Autonomous" translateY="160.0">
+                                    <Button id="a-aut-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToATab" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Autonomous" translateY="160.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -358,7 +360,7 @@
                                           <FontAwesomeIconView glyphName="WIFI" />
                                        </graphic>
                                     </Button>
-                                    <Button id="a-set-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToSTab" prefWidth="192.0" styleClass="tbtn" text="Settings" translateY="200.0">
+                                    <Button id="a-set-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToSTab" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Settings" translateY="200.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -366,7 +368,7 @@
                                           <FontAwesomeIconView glyphName="GEARS" />
                                        </graphic>
                                     </Button>
-                                    <Button id="a-q-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#quitSession" prefWidth="175.0" styleClass="tbtn" text="Quit Session" translateY="240.0">
+                                    <Button id="a-q-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#quitSession" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Quit Session" translateY="240.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -374,7 +376,7 @@
                                           <FontAwesomeIconView glyphName="ARROW_CIRCLE_LEFT" translateX="2.5" />
                                        </graphic>
                                     </Button>
-                                    <Button id="a-exi-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#exit" prefWidth="152.0" styleClass="tbtn" text="Exit" translateY="280.0">
+                                    <Button id="a-exi-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#exit" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Exit" translateY="280.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -387,33 +389,21 @@
                         <AnchorPane id="a_info-anchor" prefHeight="480.0" prefWidth="498.0" HBox.hgrow="ALWAYS">
                               <VBox id="a-info-vbox" prefHeight="480.0" prefWidth="498.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <HBox id="a-top-box" maxWidth="Infinity" minHeight="52.0" prefHeight="52.0" prefWidth="498.0" styleClass="top">
-                                          <Region id="a-l-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
-                                             <styleClass>
-                                                <String fx:value="top" />
-                                                <String fx:value="region" />
-                                             </styleClass>
-                                          </Region>
-                                          <Label id="a-head-txt" fx:id="a_info_label" alignment="CENTER" maxWidth="358.0" minWidth="209.0" prefHeight="72.0" prefWidth="358.0" text="Command Mode" textFill="RED" translateX="20.0" translateY="20.0" HBox.hgrow="NEVER">
+                                          <Label id="a-head-txt" fx:id="a_info_label" alignment="CENTER" maxWidth="468.0" minWidth="209.0" prefHeight="71.0" prefWidth="468.0" text="Command Mode" textFill="RED" translateX="20.0" translateY="20.0" HBox.hgrow="NEVER">
                                              <styleClass>
                                                 <String fx:value="top" />
                                                 <String fx:value="label" />
                                              </styleClass>
                                              <font>
-                                                <Font name="Agency FB" size="60.0" />
+                                                <Font name="Arial" size="50.0" />
                                              </font>
                                           </Label>
-                                          <Region id="a-r-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
-                                             <styleClass>
-                                                <String fx:value="top" />
-                                                <String fx:value="region" />
-                                             </styleClass>
-                                          </Region>
                                     </HBox>
                                     <Region id="a-v1-info-pad" maxHeight="Infinity" minHeight="0.0" prefHeight="0.0" prefWidth="493.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="a-main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
                                           <Region id="a-l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
                                           <VBox id="a-info-box" maxWidth="320.0" minWidth="320.0" prefHeight="240.0" prefWidth="320.0" styleClass="box" HBox.hgrow="NEVER">
-                                                <ImageView fx:id="a_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-101.0" translateY="115.0">
+                                                <ImageView fx:id="a_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-102.0" translateY="115.0">
                                                    <image>
                                                       <Image url="@../img/Loading.jpg" />
                                                    </image>
@@ -706,7 +696,7 @@
                   <HBox fx:id="s_root_box" prefHeight="480.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <AnchorPane id="s-side-anchor" fx:id="s_side_anchor" cache="true" maxWidth="232.0" minWidth="232.0" styleClass="anchor" HBox.hgrow="NEVER">
                               <VBox id="s-btn-vbox" layoutX="61.0" layoutY="41.0" prefHeight="648.0" prefWidth="247.0" styleClass="shadow" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-15.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
-                                    <Button id="s-man-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToMTab" prefHeight="47.0" prefWidth="232.0" styleClass="tbtn" text="Manual" translateY="120.0">
+                                    <Button id="s-man-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToMTab" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Manual" translateY="120.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -714,7 +704,7 @@
                                           <FontAwesomeIconView glyphName="USERS" />
                                        </graphic>
                                     </Button>
-                                    <Button id="s-aut-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToATab" prefHeight="47.0" prefWidth="212.0" styleClass="tbtn" text="Autonomous" translateY="160.0">
+                                    <Button id="s-aut-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToATab" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Autonomous" translateY="160.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -722,7 +712,7 @@
                                           <FontAwesomeIconView glyphName="WIFI" />
                                        </graphic>
                                     </Button>
-                                    <Button id="s-set-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToSTab" prefWidth="192.0" styleClass="tbtn" text="Settings" translateY="200.0">
+                                    <Button id="s-set-btn" alignment="BASELINE_LEFT" graphicTextGap="7.0" mnemonicParsing="false" onAction="#switchToSTab" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Settings" translateY="200.0">
                                        <font>
                                           <Font name="Agency FB" size="60.0" />
                                        </font>
@@ -730,7 +720,7 @@
                                           <FontAwesomeIconView glyphName="GEARS" />
                                        </graphic>
                                     </Button>
-                                    <Button id="s-q-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#quitSession" prefWidth="175.0" styleClass="tbtn" text="Quit Session" translateY="240.0">
+                                    <Button id="s-q-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#quitSession" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Quit Session" translateY="240.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -741,7 +731,7 @@
                                           <String fx:value="tbtn" />
                                        </styleClass>
                                     </Button>
-                                    <Button id="s-exi-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#exit" prefWidth="152.0" styleClass="tbtn" text="Exit" translateY="280.0">
+                                    <Button id="s-exi-btn" alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#exit" prefHeight="47.0" prefWidth="230.0" styleClass="tbtn" text="Exit" translateY="280.0">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
@@ -769,7 +759,7 @@
                                                 <String fx:value="label" />
                                              </styleClass>
                                              <font>
-                                                <Font name="Agency FB" size="60.0" />
+                                                <Font name="Arial" size="50.0" />
                                              </font>
                                           </Label>
                                           <Region id="s-r-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">

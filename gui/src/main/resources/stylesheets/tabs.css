@@ -32,9 +32,9 @@
 }
 
 .tbtn {
-    -fx-font-family: "Agency FB";
+    -fx-font-family: "Arial Rounded MT Bold";
     -fx-background-color: #fff;
-    -fx-font-size: 25;
+    -fx-font-size: 19;
 }
 
 .tbtn:hover {
@@ -50,6 +50,11 @@
     -fx-background-color: #1E1E1E;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 30, 0.6, 0.0, 0.0);
 }
+
+.shadow2 {
+    -fx-background-color: #352a24;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 30, 0.6, 0.0, 0.0);
+}
 .aplbtnCl {
     -fx-background-color:
             linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),
@@ -59,7 +64,7 @@
     -fx-background-insets: 0,1,4,5;
     -fx-background-radius: 9,8,5,4;
     -fx-padding: 15 30 15 30;
-    -fx-font-family: "Agency FB";
+    -fx-font-family: "Arial Rounded MT Bold";
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
@@ -86,7 +91,7 @@
     -fx-background-insets: 0,1,4,5;
     -fx-background-radius: 9,8,5,4;
     -fx-padding: 15 30 15 30;
-    -fx-font-family: "Agency FB";
+    -fx-font-family: "Arial Rounded MT Bold";
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
@@ -103,4 +108,8 @@
     -fx-min-height:20;
     -fx-max-width:20;
     -fx-max-height:20;
+}
+
+.smallertxt {
+    -fx-font-size: 12px;
 }

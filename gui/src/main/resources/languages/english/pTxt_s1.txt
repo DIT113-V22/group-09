@@ -1,0 +1,8 @@
+usr-txt;;;Username
+usr-pass;;;Password
+car-txt;;;Car Name
+hos-txt;;;Host
+conn-txt;;;Port
+mq-usr-txt;;;MQTT username (optional)
+mq-pass-txt;;;MQTT password (optional)
+mq-uid-txt;;;MQTT clientID (optional)

@@ -7,6 +7,7 @@ import app.MovementHandler;
 import commands_processing.InputProcessor;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import exceptions.UnclearInputException;
+import file_processing.FileLoader;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -35,6 +36,8 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import app.CarGUI;
 
 public class SteeringController {
 
@@ -43,6 +46,8 @@ public class SteeringController {
     private WindowModes previousMode;
     private boolean sideShown;
 
+
+    private List<String> languageList;
 
     @FXML private Label info_label;
     @FXML private Label a_info_label;
@@ -119,7 +124,7 @@ public class SteeringController {
     //Takes the role of a constructor, as the javafx constructor cannot be easily implemented with parameters.
     public void initialize(CarAPI carAPI){
         if (this.carAPI == null){
-
+            languageList = new ArrayList<>();
             voiceIsOn = false;
             txt_scrl.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
             txt_scrl.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -130,6 +135,7 @@ public class SteeringController {
             mode = WindowModes.MANUAL;
             previousMode = mode;
 
+            loadLanguage();
             initialiseListeners();
         }
     }
@@ -230,7 +236,7 @@ public class SteeringController {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/views/start-view.fxml"));
 
-            Scene scene = new Scene(root, 740, 620);
+            Scene scene = new Scene(root, 700, 550);
             scene.setFill(Color.TRANSPARENT);
             stage.setScene(scene);
         }
@@ -303,8 +309,6 @@ public class SteeringController {
         }
     }
 
-
-
     private void updateTabSelection(){
         int selected = main_pane.getSelectionModel().getSelectedIndex();
         previousMode = mode;
@@ -334,8 +338,8 @@ public class SteeringController {
                 mode = WindowModes.SETTINGS;
                 if (mode != previousMode) {
                     try {
-                        carAPI.stop();
-                        carAPI.setManualMode(false);
+                        //carAPI.stop();
+                        //carAPI.setManualMode(false);
                     } catch (Exception ignored) {
 
                     }
@@ -367,7 +371,6 @@ public class SteeringController {
 
     private void processInput(){
         String input = txt_inpt.getText();
-        System.out.println(input);
         InputProcessor processor = new InputProcessor();
 
         try {
@@ -376,9 +379,6 @@ public class SteeringController {
             }
             String csv = processor.processInput(input);
             ArrayList<String> cList = processor.getCmList();
-            String json = processor.getLatestCommands();
-            System.out.println(csv);
-            System.out.println(json);
             carAPI.sendCSVCommand(csv);
 
             ObservableList<Node> children = txt_out.getChildren();
@@ -417,6 +417,19 @@ public class SteeringController {
     }
 
     @FXML
+    protected void detectON() throws MqttException {
+        carAPI.setEmergencyCheck(true);
+        System.out.println("Auto detection ON");
+    }
+
+
+    @FXML
+    protected void detectOFF() throws MqttException {
+        carAPI.setEmergencyCheck(false);
+        System.out.println("Auto detection OFF");
+    }
+
+    @FXML
     protected void getSoundFile(){
         try {
             Window window = root_anchor.getScene().getWindow();
@@ -435,6 +448,27 @@ public class SteeringController {
         }
     }
 
+    private void loadLanguage(){
+        try {
+            languageList = FileLoader.loadTxtFile(getClass().getResource("/languages/current/s2.txt"));
+
+            for (String entry : languageList){
+                String[] idAndValue = entry.split(";;;");
+                Node node = getNodeByCSS(idAndValue[0]);
+
+                if (node instanceof Button){
+                    ((Button) node).setText(idAndValue[1]);
+                }
+                else if (node instanceof Label){
+                    ((Label) node).setText(idAndValue[1]);
+                }
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     @FXML
     protected void toggleVoice(){
@@ -451,6 +485,14 @@ public class SteeringController {
 
     private enum WindowModes {
         MANUAL,AUTO,SETTINGS
+    }
+
+    private Node getNodeByCSS(String selector){
+        return main_pane.lookup(selector);
+    }
+
+    private Set<Node> getNodesByCSS(String selector){
+        return main_pane.lookupAll(selector);
     }
 
 }

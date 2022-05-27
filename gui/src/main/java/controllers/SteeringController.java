@@ -37,6 +37,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import app.CarGUI;
 
 public class SteeringController {
 
@@ -308,8 +309,6 @@ public class SteeringController {
         }
     }
 
-
-
     private void updateTabSelection(){
         int selected = main_pane.getSelectionModel().getSelectedIndex();
         previousMode = mode;
@@ -415,6 +414,19 @@ public class SteeringController {
         catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    protected void detectON() throws MqttException {
+        carAPI.setEmergencyCheck(true);
+        System.out.println("Auto detection ON");
+    }
+
+
+    @FXML
+    protected void detectOFF() throws MqttException {
+        carAPI.setEmergencyCheck(false);
+        System.out.println("Auto detection OFF");
     }
 
     @FXML

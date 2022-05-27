@@ -18,8 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-
-<TabPane fx:id="main_pane" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyReleased" prefHeight="648.0" prefWidth="1025.0" stylesheets="@../stylesheets/tabs.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SteeringController">
+<TabPane fx:id="main_pane" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyReleased" prefHeight="648.0" prefWidth="1025.0" stylesheets="@../stylesheets/tabs.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SteeringController">
 
    <tabs>
       <Tab id="manual-tab" fx:id="manual_tab">
@@ -76,7 +75,6 @@
                                           <Region id="l-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                                              <styleClass>
                                                 <String fx:value="top" />
-                                                <String fx:value="region" />
                                              </styleClass>
                                           </Region>
                                           <Label id="head-txt" fx:id="info_label" alignment="CENTER" maxWidth="459.0" minWidth="209.0" prefHeight="52.0" prefWidth="459.0" text="Manual Mode" textFill="RED" translateX="20.0" translateY="20.0" HBox.hgrow="NEVER">
@@ -87,7 +85,6 @@
                                           <Region id="r-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                                              <styleClass>
                                                 <String fx:value="top" />
-                                                <String fx:value="region" />
                                              </styleClass>
                                           </Region>
                                     </HBox>
@@ -97,7 +94,7 @@
                                           <VBox id="info-box" maxWidth="320.0" minWidth="320.0" prefHeight="240.0" prefWidth="320.0" styleClass="box" HBox.hgrow="NEVER">
                                                 <ImageView fx:id="m_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-102.0" translateY="28.0">
                                                    <image>
-                                                      <Image url="@../img/Loading.jpg" />
+                                                      <Image url="@../img/Loading2.jpg" />
                                                    </image>
                                                 </ImageView>
                                           </VBox>
@@ -398,6 +395,7 @@
                                                 <Font name="Arial" size="50.0" />
                                              </font>
                                           </Label>
+                                             <TextFlow id="txt-out" fx:id="txt_out" prefHeight="200.0" prefWidth="325.0" style="-fx-background-color: #fff;" translateX="225.0" translateY="375.0" />
                                     </HBox>
                                     <Region id="a-v1-info-pad" maxHeight="Infinity" minHeight="0.0" prefHeight="0.0" prefWidth="493.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="a-main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
@@ -405,7 +403,7 @@
                                           <VBox id="a-info-box" maxWidth="320.0" minWidth="320.0" prefHeight="240.0" prefWidth="320.0" styleClass="box" HBox.hgrow="NEVER">
                                                 <ImageView fx:id="a_vid" fitHeight="300.0" fitWidth="399.0" pickOnBounds="true" translateX="-102.0" translateY="115.0">
                                                    <image>
-                                                      <Image url="@../img/Loading.jpg" />
+                                                      <Image url="@../img/Loading2.jpg" />
                                                    </image>
                                                 </ImageView>
                                           </VBox>
@@ -416,18 +414,16 @@
                                           <Region styleClass="icon-balance-pad" />
                                           <ScrollPane id="txt-scrl" fx:id="txt_scrl" prefHeight="97.0" prefWidth="311.0" translateX="30.0" translateY="98.0">
                                              <content>
-                                                <AnchorPane id="out-anchor" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="325.0">
-                                                      <TextFlow id="txt-out" fx:id="txt_out" prefHeight="200.0" prefWidth="325.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                </AnchorPane>
+                                                <AnchorPane id="out-anchor" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="325.0" />
                                              </content>
                                           </ScrollPane>
-                                          <VBox>
-                                                <Button id="i-btn-v" ellipsisString="" mnemonicParsing="false" onAction="#toggleVoice" styleClass="icn-btn" text="Button" translateX="33.0" translateY="97.0">
+                                          <VBox prefHeight="97.0" prefWidth="0.0" translateX="30.0" translateY="100.0">
+                                                <Button id="i-btn-v" ellipsisString="" mnemonicParsing="false" onAction="#toggleVoice" styleClass="icn-btn">
                                                    <graphic>
                                                       <FontAwesomeIconView fx:id="microphone_glyph" glyphName="MICROPHONE_SLASH" />
                                                    </graphic>
                                                 </Button>
-                                                <Button id="i-btn-f" ellipsisString="" mnemonicParsing="false" onAction="#getFile" text="Button" translateX="33.0" translateY="108.0">
+                                                <Button id="i-btn-f" ellipsisString="" mnemonicParsing="false" onAction="#getFile" translateY="10.0">
                                                    <graphic>
                                                       <FontAwesomeIconView glyphName="FILE">
                                                          <cursor>
@@ -436,7 +432,7 @@
                                                       </FontAwesomeIconView>
                                                    </graphic>
                                                 </Button>
-                                                <Button id="s-btn-f" ellipsisString="" mnemonicParsing="false" onAction="#getSoundFile" text="Button" translateX="33.0" translateY="119.0">
+                                                <Button id="s-btn-f" ellipsisString="" mnemonicParsing="false" onAction="#getSoundFile" translateY="20.0">
                                                    <graphic>
                                                       <FontAwesomeIconView glyphName="MUSIC">
                                                          <cursor>
@@ -448,10 +444,10 @@
                                           </VBox>
                                           <Region id="a-r-out-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                     </HBox>
-                                    <HBox id="a-inpt-box" maxHeight="137.0" minHeight="65" prefHeight="97.0" prefWidth="493.0" styleClass="box">
-                                       <Region id="a-l-inpt-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                                    <HBox id="a-inpt-box" maxHeight="137.0" minHeight="65" prefHeight="97.0" prefWidth="409.0" styleClass="box">
+                                       <Region id="a-l-inpt-pad" disable="true" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                           <TextArea id="txt-inpt" fx:id="txt_inpt" prefHeight="0.0" prefWidth="331.0" wrapText="true" />
-                                          <Region id="a-r-inpt-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                                          <Region id="a-r-inpt-pad" disable="true" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" translateX="100.0" HBox.hgrow="ALWAYS" />
                                     </HBox>
                                     <HBox id="a-conf-box" maxHeight="65" minHeight="65" prefHeight="65.0" prefWidth="498.0" styleClass="box" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
                                        <Region id="a-l-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
@@ -684,6 +680,9 @@
                                           </Label>
                                           <Region id="a-np1" maxWidth="Infinity" styleClass="number-padding" />
                                     </HBox>
+                        <Button mnemonicParsing="false" onAction="#getSoundFile" opacity="0.0" text="Music " translateX="-70.0" translateY="224.0" />
+                        <Button mnemonicParsing="false" onAction="#toggleVoice" opacity="0.0" text="Mic    " translateX="-70.0" translateY="130.0" />
+                        <Button mnemonicParsing="false" onAction="#getFile" opacity="0.0" text="File    " translateX="-70.0" translateY="140.0" />
                               </VBox>
                         </AnchorPane>
                   </HBox>
@@ -750,7 +749,6 @@
                                           <Region id="s-l-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                                              <styleClass>
                                                 <String fx:value="top" />
-                                                <String fx:value="region" />
                                              </styleClass>
                                           </Region>
                                           <Label id="s-head-txt" fx:id="s_info_label" alignment="CENTER" maxWidth="291.0" minWidth="209.0" prefHeight="52.0" prefWidth="291.0" text="Settings" textFill="RED" translateX="-120.0" translateY="20.0" HBox.hgrow="NEVER">
@@ -765,19 +763,17 @@
                                           <Region id="s-r-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                                              <styleClass>
                                                 <String fx:value="top" />
-                                                <String fx:value="region" />
                                              </styleClass>
                                           </Region>
                                     </HBox>
                                     <HBox id="s-main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">
-                                          <Region id="s-l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
-                                          <Region id="s-r-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="240.0" prefWidth="0" HBox.hgrow="ALWAYS" />
+                           <children>
+                                             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#detectON" prefHeight="53.0" prefWidth="316.0" styleClass="aplbtnCo" text="Emergency Detection ON" translateX="115.0" translateY="60.0" />
+                                             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#detectOFF" prefHeight="53.0" prefWidth="316.0" styleClass="aplbtnCl" text="Emergency Detection OFF" translateX="-201.0" translateY="140.0" />
+                           </children>
                                     </HBox>
-                                    <Region id="s-v2-info-pad" maxHeight="Infinity" prefHeight="0.0" prefWidth="493.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="s-conf-box" maxHeight="65" minHeight="65" prefHeight="65.0" prefWidth="498.0" styleClass="box" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
                                           <Region id="s-l-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
-                                          <Button id="s-clr-btn" mnemonicParsing="false" onAction="#cancel" prefHeight="50.0" prefWidth="150.0" styleClass="aplbtnCl" text="Clear" translateX="-170.0" translateY="-1.0" />
-                                          <Button id="s-sub-btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" prefHeight="50.0" prefWidth="150.0" styleClass="aplbtnCo" text="Confirm" translateX="-130.0" translateY="-1.0" />
                                           <Region id="s-r-conf-pad" maxWidth="Infinity" minWidth="0" prefHeight="200.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
                                     </HBox>
                               </VBox>

@@ -16,6 +16,10 @@
     -fx-background-color: #b60000;
 }
 
+#btn-vbox{
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
 .sens{
     -fx-font-size: 16;
     -fx-font-family: "Arial Rounded MT Bold";
@@ -53,7 +57,8 @@
 
 .shadow2 {
     -fx-background-color: #352a24;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 30, 0.6, 0.0, 0.0);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 20, 0.6, 0.0, 0.0);
+
 }
 .aplbtnCl {
     -fx-background-color:
@@ -73,10 +78,12 @@
 
 .aplbtnCl:hover {
     -fx-background-color: #b60000;
+    -fx-text-fill: #fff;
 }
 
 .aplbtnCo:hover {
-    -fx-background-color: #67ff67;
+    -fx-background-color: #008812;
+    -fx-text-fill: #fff;
 }
 #aplbtnCl Text {
     -fx-effect: dropshadow( one-pass-box , white , 0, 0.0 , 0 , 1 );

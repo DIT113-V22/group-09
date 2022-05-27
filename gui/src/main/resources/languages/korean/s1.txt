@@ -1,4 +1,4 @@
-currently-chosen-language;;;ENGLISH
+currently-chosen-language;;;KOREAN
 #log-btn;;;로그인
 #anon-btn;;;익명
 #prof-btn;;;프로필 만들기

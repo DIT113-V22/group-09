@@ -306,7 +306,6 @@ public class StartController implements Initializable {
 
 
         Scene scene = new Scene(loader.load(), 1040, 620);
-        scene.setFill(Color.TRANSPARENT);
 
 
         SteeringController controller = loader.getController();
@@ -491,6 +490,9 @@ public class StartController implements Initializable {
                 current_language = Languages.PERSIAN;
             }
             case PERSIAN -> {
+                current_language = Languages.SWEDISH;
+            }
+            case SWEDISH -> {
                 current_language = Languages.ENGLISH;
             }
         }

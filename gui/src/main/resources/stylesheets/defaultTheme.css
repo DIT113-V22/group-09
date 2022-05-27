@@ -15,14 +15,21 @@
     -fx-background-color: transparent;
 }
 
-
 #l-btn{
     -fx-text-fill: #000000;
-    -fx-background-radius: 0;
+    -fx-background-radius: 15;
     -fx-max-height: "Infinity";
     -fx-max-width: "Infinity";
     -fx-pref-height: 50.0;
     -fx-pref-width: 246.0;
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-background-color: #cbcbcb;
+    -fx-font-size: 17;
+}
+
+#l-btn:hover{
+    -fx-background-color: #008812;
+    -fx-text-fill: #fff;
 }
 
 #side-anchor,#a-side-anchor,#s-side-anchor{
@@ -31,7 +38,6 @@
     maxWidth:"240";
     prefHeight:"480.0";
     prefWidth:"240";
-    -fx-background-radius: 20;
 }
 
 .top{

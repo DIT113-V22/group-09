@@ -67,7 +67,7 @@
                 </Button>
 
                 <Region disable="true" prefHeight="231.0" prefWidth="232.0" VBox.vgrow="ALWAYS" />
-                <Button id="exi-btn" fx:id="ex_btn" alignment="BASELINE_LEFT" graphicTextGap="15.5" mnemonicParsing="false" onAction="#exit" text="Exit" prefHeight="40.0" prefWidth="205.0" translateY="-60.0">
+                <Button id="exi-btn" fx:id="ex_btn" alignment="BASELINE_LEFT" graphicTextGap="15.5" mnemonicParsing="false" onAction="#exit" prefHeight="40.0" prefWidth="205.0" text="Exit" translateY="-60.0">
 
                     <font>
                         <Font name="System Bold" size="25.0" />
@@ -89,19 +89,16 @@
                     <Region id="l-top-pad" maxWidth="Infinity" minWidth="145.0" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                         <styleClass>
                             <String fx:value="top" />
-                            <String fx:value="region" />
                         </styleClass>
                     </Region>
                     <Label id="head-txt" fx:id="info_label" maxWidth="309.0" minWidth="309.0" prefHeight="52.0" prefWidth="309.0" text="Create Profile" translateX="-60.0" translateY="5.0" HBox.hgrow="NEVER">
                         <styleClass>
                             <String fx:value="top" />
-                            <String fx:value="label" />
                         </styleClass>
                     </Label>
                     <Region id="r-top-pad" maxWidth="Infinity" prefHeight="52.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
                         <styleClass>
                             <String fx:value="top" />
-                            <String fx:value="region" />
                         </styleClass>
                     </Region>
                 </HBox>
@@ -109,12 +106,7 @@
                     <Region id="l-main-pad" maxWidth="Infinity" minWidth="0" prefHeight="232.0" prefWidth="150.0" HBox.hgrow="ALWAYS" />
                     <VBox id="info-box" maxWidth="209.0" minWidth="209.0" prefHeight="250.0" prefWidth="209.0" styleClass="box" HBox.hgrow="NEVER">
 
-                        <Button fx:id="l_btn" id="l-btn" onAction="#switchLanguage" mnemonicParsing="false" text="Language: English">
-                            <styleClass>
-                                <String fx:value="btn" />
-                                <String fx:value="settings-field" />
-                            </styleClass>
-                        </Button>
+                        <Button id="l-btn" fx:id="l_btn" mnemonicParsing="false" onAction="#switchLanguage" styleClass="settings-field" stylesheets="@../stylesheets/tabs.css" text="Language: English" translateY="20.0" />
                         <TextField id="usr-txt" fx:id="usr_nm" prefHeight="25.0" prefWidth="183.0" promptText="Username" VBox.vgrow="NEVER">
                             <styleClass>
 
@@ -133,14 +125,12 @@
                         </PasswordField>
                         <Region id="info-region1" disable="true" maxHeight="20.0" prefHeight="20.0" prefWidth="209.0" VBox.vgrow="NEVER">
                             <styleClass>
-                                <String fx:value="region" />
                                 <String fx:value="info" />
                                 <String fx:value="user-field" />
                             </styleClass>
                         </Region>
                         <Region id="info-region2" disable="true" maxHeight="20.0" prefHeight="20.0" prefWidth="209.0" VBox.vgrow="NEVER">
                             <styleClass>
-                                <String fx:value="region" />
                                 <String fx:value="info" />
                                 <String fx:value="user-field" />
                                 <String fx:value="car-field" />
@@ -155,7 +145,6 @@
                         </TextField>
                         <Region id="info-region3" disable="true" maxHeight="20.0" prefHeight="20.0" prefWidth="209.0" VBox.vgrow="NEVER">
                             <styleClass>
-                                <String fx:value="region" />
                                 <String fx:value="info" />
                                 <String fx:value="car-field" />
                             </styleClass>
@@ -169,7 +158,6 @@
                         </TextField>
                         <Region id="info-region4" disable="true" maxHeight="20.0" prefHeight="20.0" prefWidth="209.0" VBox.vgrow="NEVER">
                             <styleClass>
-                                <String fx:value="region" />
                                 <String fx:value="info" />
                                 <String fx:value="car-field" />
                             </styleClass>
@@ -183,7 +171,6 @@
                         </TextField>
                         <Region id="info-region5" disable="true" maxHeight="20.0" prefHeight="20.0" prefWidth="209.0" VBox.vgrow="NEVER">
                             <styleClass>
-                                <String fx:value="region" />
                                 <String fx:value="info" />
                                 <String fx:value="car-field" />
                             </styleClass>
@@ -197,7 +184,6 @@
                         </TextField>
                         <Region id="info-region6" disable="true" maxHeight="20.0" prefHeight="20.0" prefWidth="209.0">
                             <styleClass>
-                                <String fx:value="region" />
                                 <String fx:value="info" />
                                 <String fx:value="car-field" />
                             </styleClass>
@@ -211,7 +197,6 @@
                         </TextField>
                         <Region id="info-region7" disable="true" maxHeight="20.0" prefHeight="20.0" prefWidth="209.0">
                             <styleClass>
-                                <String fx:value="region" />
                                 <String fx:value="info" />
                                 <String fx:value="car-field" />
                             </styleClass>
@@ -225,7 +210,6 @@
                         </TextField>
                         <Region id="info-region-pad" disable="true" maxHeight="Infinity" prefHeight="0" prefWidth="209.0" VBox.vgrow="ALWAYS">
                             <styleClass>
-                                <String fx:value="region" />
                                 <String fx:value="info" />
                             </styleClass>
                         </Region>
@@ -235,15 +219,13 @@
                 <HBox id="conf-box" maxHeight="143.0" minHeight="65" prefHeight="143.0" prefWidth="526.0" styleClass="box" stylesheets="@../stylesheets/tabs.css" AnchorPane.bottomAnchor="0.0" VBox.vgrow="NEVER">
 
 
-                    <Button id="clr-btn" fx:id="clr_btn" mnemonicParsing="false" onAction="#cancel" prefHeight="40.0" prefWidth="120.0" text="Clear" translateX="185.0" translateY="10.0" >
+                    <Button id="clr-btn" fx:id="clr_btn" mnemonicParsing="false" onAction="#cancel" prefHeight="40.0" prefWidth="120.0" text="Clear" translateX="185.0" translateY="10.0">
                         <styleClass>
-                            <String fx:value="specbtn2" />
                             <String fx:value="aplbtnCl" />
                             <String fx:value="smallertxt" />
                         </styleClass></Button>
-                    <Button id="sub-btn" fx:id="conf_btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" prefHeight="40.0" prefWidth="120.0" text="Confirm" translateX="66.0" translateY="75.0" >
+                    <Button id="sub-btn" fx:id="conf_btn" alignment="CENTER" mnemonicParsing="false" onAction="#confirm" prefHeight="40.0" prefWidth="120.0" text="Confirm" translateX="66.0" translateY="75.0">
                         <styleClass>
-                            <String fx:value="specbtn" />
                             <String fx:value="aplbtnCo" />
                             <String fx:value="smallertxt" />
                         </styleClass></Button>

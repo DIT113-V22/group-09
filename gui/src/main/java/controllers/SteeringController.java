@@ -338,8 +338,8 @@ public class SteeringController {
                 mode = WindowModes.SETTINGS;
                 if (mode != previousMode) {
                     try {
-                        carAPI.stop();
-                        carAPI.setManualMode(false);
+                        //carAPI.stop();
+                        //carAPI.setManualMode(false);
                     } catch (Exception ignored) {
 
                     }

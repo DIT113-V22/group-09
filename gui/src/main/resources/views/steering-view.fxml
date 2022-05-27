@@ -386,7 +386,7 @@
                         <AnchorPane id="a_info-anchor" prefHeight="480.0" prefWidth="498.0" HBox.hgrow="ALWAYS">
                               <VBox id="a-info-vbox" prefHeight="480.0" prefWidth="498.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <HBox id="a-top-box" maxWidth="Infinity" minHeight="52.0" prefHeight="52.0" prefWidth="498.0" styleClass="top">
-                                          <Label id="a-head-txt" fx:id="a_info_label" alignment="CENTER" maxWidth="468.0" minWidth="209.0" prefHeight="71.0" prefWidth="468.0" text="Command Mode" textFill="RED" translateX="20.0" translateY="20.0" HBox.hgrow="NEVER">
+                                          <Label id="a-head-txt" fx:id="a_info_label" alignment="CENTER" maxWidth="591.0" minWidth="209.0" prefHeight="58.0" prefWidth="591.0" text="Command Mode" textFill="RED" translateX="90.0" translateY="20.0" HBox.hgrow="NEVER">
                                              <styleClass>
                                                 <String fx:value="top" />
                                                 <String fx:value="label" />
@@ -395,7 +395,7 @@
                                                 <Font name="Arial" size="50.0" />
                                              </font>
                                           </Label>
-                                             <TextFlow id="txt-out" fx:id="txt_out" prefHeight="200.0" prefWidth="325.0" style="-fx-background-color: #fff;" translateX="225.0" translateY="375.0" />
+                                             <TextFlow id="txt-out" fx:id="txt_out" prefHeight="52.0" prefWidth="445.0" style="-fx-background-color: #fff;" translateX="225.0" translateY="375.0" />
                                     </HBox>
                                     <Region id="a-v1-info-pad" maxHeight="Infinity" minHeight="0.0" prefHeight="0.0" prefWidth="493.0" VBox.vgrow="ALWAYS" />
                                     <HBox id="a-main-box" maxWidth="Infinity" prefHeight="240.0" prefWidth="498.0">

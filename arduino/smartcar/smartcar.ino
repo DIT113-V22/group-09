@@ -163,7 +163,6 @@ void handleMqttMessage(String topic, String message) {
     if (topic == HEARTBEAT_TOPIC) {
         mqtt.publish(HEARTBEAT_RESPONSE_TOPIC, message);
     } else if (topic == THROTTLE_CONTROL_TOPIC) {
-        Serial.println(message);
         if (manualControl) {
             car.setSpeed(message.toInt());
         }

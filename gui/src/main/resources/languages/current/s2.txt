@@ -1,50 +1,50 @@
-#m-man-btn;;;Manualny
-#a-man-btn;;;Manualny
-#s-man-btn;;;Manualny
-#m-aut-btn;;;Komendowy
-#a-aut-btn;;;Komendowy
-#s-aut-btn;;;Komendowy
-#m-set-btn;;;Opcje
-#a-set-btn;;;Opcje
-#s-set-btn;;;Opcje
-#m-q-btn;;;Zakończ sesję
-#a-q-btn;;;Zakończ sesję
-#s-q-btn;;;Zakończ sesję
-#m-exi-btn;;;Wyjście
-#a-exi-btn;;;Wyjście
-#s-exi-btn;;;Wyjście
-#head-txt;;;Manualny
-#a-head-txt;;;Komendowy
-#s-head-txt;;;Opcje
-#sens1;;;Żyroskop:
-#sens2;;;Podczerwień przód:
-#sens3;;;Podczerwień prawo:
-#sens4;;;Podczerwień lewo:
-#sens5;;;Podczerwień tył:
-#sens6;;;Supersoniczny przód:
-#sens7;;;Supersoniczny tył:
-#sens8;;;Drogomierz lewy:
-#sens9;;;Drogomierz prawy:
-#sens10;;;Dystans lewe koło:
-#sens11;;;Dystans prawe koło:
-#sens12;;;Koordynat X:
-#sens13;;;Koordynat Y:
+#m-man-btn;;;Manual
+#a-man-btn;;;Manual
+#s-man-btn;;;Manual
+#m-aut-btn;;;Command
+#a-aut-btn;;;Command
+#s-aut-btn;;;Command
+#m-set-btn;;;Settings
+#a-set-btn;;;Settings
+#s-set-btn;;;Settings
+#m-q-btn;;;Quit session
+#a-q-btn;;;Quit session
+#s-q-btn;;;Quit session
+#m-exi-btn;;;Exit
+#a-exi-btn;;;Exit
+#s-exi-btn;;;Exit
+#head-txt;;;Manual
+#a-head-txt;;;Command
+#s-head-txt;;;Settings
+#sens1;;;Gyroscope:
+#sens2;;;Infrared front:
+#sens3;;;Infrared right:
+#sens4;;;Infrared left:
+#sens5;;;Infrared back:
+#sens6;;;Ultrasonic front:
+#sens7;;;Ultrasonic back:
+#sens8;;;Odometer left:
+#sens9;;;Odometer right:
+#sens10;;;Distance l. wheel:
+#sens11;;;Distance r. wheel:
+#sens12;;;X:
+#sens13;;;Y:
 #sens14;;;Ping:
-#a-sens1;;;Żyroskop:
-#a-sens2;;;Podczerwień przód:
-#a-sens3;;;Podczerwień prawo:
-#a-sens4;;;Podczerwień lewo:
-#a-sens5;;;Podczerwień tył:
-#a-sens6;;;Supersoniczny przód:
-#a-sens7;;;Supersoniczny tył:
-#a-sens8;;;Drogomierz lewy:
-#a-sens9;;;Drogomierz prawy:
-#a-sens10;;;Dystans lewe koło:
-#a-sens11;;;Dystans prawe koło:
-#a-sens12;;;Koordynat X:
-#a-sens13;;;Koordynat Y:
+#a-sens1;;;Gyroscope:
+#a-sens2;;;Infrared front:
+#a-sens3;;;Infrared right:
+#a-sens4;;;Infrared left:
+#a-sens5;;;Infrared back:
+#a-sens6;;;Ultrasonic front:
+#a-sens7;;;Ultrasonic back:
+#a-sens8;;;Odometer left:
+#a-sens9;;;Odometer right:
+#a-sens10;;;Distance l. wheel:
+#a-sens11;;;Distance r. wheel:
+#a-sens12;;;X:
+#a-sens13;;;Y:
 #a-sens14;;;Ping:
-#clr-btn;;;Wyczyść
-#sub-btn;;;Zatwierdź
-#s-clr-btn;;;Wyczyść
-#s-sub-btn;;;Zatwierdź
+#clr-btn;;;Clear
+#sub-btn;;;Confirm
+#s-clr-btn;;;Clear
+#s-sub-btn;;;Confirm

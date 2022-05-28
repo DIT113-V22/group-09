@@ -108,7 +108,6 @@ public class FileLoader {
     }
 
     private static URI correctPath(URL path) throws URISyntaxException {
-        System.out.println(path);
         String correctedPath = path.toString();
         correctedPath = correctedPath.replace("/target/classes","/src/main/resources");
         return new URI(correctedPath);

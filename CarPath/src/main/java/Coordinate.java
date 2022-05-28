@@ -1,19 +1,12 @@
-import api.CarAPI;
-import org.eclipse.paho.client.mqttv3.MqttException;
-import java.util.ArrayList;
-
 public class Coordinate {
-    // private static ArrayList<Coordinate> coordinates = new ArrayList<>();
-
 
     private double x;
     private double y;
     private double odometerDistance;
     private double gyroscopeDegrees;
-   // private ArrayList<Coordinate> adjacentCoordinates;
 
 
-    public Coordinate(long odometerDistance, int gyroscopeTurnDegrees, CarAPI carAPI){
+    public Coordinate(long odometerDistance, int gyroscopeTurnDegrees){
         this.odometerDistance = odometerDistance;
         this.gyroscopeDegrees = gyroscopeTurnDegrees;
         x = 0;
@@ -51,8 +44,6 @@ public class Coordinate {
             yDifference = (Math.sin(gyroscopeTurnDegrees) * distanceFromLast);
         }
         y = lastCoordinate.y + yDifference;
-
-     //   adjacentCoordinates.add(lastCoordinate);
     }
 
     public Coordinate(){
@@ -80,20 +71,4 @@ public class Coordinate {
     public double getOdometerDistance(){
         return odometerDistance;
     }
-
-    /*
-    public ArrayList<Coordinate> getAdjacentCoordinates() {
-        return adjacentCoordinates;
-    }
-
-    public void setAdjacentCoordinates(ArrayList<Coordinate> adjacentCoordinates) {
-        this.adjacentCoordinates = adjacentCoordinates;
-    }
-
-    public void addAdjacentCoordinate(Coordinate coordinate) {
-        if (!this.adjacentCoordinates.contains(coordinate))
-            this.adjacentCoordinates.add(coordinate);
-    }
-    */
-
 }

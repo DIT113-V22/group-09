@@ -5,7 +5,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 public class CoordinateController {
     private CarAPI carAPI;
     public ArrayList<Coordinate> coordinates = new ArrayList<>();
-    private static boolean firstCoordinate = false;
+    private boolean firstCoordinate = false;
 
     public CoordinateController (CarAPI carAPI){
         this.carAPI = carAPI;
@@ -14,7 +14,7 @@ public class CoordinateController {
     public void createCoordinateAtStop(){
         carAPI.addCommandStateListener(commandState -> {
             if (firstCoordinate = false){
-                Coordinate coordinate = new Coordinate(commandState.startSate().distance(), commandState.startSate().heading(),carAPI);
+                Coordinate coordinate = new Coordinate(commandState.startSate().distance(), commandState.startSate().heading());
                 coordinates.add(coordinate);
                 firstCoordinate = true;
             }

@@ -1,6 +1,8 @@
+package coordinates;
+
 import api.CarAPI;
+
 import java.util.ArrayList;
-import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class CoordinateController {
     private CarAPI carAPI;

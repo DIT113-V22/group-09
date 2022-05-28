@@ -1,17 +1,18 @@
 package commands_processing;
 
+import coordinates.CoordinateController;
 import grammar.TextTranslator;
 
 import java.util.ArrayList;
 
 public class InputProcessor {
-    //TODO:Move this class somewhere else where it makes more sense to have it.
+
     private final TextTranslator txtTranslator;
     private final CommandParser comParser;
     private CommandList cmList;
 
-    public InputProcessor(){
-        comParser = new CommandParser();
+    public InputProcessor(CoordinateController coordinateController){
+        comParser = new CommandParser(coordinateController);
         txtTranslator = new TextTranslator();
     }
 

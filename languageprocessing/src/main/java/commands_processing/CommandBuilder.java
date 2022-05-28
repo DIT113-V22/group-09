@@ -18,6 +18,10 @@ public class CommandBuilder {
     private DirectionTypes currentDirection;
     private Shapes currentShape;
     private Rotations currentRotation;
+    private Integer x;
+    private Integer y;
+
+    private boolean possibleCoordinateDeclaration;
 
     public CommandBuilder() {
         try {
@@ -70,6 +74,17 @@ public class CommandBuilder {
                 }
             }
 
+            if (possibleCoordinateDeclaration){
+                possibleCoordinateDeclaration=false;
+
+                int skippedWords= handleCoordinate(text,i);
+
+                if (skippedWords>0){
+                    i+=skippedWords;
+                    continue;
+                }
+            }
+
             //Checks if the current word is a start of a phrasal verb.
             phrasalVerb = pvChecker.findPhrasal(text,i);
 
@@ -90,18 +105,20 @@ public class CommandBuilder {
             //Comma indicates that the clause has ended and a new one will begin (or that the text has ended)
             //In almost all cases every command is contained within one clause, so it can be now added to the list of commands.
             if (text[i].equals(",")){
-                Command command = new Command(currentAction,currentDirection,currentAmount,currentUnit,currentShape,currentRotation);
+                Command command;
+                if (currentAction==ActionTypes.GO_TO_COORD){
+                    command = new Command(currentAction,x,y);
+                }
+                else {
+                    command  = new Command(currentAction,currentDirection,currentAmount,currentUnit,currentShape,currentRotation);
+                }
                 if (!command.isEmpty()){
                     cmList.add(command);
                     nullCurrent();
                 }
             }
-            //ADD METHOD(S) FOR HANDLING OF SPECIAL KEYWORDS LIKE AFTER, REPEAT, CANCEL?, etc.
             else if (text[i].equals("after")){
                 afterUsed = true;
-            }
-            else if (text[i].equals("and")){
-                // Implement AND functionality?
             }
         }
         return cmList;
@@ -129,13 +146,18 @@ public class CommandBuilder {
         }
         return false;
     }
-    
+
     //Handles different parts of the sentence, returns true if the assignment occurred.
     private boolean handleActionType(String word){
         if (currentAction == ActionTypes.NULL){
             ActionTypes action = lMap.getAction(word);
             if(action != ActionTypes.NULL){
                 currentAction = action;
+
+                if (action == ActionTypes.GO){
+                    possibleCoordinateDeclaration =true;
+                }
+
                 return true;
             }
         }
@@ -179,6 +201,31 @@ public class CommandBuilder {
         return false;
     }
 
+    private int handleCoordinate(String[] words, int position){
+        if (words[position].equals("to")) {
+            int offset = 1;
+            try {
+                if (words[position+offset].contains("coordinate")) {
+                    offset ++;
+                }
+                else if (words[position+offset].equals("the") && words[position+2].contains("coordinate")) {
+                    offset += 2;
+                }
+                x = Integer.valueOf(words[position+offset]);
+                offset++;
+                y = Integer.valueOf(words[position+offset].replace(",",""));
+                currentAction=ActionTypes.GO_TO_COORD;
+
+            }
+            catch (Exception e){
+                return 0;
+            }
+            return offset;
+        }
+        return 0;
+    }
+
+
     private boolean handleShape(String word){
         if (currentShape == Shapes.NULL){
             Shapes shape = lMap.getShape(word);
@@ -211,5 +258,8 @@ public class CommandBuilder {
         currentDirection = DirectionTypes.NULL;
         currentShape = Shapes.NULL;
         currentRotation = Rotations.NULL;
+        possibleCoordinateDeclaration =false;
+        x=null;
+        y=null;
     }
 }

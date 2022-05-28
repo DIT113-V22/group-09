@@ -5,6 +5,7 @@ import api.sensor.Infrared;
 import api.sensor.Odometer;
 import app.MovementHandler;
 import commands_processing.InputProcessor;
+import coordinates.CoordinateController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import exceptions.UnclearInputException;
 import file_processing.FileLoader;
@@ -37,7 +38,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import app.CarGUI;
 
 public class SteeringController {
 
@@ -112,6 +112,8 @@ public class SteeringController {
     @FXML private Label a_y_coo;
     @FXML private Label a_ping;
 
+    private InputProcessor processor;
+
     private boolean voiceIsOn;
 
     @FXML private FontAwesomeIconView microphone_glyph;
@@ -134,6 +136,11 @@ public class SteeringController {
             sideShown = true;
             mode = WindowModes.MANUAL;
             previousMode = mode;
+
+
+            CoordinateController coordinateController = new CoordinateController(carAPI);
+            coordinateController.createCoordinateAtStop();
+            processor = new InputProcessor(coordinateController);
 
             loadLanguage();
             initialiseListeners();
@@ -371,7 +378,6 @@ public class SteeringController {
 
     private void processInput(){
         String input = txt_inpt.getText();
-        InputProcessor processor = new InputProcessor();
 
         try {
             if (input == null || input.isBlank()){

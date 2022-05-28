@@ -1,5 +1,6 @@
 package commands_processing;
 
+import coordinates.CoordinateController;
 import file_processing.FileLoader;
 import grammar.LanguageEnums;
 import grammar.LanguageEnums.DirectionTypes;
@@ -10,9 +11,10 @@ import java.util.HashMap;
 
 public class CommandParser {
 
+    CoordinateController coordinateController;
+
     private static final int setsOfWheels = 2;
 
-    //TODO:Make it adjustable in settings.
     private static final String defaultTurnSpeed = "40";
     private static final String defaultMoveSpeed = "50";
     private static final String defaultStopSpeed = "0";
@@ -22,7 +24,8 @@ public class CommandParser {
     private final String[] wheelSpeeds;
 
 
-    public CommandParser() {
+    public CommandParser(CoordinateController coordinateController) {
+        this.coordinateController = coordinateController;
         try {
             conversionsMap = FileLoader.genericMapLoader(UnitTypes.class,Double.class,":",getClass().getResource("/files/unitConversions.txt"));
             if (conversionsMap.isEmpty()){
@@ -64,7 +67,6 @@ public class CommandParser {
                     if (direction == DirectionTypes.BACK) {
                         Arrays.fill(wheelSpeeds, "-" + defaultMoveSpeed);
                     }
-                    //TODO: Make more methods to offload the in-between commands somewhere else.
                     else if (direction == DirectionTypes.LEFT) {
 
                         inBetweenCSVEntry = "-" + defaultTurnSpeed + "," + defaultTurnSpeed + "," + "90,ANGULAR;";
@@ -95,6 +97,15 @@ public class CommandParser {
                     }
                     break;
                 }
+                //TODO: REMOVE SOUT();
+                case GO_TO_COORD -> {
+                    System.out.println(command);
+                    coordinateController.goToCoordinate(command.getXCoord(), command.getYCoord());
+                }
+                case RETURN -> {
+                    System.out.println(command);
+                    coordinateController.returnToStart();
+                }
                 default -> {
                     continue;
                 }
@@ -105,7 +116,6 @@ public class CommandParser {
            }
            builder.append(amount+","+unitCat+";");
         }
-        //TODO: Determine if the last ';' symbol should be there.
         return builder.substring(0,builder.length()-1);
     }
 }

@@ -1,11 +1,8 @@
 import api.CarAPI;
-import app.App;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import java.util.ArrayList;
 
 public class Coordinate {
-
-    private  static CarAPI carAPI = App.getCarAPI();
     // private static ArrayList<Coordinate> coordinates = new ArrayList<>();
 
 
@@ -16,7 +13,7 @@ public class Coordinate {
    // private ArrayList<Coordinate> adjacentCoordinates;
 
 
-    public Coordinate(long odometerDistance, int gyroscopeTurnDegrees){
+    public Coordinate(long odometerDistance, int gyroscopeTurnDegrees, CarAPI carAPI){
         this.odometerDistance = odometerDistance;
         this.gyroscopeDegrees = gyroscopeTurnDegrees;
         x = 0;
@@ -98,7 +95,5 @@ public class Coordinate {
             this.adjacentCoordinates.add(coordinate);
     }
     */
-
-
 
 }

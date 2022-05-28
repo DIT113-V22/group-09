@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Coordinate {
 
     private  static CarAPI carAPI = App.getCarAPI();
-    private static ArrayList<Coordinate> coordinates = new ArrayList<>();
-    private static boolean firstCoordinate = false;
+    // private static ArrayList<Coordinate> coordinates = new ArrayList<>();
+
 
     private double x;
     private double y;
@@ -16,14 +16,14 @@ public class Coordinate {
    // private ArrayList<Coordinate> adjacentCoordinates;
 
 
-    public Coordinate(long odometerDistance, double gyroscopeTurnDegrees){
+    public Coordinate(long odometerDistance, int gyroscopeTurnDegrees){
         this.odometerDistance = odometerDistance;
         this.gyroscopeDegrees = gyroscopeTurnDegrees;
         x = 0;
         y = 0;
     }
 
-    public Coordinate(long odometerDistance, double gyroscopeTurnDegrees, Coordinate lastCoordinate) {
+    public Coordinate(long odometerDistance, int gyroscopeTurnDegrees, Coordinate lastCoordinate) {
 
 
       //  adjacentCoordinates = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Coordinate {
         this.gyroscopeDegrees = gyroscopeTurnDegrees;
         double distanceFromLast = odometerDistance - lastCoordinate.odometerDistance;
         double xDifference;
-        double refactoredTurnDegrees = gyroscopeTurnDegrees;
+        int refactoredTurnDegrees = gyroscopeTurnDegrees;
         if (gyroscopeTurnDegrees > 0){
             if (gyroscopeTurnDegrees > 90){
                 refactoredTurnDegrees = 180 - gyroscopeTurnDegrees;
@@ -77,6 +77,12 @@ public class Coordinate {
     public void setY(double y) {
         this.y = y;
     }
+    public double getGyroscopeDegrees(){
+        return gyroscopeDegrees;
+    }
+    public double getOdometerDistance(){
+        return odometerDistance;
+    }
 
     /*
     public ArrayList<Coordinate> getAdjacentCoordinates() {
@@ -92,17 +98,7 @@ public class Coordinate {
             this.adjacentCoordinates.add(coordinate);
     }
     */
-    public void createCoordinateAtStop(){
-        carAPI.addCommandStateListener(commandState -> {
-            if (firstCoordinate = false){
-                Coordinate coordinate = new Coordinate(commandState.startSate().distance(), commandState.startSate().heading());
-                coordinates.add(coordinate);
-                firstCoordinate = true;
-            }
-            Coordinate coordinate = new Coordinate(commandState.endState().distance(), commandState.endState().heading(), coordinates.get(coordinates.size()-1));
-            coordinates.add(coordinate);
-        });
-    }
+
 
 
 }

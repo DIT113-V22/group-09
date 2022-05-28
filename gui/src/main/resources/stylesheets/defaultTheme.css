@@ -1,98 +1,104 @@
 
+/* Main window */
 #root-anchor,#a-root-anchor,#s-root-anchor{
-    -fx-background-color: #848FA5;
+    -fx-background-color: linear-gradient(to bottom, #c20000, #1c1c1c);
     maxHeight:"Infinity";
     maxWidth:"Infinity";
     minHeight:"-Infinity";
     minWidth:"-Infinity";
     prefHeight:"480.0";
     prefWidth:"730.0";
+    -fx-background-radius: 20;
 }
 
 #side-anchor,#a-side-anchor,#s-side-anchor{
-    -fx-background-color: #32E875;
+
+    -fx-background-color: linear-gradient(to bottom, #c20000, #1e1e1e);
     minWidth:"120";
     maxWidth:"240";
     prefHeight:"480.0";
     prefWidth:"240";
+    -fx-background-radius: 20;
 }
-
-
 
 .top{
     -fx-max-height: 52.0;
-    -fx-background-color: #141B41;
+    -fx-background-color: transparent;
+
 
 }
 
 #head-txt,#a-head-txt,#s-head-txt{
     -fx-alignment: center;
     -fx-text-fill: WHITE;
-    -fx-font-family: "System Bold";
-    -fx-font-size: 25;
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-font-size: 30;
+    -fx-opacity: 80%;
+
 }
 
 
-.info:hover{
-    /*-fx-background-color: black;*/
+#info-box TextField, #info-box PasswordField{
+    -fx-background-color: transparent;
+    -fx-border-color: #fff;
+    -fx-border-width:  0px 0px 2px 0px;
+    -fx-font-family: "Verdana", sans-serif;
+
 }
 
 
 .btn{
 
     -fx-text-fill: #000000;
-
     -fx-background-radius: 0;
     -fx-max-height: "Infinity";
     -fx-max-width: "Infinity";
     -fx-pref-height: 50.0;
     -fx-pref-width: 246.0;
-
-    /*-fx-text-fill: azure;*/
 }
+
+.btn:hover {
+    -fx-background-color: linear-gradient(to right, #fff 0%, transparent 60%);
+}
+
+.specbtn {
+    -fx-pref-height: 40.0;
+    -fx-pref-width: 125.0;
+    -fx-background-color: #fff;
+    -fx-background-insets: 0,1,2,3;
+    -fx-padding: 12 30 12 30;
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-background-radius: 50;
+}
+.specbtn:hover {
+    -fx-background-color: linear-gradient(#DCE35B, #45B649);
+}
+.specbtn2 {
+    -fx-pref-height: 40.0;
+    -fx-pref-width: 125.0;
+    -fx-background-color: #fff;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-background-radius: 50;
+}
+.specbtn2:hover {
+    -fx-background-color: linear-gradient(#ff5400, #be1d00);
+}
+
 
 
 #prof-btn.chosen,#set-btn.chosen,#anon-btn.chosen,#log-btn.chosen{
-    -fx-background-color: #3F7CAC;
+    -fx-background-color: linear-gradient(to right, #fff 10%, transparent 100%);
+    -fx-background-radius: 0 500 500 0;
     -fx-text-fill: black;
-    -fx-scale-y: 1;
 }
-
 
 .side{
-    -fx-background-color: #32E875;
+    -fx-background-color: transparent;
     -fx-alignment: baseline-left;
-    -fx-font-family: "System Bold";
-    -fx-font-size: 25;
-}
-
-.conf{
-    -fx-background-color: #11e8e8;
-    -fx-alignment: center;
-    -fx-font-family: "System";
-    -fx-font-size: 30;
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-font-size: 24;
 
 }
-
-
-.btn:hover {
-    -fx-background-color: #D81159;
-    -fx-text-fill: azure;
-    -fx-scale-y: 1.1;
-}
-
-/*.test:hover,*/
-/*.test:focus {*/
-/*    color: #31202BFF;*/
-/*    text-shadow: none;*/
-
-/*}*/
-
-/*.test:hover::before,*/
-/*.test:focus::before {*/
-/*    opacity: 1;*/
-/*}*/
-/*.test:hover::after,*/
-/*.test:focus::after {*/
-/*    opacity: 0.8;*/
-/*}*/

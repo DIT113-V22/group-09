@@ -17,6 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.User;
 import util.TxtWriter;
@@ -117,7 +118,7 @@ public class StartController implements Initializable {
 
     @FXML
     protected void showLogScr(){
-        info_label.setText("Log In");
+        info_label.setText("LOG IN");
         handleButtonTags();
         log_btn.getStyleClass().add("chosen");
         mode= WindowModes.LOG_IN;
@@ -126,7 +127,7 @@ public class StartController implements Initializable {
 
     @FXML
     protected void showUsrCreScr(){
-        info_label.setText("Create Profile");
+        info_label.setText("CREATE PROFILE");
         handleButtonTags();
         prof_btn.getStyleClass().add("chosen");
         mode= WindowModes.USR_CREATE;
@@ -135,7 +136,7 @@ public class StartController implements Initializable {
 
     @FXML
     protected void showAnonScr(){
-        info_label.setText("Simple Session");
+        info_label.setText("SIMPLE SESSION");
         handleButtonTags();
         anon_btn.getStyleClass().add("chosen");
         mode= WindowModes.ANON;
@@ -144,7 +145,7 @@ public class StartController implements Initializable {
 
     @FXML
     protected void showSetScr(){
-        info_label.setText("Settings");
+        info_label.setText("SETTINGS");
         handleButtonTags();
         set_btn.getStyleClass().add("chosen");
         mode= WindowModes.SETTINGS;
@@ -291,10 +292,11 @@ public class StartController implements Initializable {
 
 
         Scene scene = new Scene(loader.load(), 1040, 620);
-        stage.setMinWidth(1040);
-        stage.setMinHeight(620);
+        scene.setFill(Color.TRANSPARENT);
+
 
         SteeringController controller = loader.getController();
+
         stage.show();
         controller.initialize(api);
         stage.setScene(scene);

@@ -16,6 +16,14 @@ public class InputProcessor {
         txtTranslator = new TextTranslator();
     }
 
+    public InputProcessor(CoordinateController coordinateController,String pathToLangResource){
+        comParser = new CommandParser(coordinateController,pathToLangResource);
+        txtTranslator = new TextTranslator(pathToLangResource);
+    }
+
+
+
+
     public String processInput(String textInput){
         cmList = null;
         cmList = txtTranslator.translateText(textInput);

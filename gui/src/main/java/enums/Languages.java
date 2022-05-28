@@ -8,7 +8,7 @@ public enum Languages {
     PERSIAN;
 
     public String getHPath() {
-        return "/languages/"+this.toString().toLowerCase()+"/head_s1.txt/";
+            return "/languages/"+this.toString().toLowerCase()+"/head_s1.txt/";
     }
 
     public String getS1Path() {

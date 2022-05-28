@@ -1,10 +1,10 @@
-currently-chosen-language;;;ENGLISH
-#log-btn;;;Log In
-#anon-btn;;;Anonymous
-#prof-btn;;;Create Profile
-#set-btn;;;Settings
-#exi-btn;;;Exit
-#head-txt;;;SETTINGS
-#l-btn;;;Language: English
-#clr-btn;;;Clear
-#sub-btn;;;Confirm
+currently-chosen-language;;;POLISH
+#log-btn;;;Logowanie
+#anon-btn;;;Anonimowy
+#prof-btn;;;Nowy profil
+#set-btn;;;Opcje
+#exi-btn;;;Wyjście
+#head-txt;;;OPCJE
+#l-btn;;;Język: Polski
+#clr-btn;;;Wyczyść
+#sub-btn;;;Potwierdź

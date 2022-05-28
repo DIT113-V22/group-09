@@ -6,6 +6,7 @@ import exceptions.UnclearInputException;
 import file_processing.FileLoader;
 import grammar.LanguageEnums.*;
 
+import java.net.URL;
 import java.util.HashMap;
 
 public class OmittanceInferer {
@@ -20,6 +21,15 @@ public class OmittanceInferer {
         unitFromActMap = FileLoader.genericMapLoader(ActionTypes.class,UnitTypes.class,":",getClass().getResource("/files/inferUnitFromAct_map.txt"));
         amountFromActMap = FileLoader.genericMapLoader(ActionTypes.class,Integer.class,":",getClass().getResource("/files/inferAmountFromAct_map.txt"));
     }
+
+    public OmittanceInferer(String pathToLangResource) throws Exception {
+        actFromDirMap = FileLoader.genericMapLoader(DirectionTypes.class,ActionTypes.class,":",new URL(pathToLangResource+"/files/inferActFromDir_map.txt"));
+        dirFromActMap = FileLoader.genericMapLoader(ActionTypes.class,DirectionTypes.class,":",new URL(pathToLangResource+"/files/inferDirFromAct_map.txt"));
+        unitFromActMap = FileLoader.genericMapLoader(ActionTypes.class,UnitTypes.class,":",new URL(pathToLangResource+"/files/inferUnitFromAct_map.txt"));
+        amountFromActMap = FileLoader.genericMapLoader(ActionTypes.class,Integer.class,":",new URL(pathToLangResource+"/files/inferAmountFromAct_map.txt"));
+    }
+
+   
 
     private ActionTypes inferActFromDir(DirectionTypes directionVal){
         if (directionVal == DirectionTypes.NULL){

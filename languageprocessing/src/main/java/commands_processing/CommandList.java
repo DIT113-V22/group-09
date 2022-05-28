@@ -81,6 +81,10 @@ public class CommandList {
         return csv_build.substring(0,csv_build.length()-1);
     }
 
+    public void clear(){
+        commandSequence.clear();
+    }
+
     public String toString(){
         StringBuilder output = new StringBuilder();
 

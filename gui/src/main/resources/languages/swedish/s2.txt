@@ -1,0 +1,50 @@
+#m-man-btn;;;Manuell
+#a-man-btn;;;Manuell
+#s-man-btn;;;Manuell
+#m-aut-btn;;;Kommando
+#a-aut-btn;;;Kommando
+#s-aut-btn;;;Kommando
+#m-set-btn;;;Inställningar
+#a-set-btn;;;Inställningar
+#s-set-btn;;;Inställningar
+#m-q-btn;;;Avsluta session
+#a-q-btn;;;Avsluta session
+#s-q-btn;;;Avsluta session
+#m-exi-btn;;;Avsluta
+#a-exi-btn;;;Avsluta
+#s-exi-btn;;;Avsluta
+#head-txt;;;Manuell
+#a-head-txt;;;Kommando
+#s-head-txt;;;Inställningar
+#sens1;;;Gyroskop:
+#sens2;;;Infraröd fram:
+#sens3;;;Infraröd höger:
+#sens4;;;Infraröd vänster:
+#sens5;;;Infraröd bak:
+#sens6;;;Ultraljud fram:
+#sens7;;;Ultraljud bak:
+#sens8;;;Odometer vänster:
+#sens9;;;Odometer höger:
+#sens10;;;Distans hjul v.:
+#sens11;;;Distans hjul h.:
+#sens12;;;X:
+#sens13;;;Y:
+#sens14;;;Ping:
+#a-sens1;;;Gyroskop:
+#a-sens2;;;Infraröd fram:
+#a-sens3;;;Infraröd höger:
+#a-sens4;;;Infraröd vänster:
+#a-sens5;;;Infraröd bak:
+#a-sens6;;;Ultraljud fram:
+#a-sens7;;;Ultraljud bak:
+#a-sens8;;;Odometer vänster:
+#a-sens9;;;Odometer höger:
+#a-sens10;;;Distans hjul v.:
+#a-sens11;;;Distans hjul h.:
+#a-sens12;;;X:
+#a-sens13;;;Y:
+#a-sens14;;;Ping:
+#clr-btn;;;Rensa
+#sub-btn;;;Bekräfta
+#s-clr-btn;;;Rensa
+#s-sub-btn;;;Bekräfta

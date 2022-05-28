@@ -1,0 +1,8 @@
+usr-txt;;;계정 이름
+usr-pass;;;비밀번호
+car-txt;;;자동차 이름
+hos-txt;;;호스트
+conn-txt;;;포트
+mq-usr-txt;;;MQTT 계정 이름 (선택)
+mq-pass-txt;;;MQTT 비밀번호 (선택)
+mq-uid-txt;;;MQTT 클라이언트 ID (선택)

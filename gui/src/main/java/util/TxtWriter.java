@@ -19,6 +19,14 @@ public class TxtWriter {
         return true;
     }
 
+    public static void write(URL path, String entry) throws IOException,URISyntaxException {
+        File file = new File(correctPath(path));
+        FileWriter writer = new FileWriter(file,false);
+        writer.write(entry);
+        writer.flush();
+        writer.close();
+    }
+
     private static URI correctPath(URL path) throws URISyntaxException {
         String correctedPath = path.toString();
         correctedPath = correctedPath.replace("/target/classes","/src/main/resources");

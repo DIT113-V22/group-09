@@ -1,0 +1,8 @@
+usr-txt;;;Användarnamn
+usr-pass;;;Lösenord
+car-txt;;;Bilnamn
+hos-txt;;;Värd
+conn-txt;;;Port
+mq-usr-txt;;;MQTT användarnamn (valfri)
+mq-pass-txt;;;MQTT lösenord (valfri)
+mq-uid-txt;;;MQTT användarID (valfri)

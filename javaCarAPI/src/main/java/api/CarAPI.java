@@ -353,7 +353,8 @@ public class CarAPI {
         client.publish(controlModeTopic,new MqttMessage(value.getBytes(StandardCharsets.UTF_8)));
     }
     public void setEmergencyCheck(boolean b) throws MqttException{
-        client.publish(emergencyDetectionTopic, new MqttMessage(Boolean.toString(b).getBytes(StandardCharsets.UTF_8)));
+        MqttMessage message = new MqttMessage(Boolean.toString(b).getBytes(StandardCharsets.UTF_8));
+        client.publish(emergencyDetectionTopic, message);
     }
 
 }

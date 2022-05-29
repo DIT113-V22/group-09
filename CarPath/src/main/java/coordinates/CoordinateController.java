@@ -5,6 +5,7 @@ import api.CarAPI;
 import java.util.ArrayList;
 
 public class CoordinateController {
+
     private CarAPI carAPI;
     public ArrayList<Coordinate> coordinates = new ArrayList<>();
     private boolean firstCoordinate = false;
@@ -36,19 +37,30 @@ public class CoordinateController {
         //pythagoras
         double travelDistance = Math.sqrt(xDifference * xDifference + yDifference * yDifference);
 
-        double turnDegrees = Math.acos(Math.toRadians(yDifference/travelDistance));
-        int turnDegreesDifference = (int) Math.abs(coordinates.get(coordinates.size()-1).getGyroscopeDegrees()-turnDegrees);
+        double triangleDegree = Math.toDegrees(Math.acos(yDifference/travelDistance));
 
+        if (y > startingY){
+            triangleDegree = 180 - triangleDegree;
+        }
+        if (x > startingX){
+            triangleDegree = -triangleDegree;
+        }
+        int lastCoordinateGyroscope = coordinates.get(coordinates.size()-1).getGyroscopeDegrees();
+
+        int turnDegreesDifference = (int) Math.abs(lastCoordinateGyroscope-triangleDegree);
 
         String rightOrLeft;
-        if (turnDegreesDifference < 0) {
+        if (lastCoordinateGyroscope > triangleDegree ) {
+            //left
             rightOrLeft = "-40,40,";
         } else {
+            //right
             rightOrLeft = "40,-40,";
         }
         String turningCSVCommand = rightOrLeft + Math.abs(turnDegreesDifference) + ",ANGULAR;";
 
-        String drivingCSVCommand = "40," + "40," + travelDistance + ",FORWARD";
+        int intTravelDistance = (int)travelDistance;
+        String drivingCSVCommand = "40," + "40," + intTravelDistance + ",DISTANCE";
 
         String CSVCommand = turningCSVCommand + drivingCSVCommand;
 
@@ -60,7 +72,8 @@ public class CoordinateController {
     }
 
     public void returnToStart(){
-       for (int i = coordinates.size()-1; i > 0; i--){
+       //This method is too fast, the car can not perform all commands in time
+        for (int i = coordinates.size()-1; i >= 0; i--){
            goToCoordinate(coordinates.get(i).getX(), coordinates.get(i).getY());
        }
     }

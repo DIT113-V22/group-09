@@ -26,7 +26,11 @@ public class CarGUI extends Application {
 
 
         Parent root = FXMLLoader.load(getClass().getResource("/views/start-view.fxml"));
+
+
         Scene scene = new Scene(root, 700, 550);
+
+
         stage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);

@@ -6,6 +6,7 @@ import grammar.LanguageEnums;
 import grammar.LanguageEnums.DirectionTypes;
 import grammar.LanguageEnums.UnitTypes;
 
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -37,6 +38,21 @@ public class CommandParser {
         }
         wheelSpeeds = new String[setsOfWheels];
     }
+
+    public CommandParser(CoordinateController coordinateController, String pathToLangResource){
+        this.coordinateController = coordinateController;
+        try {
+            conversionsMap = FileLoader.genericMapLoader(UnitTypes.class,Double.class,":",new URL(pathToLangResource+"/files/unitConversions.txt"));
+            if (conversionsMap.isEmpty()){
+                throw new Exception("Loading conversionsMap went wrong or the file is empty.");
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        wheelSpeeds = new String[setsOfWheels];
+    }
+
 
     public String parseCommands(CommandList list) {
         Integer unconvertedAmount;

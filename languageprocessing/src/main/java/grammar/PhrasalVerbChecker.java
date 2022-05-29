@@ -2,6 +2,7 @@ package grammar;
 
 import file_processing.FileLoader;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -11,6 +12,10 @@ public class PhrasalVerbChecker implements Comparator<PhrasalVerb> {
 
     public PhrasalVerbChecker() throws Exception {
         pVerbList = FileLoader.loadPhrasalVerbsList(getClass().getResource("/files/phrasal_verbs_list.txt"));
+    }
+
+    public PhrasalVerbChecker(String pathToLangResource) throws Exception {
+        pVerbList = FileLoader.loadPhrasalVerbsList(new URL(pathToLangResource+"/files/phrasal_verbs_list.txt"));
     }
 
     public PhrasalVerb findPhrasal(String[] text, int startPos){

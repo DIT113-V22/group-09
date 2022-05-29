@@ -19,7 +19,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.User;
 import util.TxtWriter;
@@ -66,13 +65,11 @@ public class StartController implements Initializable {
     @FXML private TextField mqt_pass;
     @FXML private TextField mqt_cli;
 
-    List<TextField> inputFields;
+    private List<TextField> inputFields;
 
-    @FXML private Button conf_btn;
-    @FXML private Button clr_btn;
+    private static boolean manualLoad=false;
+    private static String pathToResource,pathToLangResource;
 
-    @FXML private Button ex_btn;
-    @FXML private Button l_btn;
 
     private Languages current_language;
 
@@ -84,17 +81,34 @@ public class StartController implements Initializable {
         reloadUsers();
         sideShown = true;
         mode = WindowModes.USR_CREATE;
-
-
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        /*
+            Example of overriding for the purpose of JAR creation. This for example gives the 2 required paths to the default folders.
+            overrideLoadingMode(true,"file:/D:/car_project/group-09/languageprocessing/src/main/resources/","file:/D:/car_project/group-09/gui/src/main/resources/");
+        */
+
         addMany(inputFields,usr_nm,usr_pass,car_nm,host_inf,conn_inf,mqt_usr,mqt_pass,mqt_cli);
         loadLanguage();
         showLogScr();
     }
+
+    public static void overrideLoadingMode(boolean mode, String pathToLangResource, String pathToResource){
+        if (mode && !pathToResource.isBlank()){
+            manualLoad=true;
+            StartController.pathToResource =pathToResource;
+            StartController.pathToLangResource =pathToLangResource;
+        }
+        else {
+            manualLoad=false;
+            StartController.pathToResource=null;
+            StartController.pathToLangResource = null;
+        }
+    }
+    
 
     @FXML
     public void handleKeyPress(KeyEvent event){
@@ -177,10 +191,7 @@ public class StartController implements Initializable {
 
     @FXML
     protected void cancel(){
-        if (mode== WindowModes.SETTINGS){
-            //TODO: SETTINGS restoration to default state.
-        }
-        else {
+        if (mode!= WindowModes.SETTINGS){
             clear();
         }
     }
@@ -214,9 +225,6 @@ public class StartController implements Initializable {
                 catch (Exception e){
                     System.out.println(e.getMessage());
                 }
-            }
-            case SETTINGS -> {
-                //TODO: Settings + updates.
             }
         }
     }
@@ -302,7 +310,13 @@ public class StartController implements Initializable {
 
         Stage stage = (Stage) root_anchor.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/steering-view.fxml"));
+        FXMLLoader loader;
+        if (manualLoad){
+            loader = new FXMLLoader(new URL(pathToResource +"/views/steering-view.fxml"));
+        }
+        else {
+            loader = new FXMLLoader(getClass().getResource("/views/steering-view.fxml"));
+        }
 
 
         Scene scene = new Scene(loader.load(), 1040, 620);
@@ -311,7 +325,12 @@ public class StartController implements Initializable {
         SteeringController controller = loader.getController();
 
         stage.show();
-        controller.initialize(api);
+        if (manualLoad){
+            controller.initialize(api,pathToLangResource,pathToResource);
+        }
+        else {
+            controller.initialize(api);
+        }
         stage.setScene(scene);
 
     }
@@ -334,14 +353,19 @@ public class StartController implements Initializable {
     private void reloadUsers(){
         try {
             users.clear();
-            ArrayList<String> userProfiles = FileLoader.loadTxtFile(getClass().getResource("/profiles/profiles.txt"));
+
+            ArrayList<String> userProfiles;
+            if (manualLoad){
+                userProfiles = FileLoader.loadTxtFile(new URL(pathToResource+"/profiles/profiles.txt"));
+            }
+            else {
+                userProfiles = FileLoader.loadTxtFile(getClass().getResource("/profiles/profiles.txt"));
+            }
             String[] userDetails;
             User mapEntry;
             for (String user: userProfiles){
                 userDetails = user.split(",");
-
-
-
+                
                 for(int i = 0; i<userDetails.length; i++){
                      userDetails[i]= userDetails[i].replace(";;;","");
                 }
@@ -383,8 +407,14 @@ public class StartController implements Initializable {
 
         User user = new User(username,password,carName,host,port,MQTTusername,MQTTpassword,MQTTcliID);
         users.put(username,user);
-
-        TxtWriter.writeEntry(getClass().getResource("/profiles/profiles.txt"),entry);
+    
+        
+        if (manualLoad){
+            TxtWriter.writeEntry(new URL(pathToResource+"/profiles/profiles.txt"),entry);
+        }
+        else {
+            TxtWriter.writeEntry(getClass().getResource("/profiles/profiles.txt"),entry);
+        }
     }
 
     private Node getNodeByCSS(String selector){
@@ -415,9 +445,16 @@ public class StartController implements Initializable {
 
     private void loadLanguage(){
         try {
-            languageTexts = FileLoader.loadTxtFile(getClass().getResource("/languages/current/s1.txt"));
-            languagePrompts = FileLoader.genericMapLoader(String.class,String.class,";;;",getClass().getResource("/languages/current/pTxt_s1.txt"));
-            languageHeaders = FileLoader.genericMapLoader(S1Headers.class,String.class,";;;",getClass().getResource("/languages/current/head_s1.txt"));
+            if (manualLoad){
+                languageTexts = FileLoader.loadTxtFile(new URL(pathToResource+"/languages/current/s1.txt"));
+                languagePrompts = FileLoader.genericMapLoader(String.class,String.class,";;;",new URL(pathToResource+"/languages/current/pTxt_s1.txt"));
+                languageHeaders = FileLoader.genericMapLoader(S1Headers.class,String.class,";;;",new URL(pathToResource+"/languages/current/head_s1.txt"));
+            }
+            else {
+                languageTexts = FileLoader.loadTxtFile(getClass().getResource("/languages/current/s1.txt"));
+                languagePrompts = FileLoader.genericMapLoader(String.class,String.class,";;;",getClass().getResource("/languages/current/pTxt_s1.txt"));
+                languageHeaders = FileLoader.genericMapLoader(S1Headers.class,String.class,";;;",getClass().getResource("/languages/current/head_s1.txt"));
+            }
 
             if (languageTexts.isEmpty()){
                 current_language = Languages.ENGLISH;
@@ -437,10 +474,16 @@ public class StartController implements Initializable {
 
     private void updateLangMaps(){
         try {
-
-            languageTexts = FileLoader.loadTxtFile(getClass().getResource("/languages/current/s1.txt"));
-            languagePrompts = FileLoader.genericMapLoader(String.class,String.class,";;;",getClass().getResource("/languages/current/pTxt_s1.txt"));
-            languageHeaders = FileLoader.genericMapLoader(S1Headers.class,String.class,";;;",getClass().getResource("/languages/current/head_s1.txt"));
+            if (manualLoad){
+                languageTexts = FileLoader.loadTxtFile(new URL(pathToResource+"/languages/current/s1.txt"));
+                languagePrompts = FileLoader.genericMapLoader(String.class,String.class,";;;",new URL(pathToResource+"/languages/current/pTxt_s1.txt"));
+                languageHeaders = FileLoader.genericMapLoader(S1Headers.class,String.class,";;;",new URL(pathToResource+"/languages/current/head_s1.txt"));
+            }
+            else {
+                languageTexts = FileLoader.loadTxtFile(getClass().getResource("/languages/current/s1.txt"));
+                languagePrompts = FileLoader.genericMapLoader(String.class,String.class,";;;",getClass().getResource("/languages/current/pTxt_s1.txt"));
+                languageHeaders = FileLoader.genericMapLoader(S1Headers.class,String.class,";;;",getClass().getResource("/languages/current/head_s1.txt"));
+            }
         }
         catch (Exception e){
             e.printStackTrace();
@@ -502,17 +545,33 @@ public class StartController implements Initializable {
 
     private void setLanguage(){
         try {
-            String s1 = FileLoader.loadWhole(getClass().getResource(current_language.getS1Path()));
-            TxtWriter.write(getClass().getResource("/languages/current/s1.txt"),s1);
+           if (manualLoad){
+               String s1 = FileLoader.loadWhole(new URL(pathToResource+current_language.getS1Path()));
+               TxtWriter.write(new URL(pathToResource+"/languages/current/s1.txt"),s1);
 
-            String s2 = FileLoader.loadWhole(getClass().getResource(current_language.getS2Path()));
-            TxtWriter.write(getClass().getResource("/languages/current/s2.txt"),s2);
+               String s2 = FileLoader.loadWhole(new URL(pathToResource+current_language.getS2Path()));
+               TxtWriter.write(new URL(pathToResource+"/languages/current/s2.txt"),s2);
 
-            String s1_head = FileLoader.loadWhole(getClass().getResource(current_language.getHPath()));
-            TxtWriter.write(getClass().getResource("/languages/current/head_s1.txt"),s1_head);
+               String s1_head = FileLoader.loadWhole(new URL(pathToResource+current_language.getHPath()));
+               TxtWriter.write(new URL(pathToResource+"/languages/current/head_s1.txt"),s1_head);
 
-            String s1_prompt = FileLoader.loadWhole(getClass().getResource(current_language.getPTxtPath()));
-            TxtWriter.write(getClass().getResource("/languages/current/pTxt_s1.txt"),s1_prompt);
+               String s1_prompt = FileLoader.loadWhole(new URL(pathToResource+current_language.getPTxtPath()));
+               TxtWriter.write(new URL(pathToResource+"/languages/current/pTxt_s1.txt"),s1_prompt);
+           }
+           else {
+               String s1 = FileLoader.loadWhole(getClass().getResource(current_language.getS1Path()));
+               TxtWriter.write(getClass().getResource("/languages/current/s1.txt"),s1);
+
+               String s2 = FileLoader.loadWhole(getClass().getResource(current_language.getS2Path()));
+               TxtWriter.write(getClass().getResource("/languages/current/s2.txt"),s2);
+
+               String s1_head = FileLoader.loadWhole(getClass().getResource(current_language.getHPath()));
+               TxtWriter.write(getClass().getResource("/languages/current/head_s1.txt"),s1_head);
+
+               String s1_prompt = FileLoader.loadWhole(getClass().getResource(current_language.getPTxtPath()));
+               TxtWriter.write(getClass().getResource("/languages/current/pTxt_s1.txt"),s1_prompt);
+           }
+            
         }
         catch (Exception e){
             e.printStackTrace();

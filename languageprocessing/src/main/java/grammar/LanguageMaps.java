@@ -2,6 +2,7 @@ package grammar;
 
 import file_processing.FileLoader;
 
+import java.net.URL;
 import java.util.Map;
 
 public class LanguageMaps {
@@ -18,6 +19,17 @@ public class LanguageMaps {
         shapesMap = FileLoader.genericMapLoader(String.class, LanguageEnums.Shapes.class, ":",getClass().getResource("/files/shapes_map.txt"));
         rotationsMap = FileLoader.genericMapLoader(String.class, LanguageEnums.Rotations.class, ":",getClass().getResource("/files/rotations_map.txt"));
     }
+
+    public LanguageMaps(String pathToLangResource) throws Exception{
+        actionMap =  FileLoader.genericMapLoader(String.class, LanguageEnums.ActionTypes.class,  ":",new URL(pathToLangResource+"/files/actions_map.txt"));
+        unitsMap = FileLoader.genericMapLoader(String.class, LanguageEnums.UnitTypes.class,  ":",new URL(pathToLangResource+"/files/units_map.txt"));
+        directionMap =  FileLoader.genericMapLoader(String.class, LanguageEnums.DirectionTypes.class,  ":",new URL(pathToLangResource+"/files/directions_map.txt"));
+        shapesMap = FileLoader.genericMapLoader(String.class, LanguageEnums.Shapes.class, ":",new URL(pathToLangResource+"/files/shapes_map.txt"));
+        rotationsMap = FileLoader.genericMapLoader(String.class, LanguageEnums.Rotations.class, ":",new URL(pathToLangResource+"/files/rotations_map.txt"));
+    }
+
+  
+
 
     public LanguageEnums.ActionTypes getAction(String key){
         LanguageEnums.ActionTypes action = actionMap.get(key);

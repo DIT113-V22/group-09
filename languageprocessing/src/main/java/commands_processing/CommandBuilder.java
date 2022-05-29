@@ -44,7 +44,32 @@ public class CommandBuilder {
         nullCurrent();
     }
 
+    public CommandBuilder(String pathToLangResource) {
+        try {
+            lMap = new LanguageMaps(pathToLangResource);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        cmList = new CommandList();
+        try {
+            pvChecker = new PhrasalVerbChecker(pathToLangResource);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        phrasalVerb = null;
+        afterUsed = false;
+
+        nullCurrent();
+    }
+
+
+
     public CommandList processText(String[] text){
+        cmList.clear();
+
         if (text == null){
             return cmList;
         }

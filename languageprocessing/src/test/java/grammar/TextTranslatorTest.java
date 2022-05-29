@@ -2,9 +2,11 @@ package grammar;
 
 import commands_processing.CommandList;
 import file_processing.FileLoader;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,10 +20,35 @@ class TextTranslatorTest {
     String expectedText;
     String[] texts;
     String[] expectedTexts;
+    URL path;
+
+    @BeforeAll
+    public static void setup(){
+
+    }
 
     @BeforeEach
     void setUp() {
+        path = getClass().getResource("/files/txtTest.txt");
         translator = new TextTranslator();
+
+        nullify();
+    }
+
+//    @BeforeEach
+//    void setUp(String pathToLangResource){
+//        try {
+//            path = new URL(pathToLangResource+"/files/txtTest.txt");
+//            translator = new TextTranslator(pathToLangResource);
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        nullify();
+//    }
+
+
+    private void nullify(){
         text = null;
         cmList = null;
         json = null;
@@ -194,7 +221,7 @@ class TextTranslatorTest {
 
         try {
 
-            ArrayList<String> textList = FileLoader.loadTxtFile(getClass().getResource("/files/txtTest.txt"));
+            ArrayList<String> textList = FileLoader.loadTxtFile(path);
             testText(FileLoader.listToString(textList),expectedText);
         }
         catch (Exception e){

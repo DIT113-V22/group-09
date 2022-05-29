@@ -34,6 +34,7 @@ import org.apache.commons.io.FileUtils;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.io.File;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +118,9 @@ public class SteeringController {
 
     private boolean voiceIsOn;
 
+    private URL startViewPath,s2CurrPath;
+
+
     @FXML private FontAwesomeIconView microphone_glyph;
 
    @FXML private TextArea txt_inpt;
@@ -138,6 +142,12 @@ public class SteeringController {
             mode = WindowModes.MANUAL;
             previousMode = mode;
 
+            try {
+                this.s2CurrPath = getClass().getResource("/languages/current/s2.txt");
+                this.startViewPath =  getClass().getResource("/views/start-view.fxml");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
             coordinateController = new CoordinateController(carAPI,a_x_coo,a_y_coo);
             coordinateController.createCoordinateAtStop();
@@ -147,6 +157,38 @@ public class SteeringController {
             initialiseListeners();
         }
     }
+
+    public void initialize(CarAPI carAPI,String pathToLangResource, String pathToFolders){
+        if (this.carAPI == null){
+            languageList = new ArrayList<>();
+            voiceIsOn = false;
+            txt_scrl.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            txt_scrl.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+            this.carAPI = carAPI;
+            this.keyboardHandler = new MovementHandler(carAPI);
+            sideShown = true;
+            mode = WindowModes.MANUAL;
+            previousMode = mode;
+
+            try {
+                this.s2CurrPath = new URL(pathToFolders+"/languages/current/s2.txt");
+                this.startViewPath = new URL(pathToFolders+"/views/start-view.fxml");
+            }catch (Exception e){
+              e.printStackTrace();
+            }
+
+
+            CoordinateController coordinateController = new CoordinateController(carAPI);
+            coordinateController.createCoordinateAtStop();
+
+            processor = new InputProcessor(coordinateController,pathToLangResource);
+
+            loadLanguage();
+            initialiseListeners();
+        }
+    }
+
 
     private void initialiseListeners(){
 
@@ -247,7 +289,7 @@ public class SteeringController {
         Stage stage = (Stage) root_anchor.getScene().getWindow();
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/views/start-view.fxml"));
+            Parent root = FXMLLoader.load(startViewPath);
 
             Scene scene = new Scene(root, 700, 550);
             scene.setFill(Color.TRANSPARENT);
@@ -462,7 +504,7 @@ public class SteeringController {
 
     private void loadLanguage(){
         try {
-            languageList = FileLoader.loadTxtFile(getClass().getResource("/languages/current/s2.txt"));
+            languageList = FileLoader.loadTxtFile(s2CurrPath);
 
             for (String entry : languageList){
                 String[] idAndValue = entry.split(";;;");

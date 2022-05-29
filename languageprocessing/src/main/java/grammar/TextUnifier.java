@@ -2,13 +2,30 @@ package grammar;
 
 import file_processing.FileLoader;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 public class TextUnifier {
+
+    URL divPath;
+
+    public TextUnifier(){
+        divPath = getClass().getResource("/files/clause_dividers_list.txt");
+    }
+
+    public TextUnifier(String pathToLangResource){
+        try {
+            this.divPath = new URL(pathToLangResource+"/files/clause_dividers_list.txt");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public String[] unify(String sentence){
         ArrayList<String> clauseDividers = null;
         try {
-            clauseDividers = FileLoader.loadTxtFile(getClass().getResource("/files/clause_dividers_list.txt"));
+            clauseDividers = FileLoader.loadTxtFile(divPath);
         }
         catch (Exception e){
             e.printStackTrace();

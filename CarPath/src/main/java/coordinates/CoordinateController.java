@@ -15,7 +15,7 @@ public class CoordinateController {
 
     public void createCoordinateAtStop(){
         carAPI.addCommandStateListener(commandState -> {
-            if (firstCoordinate = false){
+            if (firstCoordinate == false){
                 Coordinate coordinate = new Coordinate(commandState.startSate().distance(), commandState.startSate().heading());
                 coordinates.add(coordinate);
                 firstCoordinate = true;
@@ -36,18 +36,21 @@ public class CoordinateController {
         //pythagoras
         double travelDistance = Math.sqrt(xDifference * xDifference + yDifference * yDifference);
 
-        double turnDegrees = Math.acos(yDifference/travelDistance);
+        double turnDegrees = Math.acos(Math.toRadians(yDifference/travelDistance));
         int turnDegreesDifference = (int) Math.abs(coordinates.get(coordinates.size()-1).getGyroscopeDegrees()-turnDegrees);
 
-        String drivingCSVCommand = "40," + "40," + turnDegreesDifference + "ANGULAR;";
+
         String rightOrLeft;
-        if (turnDegreesDifference < 0){
+        if (turnDegreesDifference < 0) {
             rightOrLeft = "-40,40,";
-        }else{
+        } else {
             rightOrLeft = "40,-40,";
         }
-        String turningCSVCommand = rightOrLeft + Math.abs(turnDegreesDifference);
-        String CSVCommand = drivingCSVCommand + turningCSVCommand;
+        String turningCSVCommand = rightOrLeft + Math.abs(turnDegreesDifference) + ",ANGULAR;";
+
+        String drivingCSVCommand = "40," + "40," + travelDistance + ",FORWARD";
+
+        String CSVCommand = turningCSVCommand + drivingCSVCommand;
 
         try {
             carAPI.sendCSVCommand(CSVCommand);
@@ -61,9 +64,4 @@ public class CoordinateController {
            goToCoordinate(coordinates.get(i).getX(), coordinates.get(i).getY());
        }
     }
-
-
 }
-
-
-

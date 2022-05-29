@@ -5,7 +5,7 @@ public class Coordinate {
     private double x;
     private double y;
     private double odometerDistance;
-    private double gyroscopeDegrees;
+    private int gyroscopeDegrees;
 
 
     public Coordinate(long odometerDistance, int gyroscopeTurnDegrees){
@@ -13,6 +13,8 @@ public class Coordinate {
         this.gyroscopeDegrees = gyroscopeTurnDegrees;
         x = 0;
         y = 0;
+        System.out.println(odometerDistance);
+        System.out.println(gyroscopeTurnDegrees);
     }
 
     public Coordinate(long odometerDistance, int gyroscopeTurnDegrees, Coordinate lastCoordinate) {
@@ -20,39 +22,35 @@ public class Coordinate {
 
       //  adjacentCoordinates = new ArrayList<>();
         this.odometerDistance = odometerDistance;
-        this.gyroscopeDegrees = gyroscopeTurnDegrees;
+        int gyroscopeDegrees = gyroscopeTurnDegrees;
+
         double distanceFromLast = odometerDistance - lastCoordinate.odometerDistance;
         double xDifference;
-        int refactoredTurnDegrees = gyroscopeTurnDegrees;
-        if (gyroscopeTurnDegrees > 0){
-            if (gyroscopeTurnDegrees > 90){
-                refactoredTurnDegrees = 180 - gyroscopeTurnDegrees;
+        int refactoredTurnDegrees = gyroscopeDegrees;
+        if (gyroscopeDegrees > 0){
+            if (gyroscopeDegrees > 90){
+                refactoredTurnDegrees = 180 - gyroscopeDegrees;
             }
-            xDifference = (Math.cos(refactoredTurnDegrees) * distanceFromLast);
+            xDifference = (Math.sin(Math.toRadians(refactoredTurnDegrees)) * distanceFromLast);
         }else{
-            if (gyroscopeTurnDegrees < -90){
-                refactoredTurnDegrees = 180 + gyroscopeTurnDegrees;
+            if (gyroscopeDegrees < -90){
+                refactoredTurnDegrees = 180 + gyroscopeDegrees;
             }
-            xDifference = -(Math.cos(refactoredTurnDegrees) * distanceFromLast);
+            //Math.abs should not be needed
+            xDifference = -(Math.sin(Math.abs(Math.toRadians(refactoredTurnDegrees))) * distanceFromLast);
         }
         x = lastCoordinate.x + xDifference;
 
         double yDifference;
-        if (gyroscopeTurnDegrees > 90){
-            yDifference = -(Math.sin(gyroscopeTurnDegrees - 90) * distanceFromLast);
-        }else if (gyroscopeTurnDegrees < -90){
-            yDifference = -(Math.sin(gyroscopeTurnDegrees + 90) * distanceFromLast);
+        if (gyroscopeDegrees > 90){
+            yDifference = (Math.cos(Math.toRadians(180 - gyroscopeDegrees)) * distanceFromLast);
+        }else if (gyroscopeDegrees < -90){
+            yDifference = (Math.cos(Math.toRadians(180 + gyroscopeDegrees)) * distanceFromLast);
         }else{
-            yDifference = (Math.sin(gyroscopeTurnDegrees) * distanceFromLast);
+            //Math.abs should not be needed
+            yDifference = -(Math.cos(Math.abs(Math.toRadians(gyroscopeDegrees))) * distanceFromLast);
         }
         y = lastCoordinate.y + yDifference;
-    }
-
-    public Coordinate(){
-        x = 0;
-        y = 0;
-        odometerDistance = 0;
-        gyroscopeDegrees = 0;
     }
 
     public double getX() {
@@ -67,7 +65,7 @@ public class Coordinate {
     public void setY(double y) {
         this.y = y;
     }
-    public double getGyroscopeDegrees(){
+    public int getGyroscopeDegrees(){
         return gyroscopeDegrees;
     }
     public double getOdometerDistance(){

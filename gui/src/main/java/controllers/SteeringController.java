@@ -33,11 +33,11 @@ import org.apache.commons.io.FileUtils;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import java.io.File;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import app.CarGUI;
 
 public class SteeringController {
 
@@ -112,6 +112,7 @@ public class SteeringController {
     @FXML private Label a_y_coo;
     @FXML private Label a_ping;
 
+
     private boolean voiceIsOn;
 
     @FXML private FontAwesomeIconView microphone_glyph;
@@ -134,6 +135,7 @@ public class SteeringController {
             sideShown = true;
             mode = WindowModes.MANUAL;
             previousMode = mode;
+
 
             loadLanguage();
             initialiseListeners();
@@ -473,13 +475,34 @@ public class SteeringController {
     @FXML
     protected void toggleVoice(){
         //TODO: Add voice typing.
+        System.out.println("toggle!");
         if (voiceIsOn){
             voiceIsOn = false;
             microphone_glyph.setGlyphName("MICROPHONE_SLASH");
+
+            //Code below gets executed after the user clicked to stop the recording
+            try{
+                URI uri = FileLoader.correctPath(getClass().getResource("/stt/output.txt"));
+                File file = new File(uri);
+                String output = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+                txt_inpt.setText(output);
+                processInput();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         else {
             voiceIsOn = true;
             microphone_glyph.setGlyphName("MICROPHONE");
+
+           //TODO: execute .sh file here
+
+
+
+
+
         }
     }
 

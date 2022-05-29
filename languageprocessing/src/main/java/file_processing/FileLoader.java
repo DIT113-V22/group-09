@@ -107,7 +107,7 @@ public class FileLoader {
         return genericMap;
     }
 
-    private static URI correctPath(URL path) throws URISyntaxException {
+    public static URI correctPath(URL path) throws URISyntaxException {
         String correctedPath = path.toString();
         correctedPath = correctedPath.replace("/target/classes","/src/main/resources");
         return new URI(correctedPath);

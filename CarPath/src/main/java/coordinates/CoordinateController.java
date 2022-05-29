@@ -2,6 +2,7 @@ package coordinates;
 
 import api.CarAPI;
 import javafx.scene.control.Label;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 

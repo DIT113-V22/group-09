@@ -240,6 +240,7 @@ public class SteeringController {
     protected void exit() {
         Stage stage = (Stage) root_anchor.getScene().getWindow();
         stage.close();
+        System.exit(0);
     }
 
     @FXML

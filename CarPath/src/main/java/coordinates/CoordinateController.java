@@ -29,15 +29,15 @@ public class CoordinateController {
             Coordinate coordinate = new Coordinate(commandState.endState().distance(), commandState.endState().heading(), coordinates.get(coordinates.size()-1));
             coordinates.add(coordinate);
 
-//            Platform.runLater(() ->{
-//                try {
-//                    labelX.setText(Double.toString(coordinate.getX()));
-//                    labelY.setText(Double.toString(coordinate.getY()));
-//                }
-//                catch (Exception ignored){
-//
-//                }
-//            });
+              Platform.runLater(() ->{
+                try {
+                    labelX.setText(Double.toString(coordinate.getX()));
+                    labelY.setText(Double.toString(coordinate.getY()));
+                }
+                catch (Exception ignored){
+
+                }
+            });
         });
     }
 

@@ -1,16 +1,21 @@
 package coordinates;
 
 import api.CarAPI;
+import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 
 public class CoordinateController {
     private CarAPI carAPI;
-    public ArrayList<Coordinate> coordinates = new ArrayList<>();
+    private ArrayList<Coordinate> coordinates = new ArrayList<>();
     private boolean firstCoordinate = false;
+    private Label labelX,labelY;
 
-    public CoordinateController (CarAPI carAPI){
+
+    public CoordinateController (CarAPI carAPI, Label labelX,Label labelY){
         this.carAPI = carAPI;
+        this.labelX = labelX;
+        this.labelY = labelY;
     }
 
     public void createCoordinateAtStop(){
@@ -22,6 +27,16 @@ public class CoordinateController {
             }
             Coordinate coordinate = new Coordinate(commandState.endState().distance(), commandState.endState().heading(), coordinates.get(coordinates.size()-1));
             coordinates.add(coordinate);
+
+//            Platform.runLater(() ->{
+//                try {
+//                    labelX.setText(Double.toString(coordinate.getX()));
+//                    labelY.setText(Double.toString(coordinate.getY()));
+//                }
+//                catch (Exception ignored){
+//
+//                }
+//            });
         });
     }
 
@@ -58,6 +73,8 @@ public class CoordinateController {
 
         }
     }
+
+
 
     public void returnToStart(){
        for (int i = coordinates.size()-1; i > 0; i--){

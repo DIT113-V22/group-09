@@ -112,6 +112,7 @@ public class SteeringController {
     @FXML private Label a_y_coo;
     @FXML private Label a_ping;
 
+    CoordinateController coordinateController;
     private InputProcessor processor;
 
     private boolean voiceIsOn;
@@ -138,7 +139,7 @@ public class SteeringController {
             previousMode = mode;
 
 
-            CoordinateController coordinateController = new CoordinateController(carAPI);
+            coordinateController = new CoordinateController(carAPI,a_x_coo,a_y_coo);
             coordinateController.createCoordinateAtStop();
             processor = new InputProcessor(coordinateController);
 
@@ -155,6 +156,8 @@ public class SteeringController {
         carAPI.addUltraSonicListener(distance -> runLater(() -> m_f_ult.setText(doubleToString(distance))));
 
         carAPI.addGyroscopeListener(degrees -> runLater(() -> m_gyro.setText(doubleToString(degrees))));
+
+
 
         carAPI.addInfraredListener(Infrared.FRONT, distance -> runLater(() -> m_f_inf.setText(doubleToString(distance))));
         carAPI.addInfraredListener(Infrared.BACK, distance -> runLater(() -> m_b_inf.setText(doubleToString(distance))));
@@ -181,9 +184,8 @@ public class SteeringController {
 
         carAPI.addOdometerTotalDistanceListener(Odometer.LEFT, totalDistance -> runLater(() -> a_tot_l_odo.setText(doubleToString(totalDistance))));
         carAPI.addOdometerTotalDistanceListener(Odometer.RIGHT, totalDistance -> runLater(() -> a_tot_r_odo.setText(doubleToString(totalDistance))));
-        
-        
-        
+
+
         startPingUpdateThread();
     }
 
@@ -195,8 +197,12 @@ public class SteeringController {
                 runLater(() -> a_ping.setText(Integer.toString(ping)));
                 try {
                     Thread.sleep(1111);
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }
+                catch (Exception e){
+
                 }
             }
         });

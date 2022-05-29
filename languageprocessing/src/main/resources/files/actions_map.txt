@@ -4,4 +4,3 @@ drive:GO
 turn:TURN
 stop:STOP
 break:STOP
-go-in-a-circle:CIRCLE

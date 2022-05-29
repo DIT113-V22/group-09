@@ -1,0 +1,10 @@
+currently-chosen-language;;;POLISH
+#log-btn;;;Logowanie
+#anon-btn;;;Anonimowy
+#prof-btn;;;Nowy profil
+#set-btn;;;Opcje
+#exi-btn;;;Wyjście
+#head-txt;;;OPCJE
+#l-btn;;;Język: Polski
+#clr-btn;;;Wyczyść
+#sub-btn;;;Potwierdź

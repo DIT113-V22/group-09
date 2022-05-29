@@ -1,13 +1,18 @@
 package grammar;
 
 import file_processing.FileLoader;
-import settings.FilePaths;
 
 import java.util.ArrayList;
 
 public class TextUnifier {
-    public static String[] unify(String sentence){
-        ArrayList<String> clauseDividers = FileLoader.loadTxtFile(FilePaths.CLAUSE_DIVIDERS_LIST_PATH);
+    public String[] unify(String sentence){
+        ArrayList<String> clauseDividers = null;
+        try {
+            clauseDividers = FileLoader.loadTxtFile(getClass().getResource("/files/clause_dividers_list.txt"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
         // "\n" should be replaced with the system default line separator (or something like that, I don't remember the details, but it was used in the OOP course).
         //Also, most likely, some other special symbols should be replaced by " " - to be added.
@@ -21,7 +26,7 @@ public class TextUnifier {
         return sentence.split(" ");
     }
 
-    private static String lastCharUnify(String sentence){
+    private String lastCharUnify(String sentence){
         if (sentence.charAt(sentence.length()-1) != '.'){
             sentence += ",";
         }

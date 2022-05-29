@@ -1,0 +1,4 @@
+LOG_IN;;;로그인
+SIMPLE_SESSION;;;단순 세션
+CREATE_PROFILE;;;프로필 만들기
+SETTINGS;;;설정

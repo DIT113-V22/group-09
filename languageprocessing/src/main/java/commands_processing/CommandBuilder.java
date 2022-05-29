@@ -6,25 +6,36 @@ import grammar.PhrasalVerb;
 import grammar.PhrasalVerbChecker;
 
 public class CommandBuilder {
-    private final LanguageMaps lMap;
+    private LanguageMaps lMap;
     private final CommandList cmList;
     private PhrasalVerb phrasalVerb;
-    private boolean afterUsed,andUsed;
-    private final PhrasalVerbChecker pvChecker;
+    private boolean afterUsed;
+    private PhrasalVerbChecker pvChecker;
 
     private ActionTypes currentAction;
     private UnitTypes currentUnit;
     private Integer currentAmount;
     private DirectionTypes currentDirection;
+    private Shapes currentShape;
+    private Rotations currentRotation;
 
     public CommandBuilder() {
-        lMap = new LanguageMaps();
+        try {
+            lMap = new LanguageMaps();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         cmList = new CommandList();
-        pvChecker = new PhrasalVerbChecker();
-        
+        try {
+            pvChecker = new PhrasalVerbChecker();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         phrasalVerb = null;
         afterUsed = false;
-        andUsed = false;
 
         nullCurrent();
     }
@@ -72,23 +83,14 @@ public class CommandBuilder {
             }
 
             //continue is present to skip going through the remaining code if a type of the currently checked word was identified.
-            if (handleActionType(text[i])){
-                continue;
-            }
-            else if (handleDirectionType(text[i])){
-                continue;
-            }
-            else if (handleUnitType(text[i])){
-                continue;
-            }
-            else if (handleAmountType(text[i])){
+            if (handleWord(text[i])){
                 continue;
             }
 
             //Comma indicates that the clause has ended and a new one will begin (or that the text has ended)
             //In almost all cases every command is contained within one clause, so it can be now added to the list of commands.
             if (text[i].equals(",")){
-                Command command = new Command(currentAction,currentDirection,currentAmount,currentUnit);
+                Command command = new Command(currentAction,currentDirection,currentAmount,currentUnit,currentShape,currentRotation);
                 if (!command.isEmpty()){
                     cmList.add(command);
                     nullCurrent();
@@ -105,6 +107,29 @@ public class CommandBuilder {
         return cmList;
     }
 
+    private boolean handleWord(String word){
+        //returns true if the given word was identified as one of the command parts
+        if (handleActionType(word)){
+            return true;
+        }
+        else if (handleDirectionType(word)){
+            return true;
+        }
+        else if (handleUnitType(word)){
+            return true;
+        }
+        else if (handleAmountType(word)){
+            return true;
+        }
+        else if (handleShape(word)){
+            return true;
+        }
+        else if (handleRotation(word)){
+            return true;
+        }
+        return false;
+    }
+    
     //Handles different parts of the sentence, returns true if the assignment occurred.
     private boolean handleActionType(String word){
         if (currentAction == ActionTypes.NULL){
@@ -148,15 +173,43 @@ public class CommandBuilder {
 
             if (direction != DirectionTypes.NULL) {
                 currentDirection = direction;
+                return true;
             }
         }
         return false;
     }
+
+    private boolean handleShape(String word){
+        if (currentShape == Shapes.NULL){
+            Shapes shape = lMap.getShape(word);
+
+            if (shape != Shapes.NULL){
+                currentShape = shape;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean handleRotation(String word){
+        if (currentRotation == Rotations.NULL){
+            Rotations rotation = lMap.getRotation(word);
+
+            if (rotation != Rotations.NULL){
+                currentRotation = rotation;
+                return true;
+            }
+        }
+        return false;
+    }
+    
 
     private void nullCurrent(){
         currentAction = ActionTypes.NULL;
         currentUnit = UnitTypes.NULL;
         currentAmount = null;
         currentDirection = DirectionTypes.NULL;
+        currentShape = Shapes.NULL;
+        currentRotation = Rotations.NULL;
     }
 }

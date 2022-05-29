@@ -1,0 +1,5 @@
+square:SQUARE
+squares:SQUARE
+circle:CIRCLE
+circles:CIRCLE
+circular:CIRCLE

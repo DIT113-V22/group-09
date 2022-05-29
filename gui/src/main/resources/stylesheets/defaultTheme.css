@@ -1,0 +1,81 @@
+.root{
+    -fx-background-image:url('../img/bg1.png');
+    -fx-background-size: stretch;
+}
+
+/* Main window */
+#root-anchor,#a-root-anchor,#s-root-anchor{
+    maxHeight:"Infinity";
+    maxWidth:"Infinity";
+    minHeight:"-Infinity";
+    minWidth:"-Infinity";
+    prefHeight:"480.0";
+    prefWidth:"630.0";
+    -fx-background-radius: 20;
+    -fx-background-color: transparent;
+}
+
+#l-btn{
+    -fx-text-fill: #000000;
+    -fx-background-radius: 15;
+    -fx-max-height: "Infinity";
+    -fx-max-width: "Infinity";
+    -fx-pref-height: 50.0;
+    -fx-pref-width: 246.0;
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-background-color: #cbcbcb;
+    -fx-font-size: 17;
+}
+
+#l-btn:hover{
+    -fx-background-color: #008812;
+    -fx-text-fill: #fff;
+}
+
+#side-anchor,#a-side-anchor,#s-side-anchor{
+
+    minWidth:"120";
+    maxWidth:"240";
+    prefHeight:"480.0";
+    prefWidth:"240";
+}
+
+.top{
+    -fx-max-height: 52.0;
+    -fx-background-color: transparent;
+}
+
+#a-head-txt {
+    -fx-font-family: "Arial Rounded MT Bold";
+}
+#head-txt,#s-head-txt{
+    -fx-alignment: center;
+    -fx-text-fill: WHITE;
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-font-size: 30;
+    -fx-opacity: 80%;
+}
+
+
+#info-box TextField, #info-box PasswordField{
+    -fx-background-color: transparent;
+    -fx-border-color: #fff;
+    -fx-border-width:  0px 0px 2px 0px;
+    -fx-font-family: "Verdana", sans-serif;
+
+}
+
+.txt {
+    -fx-text-fill: #00f7ff;
+}
+
+#prof-btn.chosen,#set-btn.chosen,#anon-btn.chosen,#log-btn.chosen{
+    -fx-background-color: #be1a21;
+}
+
+.side{
+    -fx-background-color: transparent;
+    -fx-alignment: baseline-left;
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-font-size: 24;
+}

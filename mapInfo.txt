@@ -1,0 +1,30 @@
+All the maps that I have kept/recovered are in the link below. 
+https://drive.google.com/drive/folders/1dD-mHva18LHOrALJQUYLEyENwxEWeVeo?usp=sharing
+
+The naming conventions are quite inconsistent as a few "inbetween" files are missing but finalMapv18_3 is the final version of the map, 
+and there is a somewhat natural progression throughout each map which should show my efforts in developing the final build.
+
+
+Due to the nature of how small the SMCE program is (in terms of finding online resources) and that I used many different softwares, 
+I had to experiment and learn how to make the map compatible with godot, myself.
+
+Hence, you will see names like "collisionTest" which is when I experimented with hitboxes, 
+and maps with roman numerals then normal numbers afterwards (roman numerals indicate a new version of the map, normal numbers indicate a quick fix with materials, mesh, hitbox, sky, optimization, etc)
+
+
+A few versions of maps also never left the developing phase within my modeling software, 
+and so within the folder you will also see a nested folder called "Blender Files" in case you want to check those out.
+
+
+Finally, during the initial creation of the beta versions of the map, I created a very short, fun progression video for my teammates which is also inside the folder to show how I was progressing. 
+Some of these maps were never recovered so the video is the last proof of the first few maps' existence. 
+
+
+Also, it's a fun video to watch so I encourage you to check it out :) A few elements in those starting maps are still present in the final build!
+
+
+Although I will touch on this more in the report, map optimization was also a large factor in the final build. 
+After a lot of optimization, the maps nearing the final build still sat at over a gigabyte.
+However, the newest is not only a larger map, but a third of the size (370 MB) despite still having the HDRI sky texture. I am quite proud of that :)
+
+Once again, the link is at the top and contains a lot of the maps, blender files of said maps and a few more, and finally a short progression video of the very first few maps I created and started with.

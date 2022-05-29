@@ -1,0 +1,4 @@
+tst,tstpass,smartcar,127.0.0.1,1883,;;;,;;;,;;;
+local,local,smartcar,127.0.0.1,1883,;;;,;;;,;;;
+tester,tester,smartcar,127.0.0.1,1883,;;;,;;;,;;;
+peyman,chad,smartcar,iot.pymn.me,1883,;;;,;;;,;;;

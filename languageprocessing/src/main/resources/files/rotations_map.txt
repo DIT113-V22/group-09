@@ -1,0 +1,2 @@
+clockwise:CLOCKWISE
+counterclockwise:COUNTERCLOCKWISE

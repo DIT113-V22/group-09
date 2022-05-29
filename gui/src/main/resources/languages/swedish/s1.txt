@@ -1,0 +1,10 @@
+currently-chosen-language;;;SWEDISH
+#log-btn;;;Logga In
+#anon-btn;;;Anonym
+#prof-btn;;;Skapa Profil
+#set-btn;;;Inställningar
+#exi-btn;;;Avsluta
+#head-txt;;;INSTÄLLNINGAR
+#l-btn;;;Språk: Svenska
+#clr-btn;;;Rensa
+#sub-btn;;;Bekräfta

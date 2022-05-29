@@ -6,10 +6,10 @@ public class LanguageEnums {
         GO,
         TURN,
         STOP,
+        GO_TO_COORD,
         CIRCLE,
         RETURN,
-        NULL,
-        NOT_APPLICABLE
+        NULL
     }
 
     public enum UnitTypes {

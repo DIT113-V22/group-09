@@ -5,6 +5,7 @@ import api.sensor.Infrared;
 import api.sensor.Odometer;
 import app.MovementHandler;
 import commands_processing.InputProcessor;
+import coordinates.CoordinateController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import exceptions.UnclearInputException;
 import file_processing.FileLoader;
@@ -37,7 +38,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import app.CarGUI;
 
 public class SteeringController {
 
@@ -112,6 +112,9 @@ public class SteeringController {
     @FXML private Label a_y_coo;
     @FXML private Label a_ping;
 
+    CoordinateController coordinateController;
+    private InputProcessor processor;
+
     private boolean voiceIsOn;
 
     @FXML private FontAwesomeIconView microphone_glyph;
@@ -135,6 +138,11 @@ public class SteeringController {
             mode = WindowModes.MANUAL;
             previousMode = mode;
 
+
+            coordinateController = new CoordinateController(carAPI,a_x_coo,a_y_coo);
+            coordinateController.createCoordinateAtStop();
+            processor = new InputProcessor(coordinateController);
+
             loadLanguage();
             initialiseListeners();
         }
@@ -148,6 +156,8 @@ public class SteeringController {
         carAPI.addUltraSonicListener(distance -> runLater(() -> m_f_ult.setText(doubleToString(distance))));
 
         carAPI.addGyroscopeListener(degrees -> runLater(() -> m_gyro.setText(doubleToString(degrees))));
+
+
 
         carAPI.addInfraredListener(Infrared.FRONT, distance -> runLater(() -> m_f_inf.setText(doubleToString(distance))));
         carAPI.addInfraredListener(Infrared.BACK, distance -> runLater(() -> m_b_inf.setText(doubleToString(distance))));
@@ -174,9 +184,8 @@ public class SteeringController {
 
         carAPI.addOdometerTotalDistanceListener(Odometer.LEFT, totalDistance -> runLater(() -> a_tot_l_odo.setText(doubleToString(totalDistance))));
         carAPI.addOdometerTotalDistanceListener(Odometer.RIGHT, totalDistance -> runLater(() -> a_tot_r_odo.setText(doubleToString(totalDistance))));
-        
-        
-        
+
+
         startPingUpdateThread();
     }
 
@@ -188,8 +197,12 @@ public class SteeringController {
                 runLater(() -> a_ping.setText(Integer.toString(ping)));
                 try {
                     Thread.sleep(1111);
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }
+                catch (Exception e){
+
                 }
             }
         });
@@ -371,7 +384,6 @@ public class SteeringController {
 
     private void processInput(){
         String input = txt_inpt.getText();
-        InputProcessor processor = new InputProcessor();
 
         try {
             if (input == null || input.isBlank()){

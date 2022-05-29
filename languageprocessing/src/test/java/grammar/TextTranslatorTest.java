@@ -87,19 +87,44 @@ class TextTranslatorTest {
                 "go back",
                 "turn left.",
                 "turn right.",
-                "stop"
+                "stop",
+                "return"
         };
         expectedTexts = new String[] {
                 "Type:GO Dir:FORWARD Amount:MAX Unit:CENTIMETER",
                 "Type:GO Dir:BACK Amount:MAX Unit:CENTIMETER",
                 "Type:TURN Dir:LEFT Amount:90 Unit:DEGREE",
                 "Type:TURN Dir:RIGHT Amount:90 Unit:DEGREE",
-                "Type:STOP Dir:FORWARD Amount:0 Unit:CENTIMETER"
+                "Type:STOP Dir:FORWARD Amount:0 Unit:CENTIMETER",
+                "Type:RETURN Dir:NOT_APPLICABLE Amount:0 Unit:NOT_APPLICABLE"
         };
         for (int i=0; i<texts.length; i++){
             testText(texts[i], expectedTexts[i]);
         }
     }
+
+
+    @Test
+    void simpleCoords() {
+        texts = new String[]{
+                "go to 12,13.",
+                "go to the coordinates 321,12.",
+                "go to coordinate 420,1"
+
+        };
+        expectedTexts = new String[] {
+                "Type:GO_TO_COORD X:12 Y:13",
+                "Type:GO_TO_COORD X:321 Y:12",
+                "Type:GO_TO_COORD X:420 Y:1",
+
+        };
+        for (int i=0; i<texts.length; i++){
+            testText(texts[i], expectedTexts[i]);
+        }
+    }
+
+
+
 
     @Test
     void simpleMultiCommands() {
@@ -144,13 +169,18 @@ class TextTranslatorTest {
         texts = new String[]{
                 "go forward for 12 seconds then turn 43 degrees left.",
                 "go 11 meters back, after that turn 32 degrees to the left, then stop",
+                "go to the coordinate 420,1, then go forward for 3 meters, after that return to start, then go to 2,33"
         };
         expectedTexts = new String[] {
                 "Type:GO Dir:FORWARD Amount:12 Unit:SECOND\n" +
-                        "Type:TURN Dir:LEFT Amount:43 Unit:DEGREE",
+                    "Type:TURN Dir:LEFT Amount:43 Unit:DEGREE",
                 "Type:GO Dir:BACK Amount:11 Unit:METER\n" +
-                        "Type:TURN Dir:LEFT Amount:32 Unit:DEGREE\n" +
-                            "Type:STOP Dir:FORWARD Amount:0 Unit:CENTIMETER"
+                    "Type:TURN Dir:LEFT Amount:32 Unit:DEGREE\n" +
+                        "Type:STOP Dir:FORWARD Amount:0 Unit:CENTIMETER",
+                "Type:GO_TO_COORD X:420 Y:1\n" +
+                    "Type:GO Dir:FORWARD Amount:3 Unit:METER\n"+
+                        "Type:RETURN Dir:NOT_APPLICABLE Amount:0 Unit:NOT_APPLICABLE\n"+
+                            "Type:GO_TO_COORD X:2 Y:33"
         };
         for (int i=0; i<texts.length; i++){
             testText(texts[i], expectedTexts[i]);

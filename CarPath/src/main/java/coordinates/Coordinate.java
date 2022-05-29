@@ -13,8 +13,6 @@ public class Coordinate {
         this.gyroscopeDegrees = gyroscopeTurnDegrees;
         x = 0;
         y = 0;
-        System.out.println(odometerDistance);
-        System.out.println(gyroscopeTurnDegrees);
     }
 
     public Coordinate(long odometerDistance, int gyroscopeTurnDegrees, Coordinate lastCoordinate) {
@@ -22,7 +20,7 @@ public class Coordinate {
 
       //  adjacentCoordinates = new ArrayList<>();
         this.odometerDistance = odometerDistance;
-        int gyroscopeDegrees = gyroscopeTurnDegrees;
+        this.gyroscopeDegrees = gyroscopeTurnDegrees;
 
         double distanceFromLast = odometerDistance - lastCoordinate.odometerDistance;
         double xDifference;
@@ -58,12 +56,6 @@ public class Coordinate {
     }
     public double getY() {
         return y;
-    }
-    public void setX(double x) {
-        this.x = x;
-    }
-    public void setY(double y) {
-        this.y = y;
     }
     public int getGyroscopeDegrees(){
         return gyroscopeDegrees;
